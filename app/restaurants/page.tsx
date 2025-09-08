@@ -163,7 +163,7 @@ export default function Home() {
                     </div>
 
                     {/* Area Selection (only shows after destination selected) */}
-                    {selectedDestination === 'Miami & Beaches' && (
+                    {selectedDestination && selectedDestination === 'Miami & Beaches' && (
                         <div className="space-y-4">
                             <div className="grid grid-cols-2 gap-4">
                                 <button

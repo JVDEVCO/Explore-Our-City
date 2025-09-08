@@ -1,6 +1,7 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 import { supabase } from '@/lib/supabase.js'
 
 interface Restaurant {
@@ -26,11 +27,7 @@ export default function RestaurantsPage() {
     const budget = searchParams.get('budget')
     const category = searchParams.get('category')
 
-    useEffect(() => {
-        fetchRestaurants()
-    }, [neighborhood, cuisine, budget, category])
-
-    const fetchRestaurants = async () => {
+    const fetchRestaurants = useCallback(async () => {
         try {
             setLoading(true)
             setError(null)
@@ -75,13 +72,18 @@ export default function RestaurantsPage() {
             }
 
             setRestaurants(data || [])
-        } catch (err: any) {
+        } catch (err: unknown) {
+            const message = err instanceof Error ? err.message : 'Failed to load restaurants'
             console.error('Error fetching restaurants:', err)
-            setError(err.message || 'Failed to load restaurants')
+            setError(message)
         } finally {
             setLoading(false)
         }
-    }
+    }, [neighborhood, cuisine, budget, category])
+
+    useEffect(() => {
+        fetchRestaurants()
+    }, [fetchRestaurants])
 
     const getFilterDescription = () => {
         const filters = []
@@ -143,12 +145,12 @@ export default function RestaurantsPage() {
                         <p className="text-xl text-gray-600">
                             No restaurants found matching your criteria.
                         </p>
-                        <a
+                        <Link
                             href="/"
                             className="inline-block mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
                         >
                             Start New Search
-                        </a>
+                        </Link>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -216,12 +218,12 @@ export default function RestaurantsPage() {
                 )}
 
                 <div className="mt-8">
-                    <a
+                    <Link
                         href="/"
                         className="inline-block px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
                     >
                         ← New Search
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

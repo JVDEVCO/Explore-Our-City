@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+
 import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(

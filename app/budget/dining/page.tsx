@@ -75,8 +75,8 @@ export default function DiningBudgetSelection() {
                 console.error('Error fetching budget stats:', error)
             } else {
                 // Count restaurants by price range
-                const stats = {}
-                data.forEach(item => {
+                const stats: Record<string, number> = {}
+                data.forEach((item: any) => {
                     if (item.price_range) {
                         stats[item.price_range] = (stats[item.price_range] || 0) + 1
                     }

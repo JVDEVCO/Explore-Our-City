@@ -1,17 +1,16 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import RestaurantCard from '../../components/RestaurantCard';
 
 export default function Home() {
     const router = useRouter()
     const [selectedCity, setSelectedCity] = useState('')
-    const [selectedAreaType, setSelectedAreaType] = useState('') // 'specific' or 'explore'
+    const [selectedAreaType, setSelectedAreaType] = useState('') // 'specific' or 'all'
     const [selectedNeighborhood, setSelectedNeighborhood] = useState('')
     const [selectedCategory, setSelectedCategory] = useState('')
     const [selectedBudget, setSelectedBudget] = useState('')
     const [selectedCuisine, setSelectedCuisine] = useState('')
-    const [cuisines, setCuisines] = useState([])
+    const [cuisines, setCuisines] = useState<string[]>([])
     const [isMobile, setIsMobile] = useState(true)
 
     useEffect(() => {
@@ -110,59 +109,48 @@ export default function Home() {
         router.push(`/restaurants?${params.toString()}`)
     }
 
-    const fetchCuisinesForBudget = async () => {
-        try {
-            const budgetToPriceRange = {
-                quick: '$',
-                casual: '$$',
-                premium: '$$$',
-                luxury: '$$$$',
-                ultra: '$$$$$'
-            }
+    const fetchCuisinesForBudget = async (budget: string) => {
+        // Alphabetized list of proper cuisine types with smart categorization
+        const properCuisines = [
+            'American',
+            'Argentinian',
+            'BBQ',
+            'Brazilian',
+            'British',
+            'Burgers',
+            'Caribbean',
+            'Chinese',
+            'Colombian',
+            'Contemporary',
+            'Cuban',
+            'French',
+            'German',
+            'Greek',
+            'Haitian',
+            'Ice Cream',
+            'Indian',
+            'Italian',
+            'Japanese',
+            'Korean',
+            'Lebanese',
+            'Maine Lobster',
+            'Mediterranean',
+            'Mexican',
+            'Nicaraguan',
+            'Peruvian',
+            'Pizza',
+            'Russian',
+            'Seafood',
+            'Spanish',
+            'Steakhouse',
+            'Sushi',
+            'Thai',
+            'Turkish',
+            'Venezuelan',
+            'Vietnamese'
+        ]
 
-            const targetPriceRange = budgetToPriceRange[budget]
-
-            let query = supabase
-                .from('businesses')
-                .select('cuisine_type, business_type, address')
-                .eq('is_active', true)
-                .eq('price_range', targetPriceRange)
-
-            // Add neighborhood filtering if specific area is selected
-            if (selectedAreaType === 'specific' && selectedNeighborhood) {
-                const neighborhoodName = miamiareas.find(area => area.id === selectedNeighborhood)?.name
-                if (neighborhoodName) {
-                    query = query.ilike('address', `%${neighborhoodName}%`)
-                }
-            }
-
-            const { data, error } = await query
-
-            if (error) {
-                console.error('Error fetching cuisines:', error)
-            } else {
-                const uniqueCuisines = [...new Set(
-                    data
-                        .filter(item => item.cuisine_type && item.cuisine_type !== 'Cuisine not specified')
-                        .map(item => item.cuisine_type)
-                )].sort()
-
-                const businessTypes = [...new Set(
-                    data
-                        .filter(item => item.business_type)
-                        .map(item => item.business_type)
-                )]
-
-                const allOptions = [
-                    ...uniqueCuisines,
-                    ...businessTypes.map(type => type.charAt(0).toUpperCase() + type.slice(1).replace('_', ' '))
-                ]
-
-                setCuisines([...new Set(allOptions)].sort())
-            }
-        } catch (error) {
-            console.error('Error:', error)
-        }
+        setCuisines(properCuisines)
     }
 
     const categories = [
@@ -181,12 +169,6 @@ export default function Home() {
         { id: 'ultra', name: 'Ultra Premium', range: '$1,000+' }
     ]
 
-    const featuredRestaurants = [
-        { name: "South Pointe Tavern", priceRange: "$$$", cuisine: "American" },
-        { name: "Living Room at the W", priceRange: "$$$", cuisine: "Lounge" },
-        { name: "Bar Centro", priceRange: "$$$", cuisine: "Cocktails" }
-    ]
-
     const getHelperText = () => {
         if (!selectedCity) return 'Start by selecting a city'
         if (!selectedAreaType) return 'Choose to explore specific areas or the entire city'
@@ -199,362 +181,158 @@ export default function Home() {
     }
 
     return (
-        <div style={{
-            minHeight: '100vh',
-            background: 'linear-gradient(135deg, #1e3a8a 0%, #581c87 100%)',
-            color: 'white',
-            padding: isMobile ? '1rem' : '2rem 1rem',
-            display: 'flex',
-            flexDirection: 'column'
-        }}>
-
-            <div style={{
-                textAlign: 'center',
-                marginBottom: isMobile ? '1rem' : '1.5rem',
-                padding: isMobile ? '0' : '0 1rem'
-            }}>
-                <h1 style={{
-                    fontSize: isMobile ? '2rem' : '3rem',
-                    fontWeight: 'bold',
-                    marginBottom: '0.5rem',
-                    background: 'linear-gradient(45deg, #fbbf24, #f97316)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    lineHeight: '1.2'
-                }}>
-                    Explore Our City
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-4">
+            <div className="max-w-6xl mx-auto">
+                <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">
+                    Explore Miami & Miami Beach
                 </h1>
-                <p style={{
-                    fontSize: isMobile ? '0.9rem' : '1.1rem',
-                    marginBottom: '0.3rem',
-                    opacity: 0.9
-                }}>
-                    Dining. Entertainment. Adventure. Nature. Culture.
-                </p>
-                <p style={{
-                    fontSize: isMobile ? '0.8rem' : '1rem',
-                    marginBottom: '0.3rem',
-                    opacity: 0.8
-                }}>
-                    The Ultimate Find-Reserve-Go Experience
-                </p>
-                <p style={{
-                    fontSize: isMobile ? '0.7rem' : '0.9rem',
-                    opacity: 0.7
-                }}>
-                    From $5 authentic tacos to $50,000 yacht experiences
-                </p>
-            </div>
 
-            <div style={{
-                maxWidth: '1000px',
-                margin: '0 auto 2rem',
-                width: '100%',
-                padding: isMobile ? '0' : '0 1rem'
-            }}>
-
-                <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '1rem',
-                    marginBottom: '1rem'
-                }}>
-                    {/* Step 1: City Selection */}
-                    <select
-                        value={selectedCity}
-                        onChange={(e) => handleCitySelection(e.target.value)}
-                        style={{
-                            backgroundColor: '#374151',
-                            color: 'white',
-                            padding: isMobile ? '1rem' : '0.75rem',
-                            borderRadius: '0.5rem',
-                            border: '1px solid #4b5563',
-                            fontSize: isMobile ? '1rem' : '0.9rem'
-                        }}
-                    >
-                        <option value="">Which City Are You Exploring?</option>
-                        <option value="miami">Miami & Beaches</option>
-                        <option value="nashville">Nashville</option>
-                        <option value="nyc">New York City</option>
-                    </select>
-
-                    {/* Step 2: Area Type Selection - Two Half Buttons */}
-                    {selectedCity && (
-                        <div style={{
-                            display: 'flex',
-                            gap: '0.5rem'
-                        }}>
-                            <button
-                                onClick={() => handleAreaTypeSelection('specific')}
-                                style={{
-                                    flex: 1,
-                                    backgroundColor: selectedAreaType === 'specific' ? '#fbbf24' : '#374151',
-                                    color: selectedAreaType === 'specific' ? 'black' : 'white',
-                                    padding: isMobile ? '1rem' : '0.75rem',
-                                    borderRadius: '0.5rem',
-                                    border: 'none',
-                                    fontSize: isMobile ? '1rem' : '0.9rem',
-                                    fontWeight: 'bold',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.3s ease'
-                                }}
-                            >
-                                📍 Specific Area
-                            </button>
-                            <button
-                                onClick={() => handleAreaTypeSelection('explore')}
-                                style={{
-                                    flex: 1,
-                                    backgroundColor: selectedAreaType === 'explore' ? '#fbbf24' : '#374151',
-                                    color: selectedAreaType === 'explore' ? 'black' : 'white',
-                                    padding: isMobile ? '1rem' : '0.75rem',
-                                    borderRadius: '0.5rem',
-                                    border: 'none',
-                                    fontSize: isMobile ? '1rem' : '0.9rem',
-                                    fontWeight: 'bold',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.3s ease'
-                                }}
-                            >
-                                🗺️ Explore All
-                            </button>
-                        </div>
-                    )}
-
-                    {/* Step 3: Neighborhood Selection (only for specific area) */}
-                    {selectedAreaType === 'specific' && (
-                        <select
-                            value={selectedNeighborhood}
-                            onChange={(e) => handleNeighborhoodSelection(e.target.value)}
-                            style={{
-                                backgroundColor: '#fbbf24',
-                                color: 'black',
-                                padding: isMobile ? '1rem' : '0.75rem',
-                                borderRadius: '0.5rem',
-                                border: 'none',
-                                fontSize: isMobile ? '1rem' : '0.9rem',
-                                fontWeight: 'bold'
-                            }}
-                        >
-                            <option value="">Select Neighborhood</option>
-                            {miamiareas.filter(area => area.city === selectedCity).map(area => (
-                                <option key={area.id} value={area.id}>
-                                    {area.name}
-                                </option>
-                            ))}
-                        </select>
-                    )}
-
-                    {/* Step 4: Experience Category (shows when area decision is made) */}
-                    {(selectedAreaType === 'explore' || (selectedAreaType === 'specific' && selectedNeighborhood)) && (
-                        <select
-                            value={selectedCategory}
-                            onChange={(e) => handleCategorySelection(e.target.value)}
-                            style={{
-                                backgroundColor: '#374151',
-                                color: 'white',
-                                padding: isMobile ? '1rem' : '0.75rem',
-                                borderRadius: '0.5rem',
-                                border: '1px solid #4b5563',
-                                fontSize: isMobile ? '1rem' : '0.9rem'
-                            }}
-                        >
-                            <option value="">Choose Your Experience</option>
-                            {categories.map(category => (
-                                <option key={category.id} value={category.id}>
-                                    {category.icon} {category.name} ({category.description})
-                                </option>
-                            ))}
-                        </select>
-                    )}
-
-                    {/* Step 5: Budget (appears when dining is selected) */}
-                    {selectedCategory === 'dining' && (
-                        <select
-                            value={selectedBudget}
-                            onChange={(e) => handleBudgetSelection(e.target.value)}
-                            style={{
-                                backgroundColor: '#fbbf24',
-                                color: 'black',
-                                padding: isMobile ? '1rem' : '0.75rem',
-                                borderRadius: '0.5rem',
-                                border: 'none',
-                                fontSize: isMobile ? '1rem' : '0.9rem',
-                                fontWeight: 'bold'
-                            }}
-                        >
-                            <option value="">💰 Select Your Budget Range</option>
-                            {budgetOptions.map(budget => (
-                                <option key={budget.id} value={budget.id}>
-                                    {budget.name} ({budget.range})
-                                </option>
-                            ))}
-                        </select>
-                    )}
-
-                    {/* Step 6: Cuisine (appears when budget is selected) */}
-                    {selectedCategory === 'dining' && selectedBudget && cuisines.length > 0 && (
-                        <select
-                            value={selectedCuisine}
-                            onChange={(e) => handleCuisineSelection(e.target.value)}
-                            style={{
-                                backgroundColor: '#34d399',
-                                color: 'black',
-                                padding: isMobile ? '1rem' : '0.75rem',
-                                borderRadius: '0.5rem',
-                                border: 'none',
-                                fontSize: isMobile ? '1rem' : '0.9rem',
-                                fontWeight: 'bold'
-                            }}
-                        >
-                            <option value="">🍽️ Choose Cuisine Type</option>
-                            {cuisines.map(cuisine => (
-                                <option key={cuisine} value={cuisine}>
-                                    {cuisine}
-                                </option>
-                            ))}
-                        </select>
-                    )}
+                {/* Helper Text */}
+                <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+                    <p className="text-gray-600 text-center">{getHelperText()}</p>
                 </div>
 
-                {/* Helper text */}
-                <div style={{
-                    textAlign: 'center',
-                    fontSize: isMobile ? '0.8rem' : '0.9rem',
-                    opacity: 0.8,
-                    marginBottom: '1rem',
-                    padding: '0.5rem',
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                    borderRadius: '0.5rem'
-                }}>
-                    {getHelperText()}
-                </div>
-
-                {/* Search Bar */}
-                <div style={{ position: 'relative' }}>
-                    <input
-                        type="text"
-                        placeholder={isMobile ? "Search to bypass dropdowns..." : "Search restaurants, events, experiences to bypass dropdowns..."}
-                        style={{
-                            width: '100%',
-                            padding: isMobile ? '1rem' : '0.75rem',
-                            borderRadius: '0.5rem',
-                            color: 'black',
-                            border: '2px solid #fbbf24',
-                            fontSize: isMobile ? '1rem' : '0.9rem',
-                            boxSizing: 'border-box'
-                        }}
-                    />
-                    <div style={{
-                        position: 'absolute',
-                        right: '1rem',
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        fontSize: '1.2rem',
-                        opacity: 0.6
-                    }}>
-                        🔍
+                {/* City Selection */}
+                {!selectedCity && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <button
+                            onClick={() => handleCitySelection('miami')}
+                            className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition-shadow"
+                        >
+                            <h2 className="text-2xl font-semibold mb-2">Miami</h2>
+                            <p className="text-gray-600">Explore the Magic City</p>
+                        </button>
+                        <button
+                            onClick={() => handleCitySelection('miami-beach')}
+                            className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition-shadow"
+                        >
+                            <h2 className="text-2xl font-semibold mb-2">Miami Beach</h2>
+                            <p className="text-gray-600">Discover Beach Paradise</p>
+                        </button>
                     </div>
-                </div>
-            </div>
+                )}
 
-            {/* Featured Venues Section */}
-            <div style={{
-                flex: 1,
-                padding: isMobile ? '0' : '0 1rem'
-            }}>
-                <h2 style={{
-                    fontSize: isMobile ? '1.5rem' : '1.8rem',
-                    fontWeight: 'bold',
-                    marginBottom: '1rem',
-                    textAlign: 'center',
-                    color: '#fbbf24'
-                }}>
-                    Featured Venues
-                </h2>
-
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
-                    gap: '1rem',
-                    maxWidth: '1000px',
-                    margin: '0 auto'
-                }}>
-                    {featuredRestaurants.map((restaurant, index) => (
-                        <div
-                            key={index}
-                            style={{
-                                backgroundColor: '#374151',
-                                borderRadius: '0.5rem',
-                                padding: '1rem',
-                                cursor: 'pointer',
-                                transition: 'transform 0.2s',
-                            }}
-                            onMouseEnter={(e) => !isMobile && (e.currentTarget.style.transform = 'scale(1.05)')}
-                            onMouseLeave={(e) => !isMobile && (e.currentTarget.style.transform = 'scale(1)')}
-                            onClick={() => router.push(`/restaurant/${index + 1}`)}
+                {/* Area Type Selection */}
+                {selectedCity && !selectedAreaType && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <button
+                            onClick={() => handleAreaTypeSelection('all')}
+                            className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition-shadow"
                         >
-                            <div style={{
-                                backgroundColor: '#4b5563',
-                                height: isMobile ? '120px' : '150px',
-                                borderRadius: '0.25rem',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                marginBottom: '0.75rem',
-                                color: '#9ca3af'
-                            }}>
-                                Image
-                            </div>
-                            <h3 style={{
-                                fontSize: isMobile ? '1rem' : '1.1rem',
-                                fontWeight: 'bold',
-                                marginBottom: '0.25rem'
-                            }}>
-                                {restaurant.name}
-                            </h3>
-                            <p style={{
-                                fontSize: isMobile ? '0.8rem' : '0.9rem',
-                                opacity: 0.8
-                            }}>
-                                {restaurant.priceRange} - {restaurant.cuisine}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-            </div>
+                            <h2 className="text-xl font-semibold mb-2">All Areas</h2>
+                            <p className="text-gray-600">Explore everywhere in {selectedCity}</p>
+                        </button>
+                        <button
+                            onClick={() => handleAreaTypeSelection('specific')}
+                            className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition-shadow"
+                        >
+                            <h2 className="text-xl font-semibold mb-2">Specific Area</h2>
+                            <p className="text-gray-600">Choose a particular neighborhood</p>
+                        </button>
+                    </div>
+                )}
 
-            {/* CTA Buttons */}
-            <div style={{
-                textAlign: 'center',
-                marginTop: '2rem',
-                padding: isMobile ? '1rem 0' : '1rem'
-            }}>
-                <button style={{
-                    backgroundColor: '#eab308',
-                    color: 'black',
-                    padding: isMobile ? '1rem 2rem' : '0.5rem 1.5rem',
-                    borderRadius: '0.5rem',
-                    fontWeight: 'bold',
-                    border: 'none',
-                    marginRight: '1rem',
-                    fontSize: isMobile ? '1rem' : '0.9rem',
-                    cursor: 'pointer'
-                }}>
-                    Sign Up Free
-                </button>
-                <button style={{
-                    backgroundColor: '#374151',
-                    color: 'white',
-                    padding: isMobile ? '1rem 2rem' : '0.5rem 1.5rem',
-                    borderRadius: '0.5rem',
-                    fontWeight: 'bold',
-                    border: 'none',
-                    fontSize: isMobile ? '1rem' : '0.9rem',
-                    cursor: 'pointer'
-                }}>
-                    Share This App
-                </button>
+                {/* Neighborhood Selection */}
+                {selectedAreaType === 'specific' && !selectedNeighborhood && (
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                        {miamiareas
+                            .filter(area => area.city === selectedCity || selectedCity === 'miami')
+                            .map(area => (
+                                <button
+                                    key={area.id}
+                                    onClick={() => handleNeighborhoodSelection(area.id)}
+                                    className="p-4 bg-white rounded-lg shadow hover:shadow-lg transition-shadow"
+                                >
+                                    <p className="font-medium">{area.name}</p>
+                                </button>
+                            ))}
+                    </div>
+                )}
+
+                {/* Category Selection */}
+                {((selectedAreaType === 'all') || (selectedAreaType === 'specific' && selectedNeighborhood)) && !selectedCategory && (
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                        {categories.map(category => (
+                            <button
+                                key={category.id}
+                                onClick={() => handleCategorySelection(category.id)}
+                                className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition-shadow"
+                            >
+                                <div className="text-3xl mb-2">{category.icon}</div>
+                                <h3 className="font-semibold">{category.name}</h3>
+                                <p className="text-sm text-gray-600">{category.description}</p>
+                            </button>
+                        ))}
+                    </div>
+                )}
+
+                {/* Budget Selection */}
+                {selectedCategory && !selectedBudget && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                        {budgetOptions.map(budget => (
+                            <button
+                                key={budget.id}
+                                onClick={() => handleBudgetSelection(budget.id)}
+                                className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition-shadow"
+                            >
+                                <h3 className="font-semibold text-lg">{budget.name}</h3>
+                                <p className="text-gray-600">{budget.range}</p>
+                            </button>
+                        ))}
+                    </div>
+                )}
+
+                {/* Cuisine Selection */}
+                {selectedCategory === 'dining' && selectedBudget && cuisines.length > 0 && (
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-6">
+                        {cuisines.map(cuisine => (
+                            <button
+                                key={cuisine}
+                                onClick={() => handleCuisineSelection(cuisine)}
+                                className="p-3 bg-white rounded-lg shadow hover:shadow-lg transition-shadow"
+                            >
+                                <p className="font-medium">{cuisine}</p>
+                            </button>
+                        ))}
+                    </div>
+                )}
+
+                {/* Navigation Breadcrumbs */}
+                {selectedCity && (
+                    <div className="flex flex-wrap gap-2 mt-8">
+                        <button
+                            onClick={() => handleCitySelection('')}
+                            className="px-3 py-1 bg-gray-200 rounded-lg text-sm"
+                        >
+                            ← Start Over
+                        </button>
+                        {selectedCity && (
+                            <span className="px-3 py-1 bg-blue-100 rounded-lg text-sm">
+                                {selectedCity}
+                            </span>
+                        )}
+                        {selectedAreaType && (
+                            <span className="px-3 py-1 bg-blue-100 rounded-lg text-sm">
+                                {selectedAreaType === 'all' ? 'All Areas' : 'Specific Area'}
+                            </span>
+                        )}
+                        {selectedNeighborhood && (
+                            <span className="px-3 py-1 bg-blue-100 rounded-lg text-sm">
+                                {miamiareas.find(a => a.id === selectedNeighborhood)?.name}
+                            </span>
+                        )}
+                        {selectedCategory && (
+                            <span className="px-3 py-1 bg-blue-100 rounded-lg text-sm">
+                                {categories.find(c => c.id === selectedCategory)?.name}
+                            </span>
+                        )}
+                        {selectedBudget && (
+                            <span className="px-3 py-1 bg-blue-100 rounded-lg text-sm">
+                                {budgetOptions.find(b => b.id === selectedBudget)?.name}
+                            </span>
+                        )}
+                    </div>
+                )}
             </div>
         </div>
     )

@@ -1,301 +1,338 @@
 'use client'
-import { Suspense } from 'react'
-import { useState, useEffect, useCallback } from 'react'
-import { useSearchParams } from 'next/navigation'
-import Link from 'next/link'
-import { createClient } from '@supabase/supabase-js'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+export default function Home() {
+    const router = useRouter()
+    const [selectedDestination, setSelectedDestination] = useState('')
+    const [destinationOpen, setDestinationOpen] = useState(false)
+    const [areaType, setAreaType] = useState('') // 'specific' or 'all'
+    const [selectedArea, setSelectedArea] = useState('South Beach')
+    const [selectedCategory, setSelectedCategory] = useState('')
+    const [categoryOpen, setCategoryOpen] = useState(false)
+    const [selectedBudget, setSelectedBudget] = useState('')
+    const [budgetOpen, setBudgetOpen] = useState(false)
+    const [showCuisineDropdown, setShowCuisineDropdown] = useState(false)
+    const [cuisineDropdownOpen, setCuisineDropdownOpen] = useState(false)
+    const [selectedCuisine, setSelectedCuisine] = useState('')
 
-interface Restaurant {
-    id: string
-    name: string
-    primary_cuisine?: string
-    cuisine_type?: string
-    price_range: string
-    neighborhood: string
-    address: string
-    phone?: string
-    website?: string
-    rating?: number
-    review_count?: number
-    photo_url?: string
-    is_open?: boolean
-}
+    const destinations = [
+        { id: 'miami', name: 'Miami & Beaches' },
+        { id: 'nashville', name: 'Nashville, TN' },
+        { id: 'nyc', name: 'New York City, NY' }
+    ]
 
-function RestaurantsContent() {
-    const searchParams = useSearchParams()
-    const [restaurants, setRestaurants] = useState<Restaurant[]>([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState<string | null>(null)
+    const areas = [
+        'South Beach', 'Mid Beach', 'North Beach', 'Downtown Miami',
+        'Brickell', 'Wynwood', 'Design District', 'Coral Gables',
+        'Coconut Grove', 'Little Havana', 'Aventura', 'Bal Harbour'
+    ]
 
-    const neighborhood = searchParams.get('neighborhood')
-    const budget = searchParams.get('budget')
-    const cuisine = searchParams.get('cuisine')
+    const categories = [
+        'Dining',
+        'Entertainment',
+        'Adventure',
+        'Nature',
+        'Culture'
+    ]
 
-    const fetchRestaurants = useCallback(async () => {
-        try {
-            setLoading(true)
-            setError(null)
+    const budgetOptions = [
+        { label: 'Quick Bite (Under $25 per person)', value: 'quick', priceRange: '$' },
+        { label: 'Casual Dining ($25-75 per person)', value: 'casual', priceRange: '$$' },
+        { label: 'Upscale ($75-150 per person)', value: 'upscale', priceRange: '$$$' },
+        { label: 'Fine Dining ($150-500 per person)', value: 'fine', priceRange: '$$$$' },
+        { label: 'Ultra Premium ($500+ per person)', value: 'luxury', priceRange: '$$$$$' }
+    ]
 
-            // Use businesses table
-            let query = supabase.from('businesses').select('*')
+    const cuisineTypes = [
+        'American', 'Argentinian', 'Asian', 'BBQ', 'Brazilian', 'British',
+        'Burgers', 'Caribbean', 'Chinese', 'Colombian', 'Contemporary',
+        'Cuban', 'French', 'German', 'Greek', 'Haitian', 'Ice Cream',
+        'Indian', 'Italian', 'Japanese', 'Korean', 'Lebanese', 'Maine Lobster',
+        'Mediterranean', 'Mexican', 'Nicaraguan', 'Peruvian', 'Pizza',
+        'Russian', 'Seafood', 'Spanish', 'Steakhouse', 'Sushi', 'Thai',
+        'Turkish', 'Venezuelan', 'Vietnamese'
+    ]
 
-            // Neighborhood filter
-            if (neighborhood && neighborhood !== 'all') {
-                const dbNeighborhood = neighborhood
-                    .split('-')
-                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                    .join(' ')
-                query = query.ilike('address', `%${dbNeighborhood}%`)
-            }
-
-            // Budget filter - EXACT matches
-            if (budget === 'quick') query = query.eq('price_range', '$')
-            if (budget === 'casual') query = query.eq('price_range', '$$')
-            if (budget === 'upscale') query = query.eq('price_range', '$$$')
-            if (budget === 'fine') query = query.eq('price_range', '$$$$')
-            if (budget === 'luxury') query = query.eq('price_range', '$$$$$')
-
-            // Cuisine filter
-            if (cuisine && cuisine !== 'all') {
-                query = query.or(`primary_cuisine.eq.${cuisine},cuisine_type.eq.${cuisine}`)
-            }
-
-            const { data, error: queryError } = await query.limit(50)
-
-            if (queryError) {
-                throw queryError
-            }
-
-            setRestaurants(data || [])
-        } catch (err: unknown) {
-            const message = err instanceof Error ? err.message : 'Failed to load restaurants'
-            console.error('Error fetching restaurants:', err)
-            setError(message)
-        } finally {
-            setLoading(false)
+    const handleDestinationSelect = (destination: string) => {
+        const dest = destinations.find(d => d.id === destination)
+        if (dest) {
+            setSelectedDestination(dest.name)
+            setDestinationOpen(false)
+            // Reset everything else when destination changes
+            setAreaType('')
+            setSelectedArea('South Beach')
+            setSelectedCategory('')
+            setSelectedBudget('')
+            setSelectedCuisine('')
+            setShowCuisineDropdown(false)
         }
-    }, [neighborhood, budget, cuisine])
-
-    useEffect(() => {
-        fetchRestaurants()
-    }, [fetchRestaurants])
-
-    const getFilterDescription = () => {
-        const filters = []
-        if (neighborhood && neighborhood !== 'all') {
-            const displayName = neighborhood.split('-')
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(' ')
-            filters.push(displayName)
-        }
-        if (cuisine) filters.push(cuisine)
-        if (budget) {
-            const budgetLabels: Record<string, string> = {
-                'quick': 'Under $25',
-                'casual': '$25-75',
-                'upscale': '$75-150',
-                'fine': '$150-500',
-                'luxury': '$500+'
-            }
-            filters.push(budgetLabels[budget] || budget)
-        }
-
-        return filters.length > 0
-            ? filters.join(' • ')
-            : 'All restaurants'
     }
 
-    const formatPriceRange = (price: string) => {
-        const priceMap: Record<string, string> = {
-            '$': '$0-25',
-            '$$': '$25-75',
-            '$$$': '$75-150',
-            '$$$$': '$150-500',
-            '$$$$$': '$500+'
+    const handleAreaTypeSelect = (type: string) => {
+        setAreaType(type)
+        setSelectedCategory('')
+        setSelectedBudget('')
+        setSelectedCuisine('')
+        setShowCuisineDropdown(false)
+
+        if (type === 'all') {
+            setCategoryOpen(true)
+            setSelectedArea('')
+        } else if (type === 'specific') {
+            // When specific area is selected, go straight to dining
+            setBudgetOpen(true)
         }
-        return priceMap[price] || price
     }
 
-    const getStars = (rating?: number) => {
-        if (!rating) return '☆☆☆☆☆'
-        const fullStars = Math.floor(rating)
-        const halfStar = rating % 1 >= 0.5 ? 1 : 0
-        const emptyStars = 5 - fullStars - halfStar
-        return '★'.repeat(fullStars) + (halfStar ? '½' : '') + '☆'.repeat(emptyStars)
+    const handleCategorySelect = (category: string) => {
+        setSelectedCategory(category)
+        setCategoryOpen(false)
+        if (category === 'Dining') {
+            setBudgetOpen(true)
+        }
+        // Other categories are placeholders for now
     }
 
-    if (loading) {
-        return (
-            <div className="min-h-screen bg-white p-4">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center py-12">
-                        <div className="text-2xl text-gray-600">Loading restaurants...</div>
-                    </div>
+    const handleBudgetSelect = (budget: string) => {
+        setSelectedBudget(budget)
+        setShowCuisineDropdown(true)
+        setCuisineDropdownOpen(true)
+    }
+
+    const handleCuisineSelect = (cuisine: string) => {
+        setSelectedCuisine(cuisine)
+        const selectedBudgetObj = budgetOptions.find(b => b.label === selectedBudget)
+
+        const params = new URLSearchParams({
+            neighborhood: areaType === 'all' ? 'all' : selectedArea.toLowerCase().replace(/ /g, '-'),
+            budget: selectedBudgetObj?.value || 'quick',
+            cuisine: cuisine
+        })
+
+        router.push(`/restaurants?${params.toString()}`)
+    }
+
+    const handleSearch = () => {
+        const selectedBudgetObj = budgetOptions.find(b => b.label === selectedBudget)
+        const params = new URLSearchParams({
+            neighborhood: areaType === 'all' ? 'all' : selectedArea.toLowerCase().replace(/ /g, '-'),
+            budget: selectedBudgetObj?.value || 'quick',
+            category: selectedCategory || 'dining'
+        })
+        router.push(`/restaurants?${params.toString()}`)
+    }
+
+    return (
+        <div className="min-h-screen bg-gradient-to-br from-[#3B2F8F] via-[#4A3A9F] to-[#5A4AAF] text-white">
+            <div className="container mx-auto px-4 py-8">
+                {/* Header */}
+                <div className="text-center mb-8">
+                    <h1 className="text-5xl font-bold text-[#FFA500] mb-4">Explore Our City</h1>
+                    <p className="text-xl mb-2">Dining. Entertainment. Adventure. Nature. Culture.</p>
+                    <p className="text-lg mb-2">The Ultimate Find-Reserve-Go Experience</p>
+                    <p className="text-md">From $5 authentic tacos to $50,000 yacht experiences</p>
                 </div>
-            </div>
-        )
-    }
 
-    if (error) {
-        return (
-            <div className="min-h-screen bg-white p-4">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center py-12">
-                        <div className="text-2xl text-red-600">Error: {error}</div>
+                <div className="max-w-3xl mx-auto space-y-4">
+                    {/* Destination Selection Dropdown - ALWAYS VISIBLE */}
+                    <div className="bg-white/10 backdrop-blur rounded-lg">
                         <button
-                            onClick={() => fetchRestaurants()}
-                            className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                            onClick={() => setDestinationOpen(!destinationOpen)}
+                            className="w-full p-4 text-left flex items-center justify-between"
                         >
-                            Try Again
+                            <span className="text-xl">📍 {selectedDestination || 'Choose Your Destination'}</span>
+                            <span>{destinationOpen ? '▼' : '▶'}</span>
+                        </button>
+
+                        {destinationOpen && (
+                            <div className="px-4 pb-4">
+                                <div className="space-y-2">
+                                    {destinations.map(dest => (
+                                        <button
+                                            key={dest.id}
+                                            onClick={() => handleDestinationSelect(dest.id)}
+                                            className="w-full p-3 rounded-lg text-left bg-white/20 hover:bg-white/30"
+                                        >
+                                            {dest.name}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Area Selection (only shows after destination selected) */}
+                    {selectedDestination === 'Miami & Beaches' && (
+                        <div className="space-y-4">
+                            <div className="grid grid-cols-2 gap-4">
+                                <button
+                                    onClick={() => handleAreaTypeSelect('specific')}
+                                    className={`p-3 rounded-lg ${areaType === 'specific' ? 'bg-[#FFA500] text-black' : 'bg-white/20'}`}
+                                >
+                                    📍 Specific Area
+                                </button>
+                                <button
+                                    onClick={() => handleAreaTypeSelect('all')}
+                                    className={`p-3 rounded-lg ${areaType === 'all' ? 'bg-[#FFA500] text-black' : 'bg-white/20'}`}
+                                >
+                                    🗺️ Explore All
+                                </button>
+                            </div>
+
+                            {/* Specific Area Dropdown */}
+                            {areaType === 'specific' && (
+                                <select
+                                    value={selectedArea}
+                                    onChange={(e) => setSelectedArea(e.target.value)}
+                                    className="w-full p-4 rounded-lg bg-[#FFA500] text-black font-semibold"
+                                >
+                                    {areas.map(area => (
+                                        <option key={area} value={area}>{area}</option>
+                                    ))}
+                                </select>
+                            )}
+
+                            {/* Category Dropdown (for Explore All) */}
+                            {areaType === 'all' && (
+                                <div className="bg-white/10 backdrop-blur rounded-lg">
+                                    <button
+                                        onClick={() => setCategoryOpen(!categoryOpen)}
+                                        className="w-full p-4 text-left flex items-center justify-between"
+                                    >
+                                        <span className="text-xl">
+                                            {selectedCategory || 'Dining. Entertainment. Adventure. Nature. Culture.'}
+                                        </span>
+                                        <span>{categoryOpen ? '▼' : '▶'}</span>
+                                    </button>
+
+                                    {categoryOpen && (
+                                        <div className="px-4 pb-4 space-y-2">
+                                            {categories.map(category => (
+                                                <button
+                                                    key={category}
+                                                    onClick={() => handleCategorySelect(category)}
+                                                    className="w-full p-3 bg-white/20 hover:bg-white/30 rounded text-left"
+                                                >
+                                                    {category === 'Dining' && '🍽️'}
+                                                    {category === 'Entertainment' && '🎭'}
+                                                    {category === 'Adventure' && '🏄'}
+                                                    {category === 'Nature' && '🌿'}
+                                                    {category === 'Culture' && '🎨'} {category}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            {/* Budget Selection (shows after area selection or category selection) */}
+                            {((areaType === 'specific' && selectedArea) || (areaType === 'all' && selectedCategory === 'Dining')) && (
+                                <div className="bg-white/10 backdrop-blur rounded-lg">
+                                    <button
+                                        onClick={() => setBudgetOpen(!budgetOpen)}
+                                        className="w-full p-4 text-left flex items-center justify-between"
+                                    >
+                                        <span className="text-xl">🍽️ Dining</span>
+                                        <span>{budgetOpen ? '▼' : '▶'}</span>
+                                    </button>
+
+                                    {budgetOpen && (
+                                        <div className="px-4 pb-4">
+                                            <select
+                                                value={selectedBudget}
+                                                onChange={(e) => handleBudgetSelect(e.target.value)}
+                                                className="w-full p-4 rounded-lg bg-[#FFA500] text-black font-semibold mb-4"
+                                            >
+                                                <option value="">Select Budget Range</option>
+                                                {budgetOptions.map(budget => (
+                                                    <option key={budget.value} value={budget.label}>
+                                                        {budget.label}
+                                                    </option>
+                                                ))}
+                                            </select>
+
+                                            {/* Cuisine Type Dropdown - Shows AFTER budget selection */}
+                                            {showCuisineDropdown && selectedBudget && (
+                                                <div className="bg-[#2FA488] rounded-lg p-4">
+                                                    <button
+                                                        onClick={() => setCuisineDropdownOpen(!cuisineDropdownOpen)}
+                                                        className="w-full text-left flex items-center justify-between mb-4"
+                                                    >
+                                                        <span className="text-xl">🍴 Choose Cuisine Type</span>
+                                                        <span>{cuisineDropdownOpen ? '▼' : '▶'}</span>
+                                                    </button>
+
+                                                    {cuisineDropdownOpen && (
+                                                        <>
+                                                            <p className="text-center mb-4">Choose your cuisine type</p>
+                                                            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 max-h-64 overflow-y-auto">
+                                                                {cuisineTypes.map(cuisine => (
+                                                                    <button
+                                                                        key={cuisine}
+                                                                        onClick={() => handleCuisineSelect(cuisine)}
+                                                                        className="p-2 bg-white/20 hover:bg-white/30 rounded text-sm"
+                                                                    >
+                                                                        {cuisine}
+                                                                    </button>
+                                                                ))}
+                                                            </div>
+                                                        </>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            {/* Other category buttons (non-functional placeholders) */}
+                            {selectedDestination === 'Miami & Beaches' && !areaType && (
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+                                    <button className="p-3 bg-white/10 rounded-lg hover:bg-white/20">
+                                        🎭 Entertainment
+                                    </button>
+                                    <button className="p-3 bg-white/10 rounded-lg hover:bg-white/20">
+                                        🏄 Adventure
+                                    </button>
+                                    <button className="p-3 bg-white/10 rounded-lg hover:bg-white/20">
+                                        🌿 Nature
+                                    </button>
+                                    <button className="p-3 bg-white/10 rounded-lg hover:bg-white/20">
+                                        🎨 Culture
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    {/* Coming Soon message for other cities */}
+                    {(selectedDestination === 'Nashville, TN' || selectedDestination === 'New York City, NY') && (
+                        <div className="bg-white/10 backdrop-blur rounded-lg p-8 text-center">
+                            <h2 className="text-2xl mb-4">Coming Soon!</h2>
+                            <p className="text-lg">
+                                {selectedDestination} will be available soon.
+                                Please select Miami & Beaches to explore available options.
+                            </p>
+                        </div>
+                    )}
+
+                    {/* Search Bar */}
+                    <div className="relative">
+                        <input
+                            type="text"
+                            placeholder="Search restaurants, events, experiences to bypass dropdowns"
+                            className="w-full p-4 rounded-full bg-white/10 backdrop-blur border border-[#FFA500] text-white placeholder-white/60"
+                        />
+                        <button
+                            onClick={handleSearch}
+                            className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-[#FFA500] rounded-full"
+                        >
+                            🔍
                         </button>
                     </div>
                 </div>
             </div>
-        )
-    }
-
-    return (
-        <div className="min-h-screen bg-gray-50">
-            {/* Header */}
-            <div className="bg-white border-b sticky top-0 z-10">
-                <div className="max-w-7xl mx-auto px-4 py-4">
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <h1 className="text-2xl font-semibold text-gray-900">
-                                {restaurants.length} restaurants
-                            </h1>
-                            <p className="text-sm text-gray-600 mt-1">{getFilterDescription()}</p>
-                        </div>
-                        <Link
-                            href="/"
-                            className="px-4 py-2 bg-[#FFA500] text-black rounded-lg hover:bg-[#FFB520] font-medium"
-                        >
-                            New Search
-                        </Link>
-                    </div>
-                </div>
-            </div>
-
-            {/* Results */}
-            <div className="max-w-7xl mx-auto px-4 py-6">
-                {restaurants.length === 0 ? (
-                    <div className="bg-white rounded-lg shadow-sm p-8 text-center">
-                        <p className="text-xl text-gray-600">
-                            No restaurants found matching your criteria.
-                        </p>
-                        <Link
-                            href="/"
-                            className="inline-block mt-4 px-6 py-2 bg-[#FFA500] text-black rounded-lg hover:bg-[#FFB520]"
-                        >
-                            Start New Search
-                        </Link>
-                    </div>
-                ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                        {restaurants.map((restaurant) => (
-                            <div
-                                key={restaurant.id}
-                                className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer"
-                            >
-                                {/* Image placeholder - replace with actual images when available */}
-                                <div className="h-48 bg-gradient-to-br from-gray-200 to-gray-300 relative">
-                                    {restaurant.photo_url ? (
-                                        <img
-                                            src={restaurant.photo_url}
-                                            alt={restaurant.name}
-                                            className="w-full h-full object-cover"
-                                        />
-                                    ) : (
-                                        <div className="flex items-center justify-center h-full">
-                                            <span className="text-6xl opacity-20">🍽️</span>
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* Content */}
-                                <div className="p-4">
-                                    <h3 className="font-semibold text-lg text-gray-900 mb-1">
-                                        {restaurant.name}
-                                    </h3>
-
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-sm font-medium text-gray-900">
-                                            {restaurant.rating ? restaurant.rating.toFixed(1) : 'N/A'}
-                                        </span>
-                                        <span className="text-yellow-500 text-sm">
-                                            {getStars(restaurant.rating)}
-                                        </span>
-                                        {restaurant.review_count && (
-                                            <span className="text-gray-500 text-sm">
-                                                ({restaurant.review_count.toLocaleString()})
-                                            </span>
-                                        )}
-                                        <span className="text-gray-700 text-sm">
-                                            • {formatPriceRange(restaurant.price_range)}
-                                        </span>
-                                    </div>
-
-                                    <div className="text-sm text-gray-600 mb-2">
-                                        <span className={`inline-block ${restaurant.is_open ? 'text-green-600' : 'text-red-600'} font-medium mr-2`}>
-                                            {restaurant.is_open ? 'Open' : 'Closed'}
-                                        </span>
-                                        • {restaurant.primary_cuisine || restaurant.cuisine_type || 'Restaurant'}
-                                    </div>
-
-                                    <div className="text-sm text-gray-500">
-                                        {restaurant.address}
-                                    </div>
-
-                                    {/* Action buttons */}
-                                    <div className="mt-3 flex gap-2">
-                                        {restaurant.phone && (
-                                            <a
-                                                href={`tel:${restaurant.phone}`}
-                                                className="flex-1 py-2 px-3 bg-green-500 text-white text-sm rounded hover:bg-green-600 text-center"
-                                                onClick={(e) => e.stopPropagation()}
-                                            >
-                                                Call
-                                            </a>
-                                        )}
-                                        {restaurant.website && (
-                                            <a
-                                                href={restaurant.website}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="flex-1 py-2 px-3 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 text-center"
-                                                onClick={(e) => e.stopPropagation()}
-                                            >
-                                                Website
-                                            </a>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </div>
         </div>
-    )
-}
-
-export default function RestaurantsPage() {
-    return (
-        <Suspense fallback={
-            <div className="min-h-screen bg-white p-4">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center py-12">
-                        <div className="text-2xl text-gray-600">Loading...</div>
-                    </div>
-                </div>
-            </div>
-        }>
-            <RestaurantsContent />
-        </Suspense>
     )
 }

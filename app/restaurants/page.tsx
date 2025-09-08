@@ -9,9 +9,18 @@ const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
+interface Restaurant {
+    id: number;
+    name: string;
+    primary_cuisine: string;
+    price_range: string;
+    neighborhood: string;
+    rating?: number;
+}
+
 export default function RestaurantsPage() {
     const searchParams = useSearchParams();
-    const [restaurants, setRestaurants] = useState([]);
+    const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
     const [loading, setLoading] = useState(true);
 
     const neighborhood = searchParams.get('neighborhood');
@@ -59,7 +68,7 @@ export default function RestaurantsPage() {
                 {restaurants.length} Restaurants in {neighborhood?.replace('-', ' ')}
             </h1>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {restaurants.map((r: any) => (
+                {restaurants.map((r: Restaurant) => (
                     <div key={r.id} className="border p-4 rounded">
                         <h2 className="font-bold">{r.name}</h2>
                         <p>{r.primary_cuisine} • {r.price_range}</p>

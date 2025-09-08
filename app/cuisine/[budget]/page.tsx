@@ -12,17 +12,6 @@ export default function Home() {
     const [selectedCuisine, setSelectedCuisine] = useState('')
     const [cuisines, setCuisines] = useState<string[]>([])
 
-
-    useEffect(() => {
-        const checkScreenSize = () => {
-            setIsMobile(window.innerWidth < 768)
-        }
-
-        checkScreenSize()
-        window.addEventListener('resize', checkScreenSize)
-        return () => window.removeEventListener('resize', checkScreenSize)
-    }, [])
-
     const miamiareas = [
         // Miami Beach Areas
         { id: 'south-beach', name: 'South Beach', city: 'miami' },

@@ -90,7 +90,7 @@ export default function DiningBudgetSelection() {
         }
     }
 
-    const handleBudgetSelection = (budgetId) => {
+    const handleBudgetSelection = (budgetId: string) => {
         router.push(`/cuisine/${budgetId}`)
     }
 

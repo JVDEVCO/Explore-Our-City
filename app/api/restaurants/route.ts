@@ -1,4 +1,5 @@
 // app/api/restaurants/route.ts (or wherever your API is)
+import { supabase } from '@/lib/supabase.js';
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const cuisine = searchParams.get('cuisine');

@@ -76,7 +76,7 @@ export default function DiningBudgetSelection() {
             } else {
                 // Count restaurants by price range
                 const stats: Record<string, number> = {}
-                data.forEach((item: any) => {
+                data.forEach((item: { price_range?: string }) => {
                     if (item.price_range) {
                         stats[item.price_range] = (stats[item.price_range] || 0) + 1
                     }

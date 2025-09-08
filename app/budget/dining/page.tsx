@@ -8,7 +8,7 @@ const supabase = createClient(
 );
 export default function DiningBudgetSelection() {
     const router = useRouter()
-    const [budgetStats, setBudgetStats] = useState({})
+    const [budgetStats, setBudgetStats] = useState<Record<string, number>>({})
     const [loading, setLoading] = useState(true)
 
     const budgetOptions = [

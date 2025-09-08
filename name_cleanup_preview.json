@@ -1,0 +1,1994 @@
+[
+  {
+    "id": "1f256ba5-af4d-4b2a-927f-f6abb344a956",
+    "originalName": "100X CUISINE INC35",
+    "cleanedName": "100x Cuisine Inc35",
+    "changed": true
+  },
+  {
+    "id": "539a4986-c6f3-44d9-adfc-da6bac7ebdd1",
+    "originalName": "1111ROOF TOP LLC D/B/A JUVIA",
+    "cleanedName": "Juvia",
+    "changed": true
+  },
+  {
+    "id": "43e5d28a-f865-4130-8abd-513e98c4fab2",
+    "originalName": "1130 NORMANDY HOLDINGS LLC D/B/A 7TY ONE",
+    "cleanedName": "7ty One",
+    "changed": true
+  },
+  {
+    "id": "c7a8509d-ebc7-4053-b115-94151d83b31e",
+    "originalName": "1220 MANAGEMENT GROUP LLC DBA BODEGA",
+    "cleanedName": "Bodega",
+    "changed": true
+  },
+  {
+    "id": "ccaa2d2c-b083-4f20-8389-ca3c7e13d750",
+    "originalName": "1250 OCEAN DRIVE, LLC D/B/A THE CARLYLE CAFE",
+    "cleanedName": "The Carlyle Cafe",
+    "changed": true
+  },
+  {
+    "id": "b448155a-462f-490e-a69a-61ffc000bbfb",
+    "originalName": "1351 COLLINS RESTURANT LLC DBA TAQUIZA",
+    "cleanedName": "Taquiza",
+    "changed": true
+  },
+  {
+    "id": "44849029-3b13-4177-a615-ac14acd6aae5",
+    "originalName": "1400 OCEAN DRIVE, LLC D/B/A IL BOLOGNESE",
+    "cleanedName": "Il Bolognese",
+    "changed": true
+  },
+  {
+    "id": "550a44d6-d8ea-497b-b750-db07bd8d15bb",
+    "originalName": "1409 HOTEL INC",
+    "cleanedName": "1409 Hotel",
+    "changed": true
+  },
+  {
+    "id": "285ba660-c177-4c67-b79e-b9f15a9194c6",
+    "originalName": "1435 ALTON ROAD LLC",
+    "cleanedName": "1435 Alton Road",
+    "changed": true
+  },
+  {
+    "id": "b08b0cb4-f29b-40bb-bbf6-cdb1c421bd5a",
+    "originalName": "1701 COLLINS (MIAMI) OPERATING COMPANY LLC DBA HYDE BEACH",
+    "cleanedName": "Hyde Beach",
+    "changed": true
+  },
+  {
+    "id": "d5eb80fe-d1d1-4041-bb7e-40b497bfcf3f",
+    "originalName": "1701 MIAMI (OPERATOR) LLC DBA HYDE BEACH BAR",
+    "cleanedName": "Hyde Beach Bar",
+    "changed": true
+  },
+  {
+    "id": "25f09f23-e343-4ac5-9bd6-fe7e3dca0e9c",
+    "originalName": "1701 MIAMI (OPERATOR) LLC DBA KATSUYA",
+    "cleanedName": "Katsuya",
+    "changed": true
+  },
+  {
+    "id": "b10f7bc5-709c-47be-becc-a3b9c305c53d",
+    "originalName": "1906 COLLINS, LLC D/B/A VITA,  BAOLI VITA",
+    "cleanedName": "Vita,  Baoli Vita",
+    "changed": true
+  },
+  {
+    "id": "099d7b8e-7ac1-4181-8906-e33aacb4f6f6",
+    "originalName": "2671 SUBWAY, INC.",
+    "cleanedName": "2671 Subway,",
+    "changed": true
+  },
+  {
+    "id": "6b5b4b7c-af96-4d51-b0af-f13c4d58485a",
+    "originalName": "3921 COLLINS AVENUE LLC D/B/A DONNA MARE",
+    "cleanedName": "Donna Mare",
+    "changed": true
+  },
+  {
+    "id": "0561d053-40b3-415f-a8e0-803dd9393886",
+    "originalName": "6080 COLLINS STAR LLC ",
+    "cleanedName": "6080 Collins Star Llc",
+    "changed": true
+  },
+  {
+    "id": "8a748c05-309e-4672-82ac-8745b853e3c3",
+    "originalName": "660 OCEAN DRIVE, LLC",
+    "cleanedName": "660 Ocean Drive,",
+    "changed": true
+  },
+  {
+    "id": "cf8cbd28-10f5-4c4c-b899-319285eab96a",
+    "originalName": "720 OCEAN DRIVE, LLC",
+    "cleanedName": "720 Ocean Drive,",
+    "changed": true
+  },
+  {
+    "id": "43af0002-eba7-4df3-8d54-8a48b514b4b2",
+    "originalName": "ACQUA LLC DBA TREEHOUSE C/O Jeremy Waks",
+    "cleanedName": "Treehouse C/o Jeremy Waks",
+    "changed": true
+  },
+  {
+    "id": "eac3a320-c9f1-48f8-b4f1-a4fd9a96d522",
+    "originalName": "ALBION HOTEL (RESTAURANT)",
+    "cleanedName": "Albion Hotel (restaurant)",
+    "changed": true
+  },
+  {
+    "id": "983fc5b2-0e16-48f9-8695-8b56e37dbf73",
+    "originalName": "ALELOR, LLC  DBA IL PASTAIOLO",
+    "cleanedName": "Il Pastaiolo",
+    "changed": true
+  },
+  {
+    "id": "8a70bc23-be10-4db7-88f2-9d8e439d9a51",
+    "originalName": "ALMA MEXICANA LLC",
+    "cleanedName": "Alma Mexicana",
+    "changed": true
+  },
+  {
+    "id": "ee037701-1344-4728-a82c-b99f049e6a16",
+    "originalName": "AMNESIA INTERNATIONAL LLC DBA STORY",
+    "cleanedName": "Story",
+    "changed": true
+  },
+  {
+    "id": "f1ce1a10-c691-416c-a83c-f30ed0cb90dd",
+    "originalName": "ANTONIO DIAZ RT LLC DBA RICKY TIKI BAR & GRILL",
+    "cleanedName": "Ricky Tiki Bar & Grill",
+    "changed": true
+  },
+  {
+    "id": "6d7a2534-2bde-47fe-9db0-40a644e171ce",
+    "originalName": "APETY 450 LINCOLN ROAD LLC D/B/A PAUL",
+    "cleanedName": "Paul",
+    "changed": true
+  },
+  {
+    "id": "1360cd03-42d5-4468-b9be-e48a9aa5b345",
+    "originalName": "ARISAN ENTERPRISE LLC DBA SABOR PLAYA RESTAURANT",
+    "cleanedName": "Sabor Playa Restaurant",
+    "changed": true
+  },
+  {
+    "id": "d708b3e9-2a72-4896-bfca-91d97f3a8948",
+    "originalName": "ASSI LLC. C/O HAYON, ZORI P.",
+    "cleanedName": "Assi Llc. C/o Hayon, Zori P.",
+    "changed": true
+  },
+  {
+    "id": "262cfb7b-cae9-4d3f-be83-9540f3bf1abb",
+    "originalName": "ATHENS JUICE BAR, INC.",
+    "cleanedName": "Athens Juice Bar,",
+    "changed": true
+  },
+  {
+    "id": "c938eaf6-9294-4ce0-b46e-e1d3ddb88568",
+    "originalName": "BAGATELLE MIAMI LLC D/B/A BAGATELLE",
+    "cleanedName": "Bagatelle",
+    "changed": true
+  },
+  {
+    "id": "9cb42381-d332-474e-b4f0-3e8304648cf0",
+    "originalName": "BAGEL TIME LLC",
+    "cleanedName": "Bagel Time",
+    "changed": true
+  },
+  {
+    "id": "36c02a3b-c906-4cf0-b2a7-c988cf4967e5",
+    "originalName": "BALKAN FLORIDA LLC ",
+    "cleanedName": "Balkan Florida Llc",
+    "changed": true
+  },
+  {
+    "id": "db1b74b5-432b-4e90-9ed3-55ebadd29760",
+    "originalName": "Bar Centro",
+    "cleanedName": "Bar Centro",
+    "changed": false
+  },
+  {
+    "id": "3c1f64f2-3590-43a0-894a-605ced955b3d",
+    "originalName": "BARCELONETA LLC c/o Airam Garcia",
+    "cleanedName": "Barceloneta Llc C/o Airam Garcia",
+    "changed": true
+  },
+  {
+    "id": "271ed4f2-950a-412b-b108-d697974eee43",
+    "originalName": "BATH CLUB ENTERTAINMENT, LLC",
+    "cleanedName": "Bath Club Entertainment,",
+    "changed": true
+  },
+  {
+    "id": "13e21128-13c2-4118-8963-b611d0d8f611",
+    "originalName": "BEIJING CAFE 6950 LLC",
+    "cleanedName": "Beijing Cafe 6950",
+    "changed": true
+  },
+  {
+    "id": "66f5155e-dbe2-4dbb-9f6b-4eb035b7b19f",
+    "originalName": "BELLA CUBA INC.",
+    "cleanedName": "Bella Cuba",
+    "changed": true
+  },
+  {
+    "id": "eb6810f3-1e57-424b-97f9-2163ef0d3d55",
+    "originalName": "BGM COLLINS LLC D/B/A BURGERFI",
+    "cleanedName": "Burgerfi",
+    "changed": true
+  },
+  {
+    "id": "03cf319f-11c5-423c-b13d-467cc8212a85",
+    "originalName": "Big Pink",
+    "cleanedName": "Big Pink",
+    "changed": false
+  },
+  {
+    "id": "d89493ac-6083-46d6-93e4-759cd9c713d6",
+    "originalName": "BK WHOPPER BAR, LLC",
+    "cleanedName": "Bk Whopper Bar,",
+    "changed": true
+  },
+  {
+    "id": "90a13dba-d497-42e5-8314-47eeef379966",
+    "originalName": "Blind Barber",
+    "cleanedName": "Blind Barber",
+    "changed": false
+  },
+  {
+    "id": "3a4e22ca-ef6f-45a4-8cf5-d871313ad3b2",
+    "originalName": "BLU GIN CORP",
+    "cleanedName": "Blu Gin",
+    "changed": true
+  },
+  {
+    "id": "5089571a-e82e-4e3f-8d0a-6ffe949c8670",
+    "originalName": "Bob's Your Uncle",
+    "cleanedName": "Bob's Your Uncle",
+    "changed": false
+  },
+  {
+    "id": "f5aa5ad6-45e5-4098-b5d4-a34da744e558",
+    "originalName": "BOBADILLA, INC DBA OSTERIA DEL TEATRO",
+    "cleanedName": "Osteria Del Teatro",
+    "changed": true
+  },
+  {
+    "id": "32e651cd-525d-4e79-a782-d148a5be8794",
+    "originalName": "BODEGON71 LLC",
+    "cleanedName": "Bodegon71",
+    "changed": true
+  },
+  {
+    "id": "51c47dd1-d6df-4295-b7cf-7854f5275654",
+    "originalName": "BOLDVA LLC",
+    "cleanedName": "Boldva",
+    "changed": true
+  },
+  {
+    "id": "614d0697-36e6-42fa-a35f-147cc0205730",
+    "originalName": "Bros On The Beach",
+    "cleanedName": "Bros on the Beach",
+    "changed": true
+  },
+  {
+    "id": "5a42f468-fdab-43a1-bc5f-8f3b3d677996",
+    "originalName": "BURBOWL 3 LLC ",
+    "cleanedName": "Burbowl 3 Llc",
+    "changed": true
+  },
+  {
+    "id": "eedd9ca4-a0f6-4b97-9842-7d7f21eff1af",
+    "originalName": "BURGER KING COMPANY LLC",
+    "cleanedName": "Burger King",
+    "changed": true
+  },
+  {
+    "id": "7e0e238c-33d8-4d4b-a21c-b80230293a4b",
+    "originalName": "BURGERS & SHAKES INC C/O IGLESIAS, MARIA E ",
+    "cleanedName": "Burgers & Shakes Inc C/o Iglesias, Maria E",
+    "changed": true
+  },
+  {
+    "id": "56e59ed3-8dd0-4a08-bb57-24d704e9720c",
+    "originalName": "Cafe Avanti",
+    "cleanedName": "Cafe Avanti",
+    "changed": false
+  },
+  {
+    "id": "34c4d42a-2bcd-4636-9f58-0163f3bffe05",
+    "originalName": "CAFE COLLINS 16 LLC/ DBA AROMA ESPRESSO BAR",
+    "cleanedName": "Aroma Espresso Bar",
+    "changed": true
+  },
+  {
+    "id": "821131bc-3b03-49ec-bf7f-29095f5d90d2",
+    "originalName": "Cafe Prima Pasta",
+    "cleanedName": "Cafe Prima Pasta",
+    "changed": false
+  },
+  {
+    "id": "0936165e-e6a9-46b2-b28f-3cdeeeea30ea",
+    "originalName": "CAFFE MILANO LLC C/O FRITTELLA , STEFANO",
+    "cleanedName": "Caffe Milano Llc C/o Frittella , Stefano",
+    "changed": true
+  },
+  {
+    "id": "41ccd688-4818-4415-a2b1-1ebbf41ded40",
+    "originalName": "CARROT LOVE , LLC dba CARROT EXPRESS",
+    "cleanedName": "Carrot Express",
+    "changed": true
+  },
+  {
+    "id": "b630a36e-c6d5-4606-a3d0-f69cfc3c68d6",
+    "originalName": "Casa Isola Miami",
+    "cleanedName": "Casa Isola Miami",
+    "changed": false
+  },
+  {
+    "id": "1ba2be3a-57d5-4b5f-9d3c-ce40f47c7bff",
+    "originalName": "Casa Tua",
+    "cleanedName": "Casa Tua",
+    "changed": false
+  },
+  {
+    "id": "59c0b454-cf73-4cdf-a883-df1eae8d8673",
+    "originalName": "Chalan On the Beach",
+    "cleanedName": "Chalan on the Beach",
+    "changed": true
+  },
+  {
+    "id": "8ae3be1e-48c4-436a-b3e3-4111c4a799f0",
+    "originalName": "CHARLES ST LLC DBA ORANGE BLOSSOM RESTAURANT AND BAR",
+    "cleanedName": "Orange Blossom Restaurant and Bar",
+    "changed": true
+  },
+  {
+    "id": "8bcc6062-1041-4cf5-8c1b-689e4a227a84",
+    "originalName": "CHEESEBURGER BABY SOBE, INC.",
+    "cleanedName": "Cheeseburger Baby Sobe,",
+    "changed": true
+  },
+  {
+    "id": "a11206e3-3d48-42bf-9fb0-d359bf95557b",
+    "originalName": "CJ's Crab Shack",
+    "cleanedName": "Cj's Crab Shack",
+    "changed": true
+  },
+  {
+    "id": "a3136783-56af-465b-b872-553d68034758",
+    "originalName": "CK AT 41ST, LLC DBA CHICKEN KITCHEN",
+    "cleanedName": "Chicken Kitchen",
+    "changed": true
+  },
+  {
+    "id": "f324372f-6326-43ff-b934-7c6ad120df61",
+    "originalName": "CK AT ALTON RD LLC D/B/A CHICKEN KITCHEN",
+    "cleanedName": "Chicken Kitchen",
+    "changed": true
+  },
+  {
+    "id": "1e9f623d-e889-488e-8119-f0ce1030e507",
+    "originalName": "Club Madonna",
+    "cleanedName": "Club Madonna",
+    "changed": false
+  },
+  {
+    "id": "399d5f11-7f5b-4c25-b9da-bdd4101865d1",
+    "originalName": "CULINARY ARTS CATERING, INC.",
+    "cleanedName": "Culinary Arts Catering,",
+    "changed": true
+  },
+  {
+    "id": "4a074e2d-ba73-4b4d-8f58-875e57cb01cd",
+    "originalName": "D'vine",
+    "cleanedName": "D'vine",
+    "changed": false
+  },
+  {
+    "id": "0c524eb6-b75a-489d-9658-c21460663f68",
+    "originalName": "Dalia",
+    "cleanedName": "Dalia",
+    "changed": false
+  },
+  {
+    "id": "753d4a83-3d47-417f-877c-9121724fac8b",
+    "originalName": "DECK Sixteen",
+    "cleanedName": "Deck Sixteen",
+    "changed": true
+  },
+  {
+    "id": "6927862e-692f-4396-a72d-0b1cae061456",
+    "originalName": "DECO SETTE LLC/ DBA ROSETTA BAKERY",
+    "cleanedName": "Rosetta Bakery",
+    "changed": true
+  },
+  {
+    "id": "e7ded256-414b-4f61-916a-7db1614d0aab",
+    "originalName": "DECO TRE, LLC. DBA ROSETTA BAKERY",
+    "cleanedName": "Rosetta Bakery",
+    "changed": true
+  },
+  {
+    "id": "ee1318a6-dfe4-429d-8522-78cd2c3a7516",
+    "originalName": "DECOWALK HOTEL & GOLF CLUB, LLC DBA VOODOO ROOFTOP LOUNGE & HOOKAH C/0 CALARA , MANDY",
+    "cleanedName": "Voodoo Rooftop Lounge & Hookah C/0 Calara , Mandy",
+    "changed": true
+  },
+  {
+    "id": "c4e84c7a-4aab-4061-9b9a-7ad3f572082f",
+    "originalName": "DELICIOUS RAW BAY ROAD, LLC",
+    "cleanedName": "Delicious Raw Bay Road,",
+    "changed": true
+  },
+  {
+    "id": "421a34fa-29fc-40b6-9cc0-e978307f9d8c",
+    "originalName": "DEMVAS, LLC D/B/A POSEIDON GREEK TABLE & BAR",
+    "cleanedName": "Poseidon Greek Table & Bar",
+    "changed": true
+  },
+  {
+    "id": "dc10ce9a-1496-461f-8bd6-e03b0b67f050",
+    "originalName": "DENNY'S #8850",
+    "cleanedName": "Denny's",
+    "changed": true
+  },
+  {
+    "id": "cc624aef-2751-4a1a-960e-5b4189d0bab0",
+    "originalName": "DFS HOSPITALITY CORP",
+    "cleanedName": "Dfs Hospitality",
+    "changed": true
+  },
+  {
+    "id": "15b91752-de96-4968-acb1-83b70f8d36c9",
+    "originalName": "Dolce Italian",
+    "cleanedName": "Dolce Italian",
+    "changed": false
+  },
+  {
+    "id": "6858db13-b3e2-4df7-aa8c-76b9174cb336",
+    "originalName": "DOMINOS PIZZA #3889",
+    "cleanedName": "Dominos Pizza",
+    "changed": true
+  },
+  {
+    "id": "3ab06901-65ea-4779-bf13-a719f4b8c39f",
+    "originalName": "DOMINOS PIZZA LLC",
+    "cleanedName": "Dominos Pizza",
+    "changed": true
+  },
+  {
+    "id": "3ea5a722-c345-4bc0-a071-28e6a026d336",
+    "originalName": "DR. SMOOD SUNSET HARBOR, LLC DBA DR. SMOOD C/O SIMON COOPER, OFFICER FOR INACTIVE CORPORATION",
+    "cleanedName": "Dr. Smood C/o Simon Cooper, Officer for Inactive",
+    "changed": true
+  },
+  {
+    "id": "8bec3c71-17f8-41dd-8f48-f7c9f65b1616",
+    "originalName": "EAST OCEAN RESTAURANT LLC",
+    "cleanedName": "East Ocean Restaurant",
+    "changed": true
+  },
+  {
+    "id": "823869c7-41d3-4279-a590-fde0809b251b",
+    "originalName": "EDITION MANAGEMENT LLC DBA BASEMENT",
+    "cleanedName": "Basement",
+    "changed": true
+  },
+  {
+    "id": "5d6ab052-ad6b-4838-9f5e-7786a7f12aed",
+    "originalName": "EDITION MANAGEMENT LLC DBA THE MATADOR ROOM",
+    "cleanedName": "The Matador Room",
+    "changed": true
+  },
+  {
+    "id": "3eac31a0-ec4e-4803-9811-b88d6bd4a933",
+    "originalName": "EINSTEIN BROS BAGELS/STORE#780",
+    "cleanedName": "Einstein Bros Bagels/store#780",
+    "changed": true
+  },
+  {
+    "id": "a92f723c-6b10-4013-a832-191a50a42223",
+    "originalName": "Essensia Restaurant + Lounge",
+    "cleanedName": "Essensia Restaurant + Lounge",
+    "changed": false
+  },
+  {
+    "id": "68341da8-d261-4be7-a9f9-4e0b6003310e",
+    "originalName": "EXCHANGE MIAMI LLC",
+    "cleanedName": "Exchange Miami",
+    "changed": true
+  },
+  {
+    "id": "8e68a064-df11-4091-b8a8-242963fd1a22",
+    "originalName": "Fi’lia South Beach",
+    "cleanedName": "Fi’lia South Beach",
+    "changed": false
+  },
+  {
+    "id": "bfe658ec-1b6f-4cc0-9e03-a82deb07cb20",
+    "originalName": "FINNEGANS TWO c/o Jason De Castro",
+    "cleanedName": "Finnegans Two C/o Jason De Castro",
+    "changed": true
+  },
+  {
+    "id": "53824372-9c0a-4cdc-8356-385eedaa8102",
+    "originalName": "FINNEGANS WAY, INC.",
+    "cleanedName": "Finnegans Way,",
+    "changed": true
+  },
+  {
+    "id": "2df93ff6-f985-4854-a461-ace4f60133be",
+    "originalName": "FIVE GUYS PROPERTIES, LLC",
+    "cleanedName": "Five Guys Properties,",
+    "changed": true
+  },
+  {
+    "id": "1a71c55d-85bf-46c2-9462-568b7d1266d9",
+    "originalName": "FLB 1, INC.  DBA FRATELLI LA BUFALA",
+    "cleanedName": "Fratelli La Bufala",
+    "changed": true
+  },
+  {
+    "id": "407bf6a9-b3d0-4d7d-a547-b44df46df93f",
+    "originalName": "FLORIDA QUALITY GROUP LLC DBA LITTLE CEASARS PIZZA",
+    "cleanedName": "Little Ceasars Pizza",
+    "changed": true
+  },
+  {
+    "id": "daedd161-7ba5-4cb0-8983-fb2880cbf432",
+    "originalName": "FONTAINEBLEAU  FLORIDA HOTEL, LLC D/B/A HAKKASAN",
+    "cleanedName": "Hakkasan",
+    "changed": true
+  },
+  {
+    "id": "606f98a7-4d8f-42d8-99cb-d0c7d84da6b4",
+    "originalName": "FONTAINEBLEAU FLORIDA HOTEL LLC  D/B/A CHEZ BON BON",
+    "cleanedName": "Chez Bon Bon",
+    "changed": true
+  },
+  {
+    "id": "5b15e512-6ee9-4048-9051-11fa0dfccf81",
+    "originalName": "FONTAINEBLEAU FLORIDA HOTEL LLC DBA LIV",
+    "cleanedName": "Liv",
+    "changed": true
+  },
+  {
+    "id": "58424c1c-ae83-461e-a2fb-9d509bd32c8f",
+    "originalName": "FONTAINEBLEAU FLORIDA HOTEL LLC/DBA FRESH",
+    "cleanedName": "Fontainebleau Florida Hotel Llc/dba Fresh",
+    "changed": true
+  },
+  {
+    "id": "c17225d0-a858-406c-a23b-d3b829af78bb",
+    "originalName": "FONTAINEBLEAU FLORIDA HOTEL, LLC",
+    "cleanedName": "Fontainebleau Florida Hotel,",
+    "changed": true
+  },
+  {
+    "id": "8ef25939-29f3-477b-a187-6b4c9d24c8d1",
+    "originalName": "FONTAINEBLEAU FLORIDA HOTEL, LLC  D/B/A BLEAU BAR",
+    "cleanedName": "Bleau Bar",
+    "changed": true
+  },
+  {
+    "id": "8eb8cefc-53a9-406d-9e7a-351f9ef91591",
+    "originalName": "FONTAINEBLEAU FLORIDA HOTEL, LLC D/B/A GLOW BAR",
+    "cleanedName": "Glow Bar",
+    "changed": true
+  },
+  {
+    "id": "9f03a51b-3758-444b-8e45-132a7a580a71",
+    "originalName": "FONTAINEBLEAU FLORIDA HOTEL, LLC D/B/A SCARPETTA",
+    "cleanedName": "Scarpetta",
+    "changed": true
+  },
+  {
+    "id": "5c80cfbe-07ec-43ad-af8a-c8ff8f7b812b",
+    "originalName": "FONTAINEBLEAU FLORIDA HOTEL, LLC D/B/A STRIPSTEAK",
+    "cleanedName": "Stripsteak",
+    "changed": true
+  },
+  {
+    "id": "2353da50-8e86-4884-9800-50bd195c3b6a",
+    "originalName": "FONTAINEBLEAU FLORIDA HOTEL, LLC D/B/A VIDA",
+    "cleanedName": "Vida",
+    "changed": true
+  },
+  {
+    "id": "b5f71650-bf06-4705-891a-10a816646e3c",
+    "originalName": "FOOD 305 CORP DBA MISTER O1 EXTRAORDINARY PIZZA",
+    "cleanedName": "Mister O1 Extraordinary Pizza",
+    "changed": true
+  },
+  {
+    "id": "bca7557f-9bfa-47af-8099-0a219fd718f6",
+    "originalName": "FORD SOBE LLC DBA STUBBORN SEED",
+    "cleanedName": "Stubborn Seed",
+    "changed": true
+  },
+  {
+    "id": "7ffe1a90-736b-44f2-99d2-93bf4b1a538f",
+    "originalName": "FOREX FOREIGN TRADE CORPORATION D/B/A MEGA PIZZA ",
+    "cleanedName": "Mega Pizza",
+    "changed": true
+  },
+  {
+    "id": "77060bde-14e0-467c-ab51-04a8d1412152",
+    "originalName": "Fortune cookies",
+    "cleanedName": "Fortune Cookies",
+    "changed": true
+  },
+  {
+    "id": "c9ee5d8a-99fa-4fd4-b0c0-2a36b3d6d892",
+    "originalName": "FRESH ON FIFTH LLC, DBA PIZZA DAYS",
+    "cleanedName": "Pizza Days",
+    "changed": true
+  },
+  {
+    "id": "12e88cfe-e871-411f-880b-7a3890bb214f",
+    "originalName": "FUJI TERIYAKI INC.",
+    "cleanedName": "Fuji Teriyaki",
+    "changed": true
+  },
+  {
+    "id": "dffedcdc-f0a2-42d1-85d9-d88dca7470f9",
+    "originalName": "GALBEN GROUP, INC. D/B/A BURGER KING #9869",
+    "cleanedName": "Burger King",
+    "changed": true
+  },
+  {
+    "id": "b1481edb-8a07-4c4a-a719-587d97ebf394",
+    "originalName": "GC FRIDAYS FLORIDA LLC D/B/A TGI FRIDAYS",
+    "cleanedName": "Tgi Fridays",
+    "changed": true
+  },
+  {
+    "id": "25d76815-40f7-4989-8f49-7eae70a8b99f",
+    "originalName": "Gino’s Bottega Italiana",
+    "cleanedName": "Gino’s Bottega Italiana",
+    "changed": false
+  },
+  {
+    "id": "d26b3e7e-e7c3-4544-9326-f3b9e7edf25c",
+    "originalName": "GIULES & CO LLC C/O ARMAS, ALFREDO DBA TAVERNA",
+    "cleanedName": "Taverna",
+    "changed": true
+  },
+  {
+    "id": "275adcbd-d8a4-4176-b423-18371b70d2ca",
+    "originalName": "GO GO FRESH HOLDING LLC % Mary Parados",
+    "cleanedName": "Go Go Fresh Holding Llc % Mary Parados",
+    "changed": true
+  },
+  {
+    "id": "bd867da6-2570-4b4e-a912-d90bfcd355ee",
+    "originalName": "GREENBRIER PARTNERS LLC",
+    "cleanedName": "Greenbrier Partners",
+    "changed": true
+  },
+  {
+    "id": "33e0870b-a967-4c85-a577-76682eb1a004",
+    "originalName": "GRILL HOUSE INC",
+    "cleanedName": "Grill House",
+    "changed": true
+  },
+  {
+    "id": "0308ca40-2b86-4f7a-84c4-752d1fac95bc",
+    "originalName": "GRK F& B LLC",
+    "cleanedName": "Grk F& B",
+    "changed": true
+  },
+  {
+    "id": "6677d413-aceb-49fa-877e-8e54f423fc9b",
+    "originalName": "GRNA LC OF FL LLC",
+    "cleanedName": "Grna Lc of Fl",
+    "changed": true
+  },
+  {
+    "id": "0dea2b9b-85c9-4907-9018-5edc482c2c34",
+    "originalName": "Groovy’s Pizza & Bar",
+    "cleanedName": "Groovy’s Pizza & Bar",
+    "changed": false
+  },
+  {
+    "id": "e91e3fe9-0661-4248-9100-b2978c09162f",
+    "originalName": "Habitat",
+    "cleanedName": "Habitat",
+    "changed": false
+  },
+  {
+    "id": "a497b847-0047-4776-9804-822033556f22",
+    "originalName": "HALAL BROTHERS LLC DBA AL BASHA GRILL",
+    "cleanedName": "Al Basha Grill",
+    "changed": true
+  },
+  {
+    "id": "9cbc2a71-1423-4092-a010-1e5be1a2f033",
+    "originalName": "Harat's Pub",
+    "cleanedName": "Harat's Pub",
+    "changed": false
+  },
+  {
+    "id": "467cac05-dbdb-4164-b65b-07ce1ca004e3",
+    "originalName": "HAVANA LINCOLN LLC/ DBA HAVANA 1957 C/O CONSULTING SERVICES OF SOUTH FLORIDA INC",
+    "cleanedName": "Havana 1957 C/o Consulting Services of South Florida",
+    "changed": true
+  },
+  {
+    "id": "10ae5dad-e827-4d39-a782-b50a171e8239",
+    "originalName": "HAVANA OCEAN LLC DBA HAVANA 1957",
+    "cleanedName": "Havana 1957",
+    "changed": true
+  },
+  {
+    "id": "6683c82c-634d-4efa-bf28-c7acdca2267c",
+    "originalName": "HAVANA OCEAN TEN LLC C/O CONSULTING SERVICES OF SOUTH FLORIDA INC",
+    "cleanedName": "Havana Ocean Ten Llc C/o Consulting Services of South Florida",
+    "changed": true
+  },
+  {
+    "id": "358449c4-3ee6-43ea-95e7-f55227914d46",
+    "originalName": "HIGH TIDE RESTAURANT GROUP INC. d/b/a OLA",
+    "cleanedName": "Ola",
+    "changed": true
+  },
+  {
+    "id": "57a15bb3-2f3c-43cc-9213-3404a855214e",
+    "originalName": "Hiro's Sushi Express",
+    "cleanedName": "Hiro's Sushi Express",
+    "changed": false
+  },
+  {
+    "id": "3affb2d9-caa1-4887-82d8-95431df39be6",
+    "originalName": "HNS PARTNERS LLC # 19650 LLC DBA SUBWAY",
+    "cleanedName": "Subway",
+    "changed": true
+  },
+  {
+    "id": "2d4d9923-b387-41da-9573-e78be59708cd",
+    "originalName": "HNS PARTNERS LLC #58064 DBA SUBWAY",
+    "cleanedName": "Subway",
+    "changed": true
+  },
+  {
+    "id": "dea510ad-21bf-4ced-b1d8-c7efd08bf90c",
+    "originalName": "HOSHII AND SEO MIAMI, CORP DBA HOSHI &",
+    "cleanedName": "Hoshi &",
+    "changed": true
+  },
+  {
+    "id": "0f2a6b66-02ed-4c4f-89b7-e3fd362b2f69",
+    "originalName": "HOSTERIA ROMANA INC",
+    "cleanedName": "Hosteria Romana",
+    "changed": true
+  },
+  {
+    "id": "fb23551c-93bf-4878-8e1e-2e0d292317e5",
+    "originalName": "HOT SOBE LTD DBA GRAFA PIZZA",
+    "cleanedName": "Grafa Pizza",
+    "changed": true
+  },
+  {
+    "id": "dfdea16a-8a5e-4c27-a698-845bb2e4cbfe",
+    "originalName": "HOYOS & ASSOCIATES INVESTMENTS LLC DBA CVI.CHE 105 SOUTH BEA",
+    "cleanedName": "Cvi.che 105 South Bea",
+    "changed": true
+  },
+  {
+    "id": "63932433-53a8-48f7-a0bc-eb52c430e280",
+    "originalName": "HUAHUA'S LLC",
+    "cleanedName": "Huahua's",
+    "changed": true
+  },
+  {
+    "id": "63ccc1b1-9889-4863-84f5-0b24bf656dac",
+    "originalName": "ICEBOX CAFE LC D/B/A ICE BOX CAFE",
+    "cleanedName": "Ice Box Cafe",
+    "changed": true
+  },
+  {
+    "id": "22b3f805-ae5b-4faa-9bcd-3b7893ee383d",
+    "originalName": "IL GIARDINO. LLC C/O CRAIG.M. DORNE",
+    "cleanedName": "Il Giardino. Llc C/o Craig.m. Dorne",
+    "changed": true
+  },
+  {
+    "id": "5e93bc1b-ce76-4db8-9cec-711c1bdf198f",
+    "originalName": "INTI.MO BY JUAN CHIPOCO LLC",
+    "cleanedName": "Inti.mo by Juan Chipoco",
+    "changed": true
+  },
+  {
+    "id": "c01fcb9b-c9da-44c6-8e27-cf6ae2e8e453",
+    "originalName": "IRON SUSHI, LLC C/O FINE, DAVID",
+    "cleanedName": "Iron Sushi, Llc C/o Fine, David",
+    "changed": true
+  },
+  {
+    "id": "dafe42b9-9e75-4997-83ba-a23a2c6fddb8",
+    "originalName": "IT MIAMI LLC",
+    "cleanedName": "It Miami",
+    "changed": true
+  },
+  {
+    "id": "2f0dfe8c-16b6-4325-bedb-d6aa69fa18f2",
+    "originalName": "J & E DECO WINGS GROUP CORP DBA DECO WINGS AND BURGERS",
+    "cleanedName": "Deco Wings and Burgers",
+    "changed": true
+  },
+  {
+    "id": "415561f2-a723-44c8-b8a1-6a4dab73303a",
+    "originalName": "J.P MIAMI COMPANY LLC (#111)",
+    "cleanedName": "J.p Miami Company Llc (#111)",
+    "changed": true
+  },
+  {
+    "id": "e56d7651-e866-44d3-8f2d-b7d09d4f569d",
+    "originalName": "Jaya at The Setai",
+    "cleanedName": "Jaya at the Setai",
+    "changed": true
+  },
+  {
+    "id": "9b5a9b66-274c-4e19-bf84-26b389bae4d0",
+    "originalName": "JNRL Resturant Group LLC",
+    "cleanedName": "Jnrl Resturant",
+    "changed": true
+  },
+  {
+    "id": "728d0f7e-17ce-4cb2-b916-d76d92b17951",
+    "originalName": "JOE & THE JUICE MIAMI LLC",
+    "cleanedName": "Joe & the Juice Miami",
+    "changed": true
+  },
+  {
+    "id": "5a4ef94f-0aca-4e41-bf26-6bceb40f97a7",
+    "originalName": "Joe's Stone Crab",
+    "cleanedName": "Joe's Stone Crab",
+    "changed": false
+  },
+  {
+    "id": "e1472f4b-cfd5-42a4-a967-225bb5111a88",
+    "originalName": "JPJE CORP D/B/A BOLIVAR RESTAURANT",
+    "cleanedName": "Bolivar Restaurant",
+    "changed": true
+  },
+  {
+    "id": "96e12ddc-834c-4f28-b865-e95ed384370d",
+    "originalName": "Jules Kitchen",
+    "cleanedName": "Jules Kitchen",
+    "changed": false
+  },
+  {
+    "id": "6fc37d09-d122-48ca-b819-33f9485ff5dc",
+    "originalName": "Kalamata llc",
+    "cleanedName": "Kalamata",
+    "changed": true
+  },
+  {
+    "id": "2f309dc7-540b-4047-a535-35009b0a99d5",
+    "originalName": "KNIGHTMD INC. D/B/A JUICY GYROS C/O CHAUDHRY, ABID ",
+    "cleanedName": "Juicy Gyros C/o Chaudhry, Abid",
+    "changed": true
+  },
+  {
+    "id": "c7d06c12-63ef-4e46-b73a-4424d7c23884",
+    "originalName": "KOA RESTAURANTS LLC",
+    "cleanedName": "Koa Restaurants",
+    "changed": true
+  },
+  {
+    "id": "7a5ec26b-c53c-4e28-93a3-6222b871425c",
+    "originalName": "KOSUSHI RESTAURANT LLC",
+    "cleanedName": "Kosushi Restaurant",
+    "changed": true
+  },
+  {
+    "id": "5a4128e8-2c6d-4913-83b9-4a25b9a77cf1",
+    "originalName": "Krispy Krunchy Chicken",
+    "cleanedName": "Krispy Krunchy Chicken",
+    "changed": false
+  },
+  {
+    "id": "fd43fa23-6796-46fd-adda-3116f8c6a08f",
+    "originalName": "L24M, LLC DBA LUCALI MIAMI",
+    "cleanedName": "Lucali Miami",
+    "changed": true
+  },
+  {
+    "id": "f205d1f7-b142-4c58-82ea-541914d0f936",
+    "originalName": "LA CERVECERIA LINCOLN LLC C/O CONSULTING SERVICES OF SOUTH FLORIDA INC",
+    "cleanedName": "La Cerveceria Lincoln Llc C/o Consulting Services of South Florida",
+    "changed": true
+  },
+  {
+    "id": "8c778970-2672-41c2-89e0-ea179b74ff7d",
+    "originalName": "LA CERVECERIA OCEAN LLC ",
+    "cleanedName": "La Cerveceria Ocean Llc",
+    "changed": true
+  },
+  {
+    "id": "47e1e080-c034-443e-b213-32f1e8f1b79a",
+    "originalName": "La Locanda",
+    "cleanedName": "La Locanda",
+    "changed": false
+  },
+  {
+    "id": "327ab834-10de-4097-879e-af0f509ee12c",
+    "originalName": "La Sombra Resturant and Lounge",
+    "cleanedName": "La Sombra Resturant and Lounge",
+    "changed": false
+  },
+  {
+    "id": "2c4b7a85-34dd-4203-b418-59c18f3b1cda",
+    "originalName": "LE CENIS, LLC DBA FL CAFE",
+    "cleanedName": "Fl Cafe",
+    "changed": true
+  },
+  {
+    "id": "a7ee78b4-8667-4b47-8571-65388142515d",
+    "originalName": "LILIKOI SOUTH POINTE LLC DBA LILIKOI ORGANIC LIVING",
+    "cleanedName": "Lilikoi Organic Living",
+    "changed": true
+  },
+  {
+    "id": "94c1cb49-2acb-4ceb-95ed-4a80510a22ad",
+    "originalName": "LINGENFELSER ENTERPRISES III INC",
+    "cleanedName": "Lingenfelser Enterprises Iii",
+    "changed": true
+  },
+  {
+    "id": "e14c6037-c46a-4f1e-ae00-1440d79e95c1",
+    "originalName": "LINGENFELSER ENTERPRISES SOUTH POINTE INC, DBA LOBSTER SHACK",
+    "cleanedName": "Lobster Shack",
+    "changed": true
+  },
+  {
+    "id": "de07ae49-2b30-4e63-8e43-e5c7ed7a5999",
+    "originalName": "LIQUOR LOUNGE CAFE, INC",
+    "cleanedName": "Liquor Lounge Cafe,",
+    "changed": true
+  },
+  {
+    "id": "d84e3183-f323-4233-b998-517a3ec4ad70",
+    "originalName": "LITTLE BRAZIL USA CORPORATION D/B/A LITTLE BRAZIL",
+    "cleanedName": "Little Brazil",
+    "changed": true
+  },
+  {
+    "id": "c02bdbd3-591c-4731-b4dd-19a0550fbc17",
+    "originalName": "Living Room at the W",
+    "cleanedName": "Living Room at the W",
+    "changed": false
+  },
+  {
+    "id": "4b6cfb0a-7fee-4170-ba5a-81f20476ecf4",
+    "originalName": "LLAM GROUP, LLC.",
+    "cleanedName": "Llam Group,",
+    "changed": true
+  },
+  {
+    "id": "63a7b041-54b0-434d-8cd2-6af1c3a07d88",
+    "originalName": "LM SUNSET HARBOUR LLC ",
+    "cleanedName": "Lm Sunset Harbour Llc",
+    "changed": true
+  },
+  {
+    "id": "c53d9ef6-845a-4de5-a0fe-367bd60220da",
+    "originalName": "LOCURA MARINA INC ",
+    "cleanedName": "Locura Marina Inc",
+    "changed": true
+  },
+  {
+    "id": "b5306689-48ee-44be-8766-9c0355aad454",
+    "originalName": "LOLA RESTAURANT GRILL INC",
+    "cleanedName": "Lola Restaurant Grill",
+    "changed": true
+  },
+  {
+    "id": "bb553f36-5089-4005-935f-ab0cc6861957",
+    "originalName": "Los Fuegos by Francis Mallmann",
+    "cleanedName": "Los Fuegos by Francis Mallmann",
+    "changed": false
+  },
+  {
+    "id": "c6ae7002-a72e-400c-8f63-706b7290f59e",
+    "originalName": "LOST WEEKEND & BLUE DBA LOST WEEKEND/FEELGOODS",
+    "cleanedName": "Lost Weekend/feelgoods",
+    "changed": true
+  },
+  {
+    "id": "0402fea1-777d-4887-91d9-9644adddea36",
+    "originalName": "LOVETT HOSPITALITY MANAGEMENT LLC DBA Sand bar & kitchen C/o Timothy Wilcox ",
+    "cleanedName": "Sand Bar & Kitchen C/o Timothy Wilcox",
+    "changed": true
+  },
+  {
+    "id": "4585b14f-64c4-4fdd-957d-f174491af731",
+    "originalName": "LT Steak & Seafood",
+    "cleanedName": "Lt Steak & Seafood",
+    "changed": true
+  },
+  {
+    "id": "9a4b3dba-2d9a-4089-adc0-b84d23b8df9c",
+    "originalName": "M-3 OF MIAMI BEACH CORPORATION ",
+    "cleanedName": "M-3 of Miami Beach Corporation",
+    "changed": true
+  },
+  {
+    "id": "e9d03248-8ca5-4839-a82e-32a1366a0b13",
+    "originalName": "Mac's Club Deuce Bar",
+    "cleanedName": "Mac's Club Deuce Bar",
+    "changed": false
+  },
+  {
+    "id": "29a58dc4-02cf-473f-b28b-afab5de0b8ff",
+    "originalName": "MACCHIALINA RESTAURANT, LLC C/O JASON KLEIN",
+    "cleanedName": "Macchialina Restaurant, Llc C/o Jason Klein",
+    "changed": true
+  },
+  {
+    "id": "d4ec1600-d213-47ae-95e2-674e6666a92d",
+    "originalName": "MACOVI, LLC D/B/A BLOCKS PIZZA DELI",
+    "cleanedName": "Blocks Pizza Deli",
+    "changed": true
+  },
+  {
+    "id": "acc69b7d-184f-4010-9e54-ccb56a15fade",
+    "originalName": "Mango's Tropical Cafe",
+    "cleanedName": "Mango's Tropical Cafe",
+    "changed": false
+  },
+  {
+    "id": "d0a79de2-ae40-404d-b792-841d86ec56b4",
+    "originalName": "MANYPLUS LIMITED LLC d/b/a: 7 SPICES c/o KHUDIR NOURELDIN",
+    "cleanedName": "Manyplus Limited Llc D/b/a: 7 Spices C/o Khudir Noureldin",
+    "changed": true
+  },
+  {
+    "id": "02defb65-ec76-49f0-bded-64c3f0e4d834",
+    "originalName": "MARIUS INC. DBA LA SANDWICHERIE",
+    "cleanedName": "La Sandwicherie",
+    "changed": true
+  },
+  {
+    "id": "7ca8bb8c-7137-4ddc-8519-5e5f0347de7d",
+    "originalName": "MB FLORIDA LIMITED LLC DBA GRAND BEACH HOTEL",
+    "cleanedName": "Grand Beach Hotel",
+    "changed": true
+  },
+  {
+    "id": "599197cc-80bf-43a9-8a41-2e2c91c0cde2",
+    "originalName": "MC MIAMI ENTERPRISES, LLC D/B/A MR. CHOW OF MIAMI",
+    "cleanedName": "Mr. Chow of Miami",
+    "changed": true
+  },
+  {
+    "id": "6f4e32f7-0731-42e1-90e0-1a3a66aa2e22",
+    "originalName": "McDonald's",
+    "cleanedName": "Mcdonald's",
+    "changed": true
+  },
+  {
+    "id": "f36e5cc0-805c-4464-9c8e-f4e7b37feb42",
+    "originalName": "MCDONALDS",
+    "cleanedName": "Mcdonalds",
+    "changed": true
+  },
+  {
+    "id": "3ef4bc0d-e36c-4af4-82a0-520f7a20df37",
+    "originalName": "MEDITERRANEAN CUISINE, INC ",
+    "cleanedName": "Mediterranean Cuisine, Inc",
+    "changed": true
+  },
+  {
+    "id": "a8971580-489f-4445-94b3-6b5d489e62a5",
+    "originalName": "MI COLOMBIA RESTAURANT",
+    "cleanedName": "Mi Colombia Restaurant",
+    "changed": true
+  },
+  {
+    "id": "26a356a5-891e-4b7b-b2ca-0898eaff71cb",
+    "originalName": "MIAMI BEACH PIZZA INC",
+    "cleanedName": "Miami Beach Pizza",
+    "changed": true
+  },
+  {
+    "id": "733098e9-ce95-45c0-8ac0-467811718280",
+    "originalName": "MIAMI BEACH THEATER & SHOW DISTRICT ASSOCIA INC DBA DO NOT SIT ON THE FURNITURE c/o STEVE POLISAR",
+    "cleanedName": "Do Not Sit on the Furniture C/o Steve Polisar",
+    "changed": true
+  },
+  {
+    "id": "453e9536-d82d-409c-bf56-0ccc22d535da",
+    "originalName": "MIAMI CUBANO, LLC D/B/A HAVANA 1957",
+    "cleanedName": "Havana 1957",
+    "changed": true
+  },
+  {
+    "id": "7d768ecf-dbf2-4863-9ee2-4cf5b4a71d39",
+    "originalName": "MIAMI DONNA LLC DBA LA PISCINE",
+    "cleanedName": "La Piscine",
+    "changed": true
+  },
+  {
+    "id": "b4e11c9f-e4a4-4de4-9941-21fe30710726",
+    "originalName": "MIAMI LIVE LLC DBA MIAMI LIVE c/o: Hiersche, Nicholas R",
+    "cleanedName": "Miami Live C/o: Hiersche, Nicholas R",
+    "changed": true
+  },
+  {
+    "id": "4036210d-1e2f-4965-a070-85e49c81a7a1",
+    "originalName": "MILOS BY COSTAS SPILIADIS INC/DBA ESTIATORIO MILOS BY COSTA",
+    "cleanedName": "Milos by Costas Spiliadis Inc/dba Estiatorio Milos by Costa",
+    "changed": true
+  },
+  {
+    "id": "242cdf2a-79b3-4063-a4e8-ec15c6e594ae",
+    "originalName": "Monty's South Beach",
+    "cleanedName": "Monty's South Beach",
+    "changed": false
+  },
+  {
+    "id": "e04c6ac7-0264-4800-a1bd-e3952b3699ba",
+    "originalName": "MR JONES MANAGEMENT LLC",
+    "cleanedName": "Mr Jones",
+    "changed": true
+  },
+  {
+    "id": "c15640d5-4967-4a14-b88c-1abe5eb46a69",
+    "originalName": "MR. PASTA",
+    "cleanedName": "Mr. Pasta",
+    "changed": true
+  },
+  {
+    "id": "fe6dd532-9858-48ee-a2d4-0ebb529bd1a4",
+    "originalName": "MUSIGNY LLC",
+    "cleanedName": "Musigny",
+    "changed": true
+  },
+  {
+    "id": "f3561848-96ce-4ac1-bbc5-07a9edae9cff",
+    "originalName": "MY SMOOTHIE SHOP LLC",
+    "cleanedName": "My Smoothie Shop",
+    "changed": true
+  },
+  {
+    "id": "123f5b23-d51a-4e7f-90b7-a0c11cbdf73e",
+    "originalName": "Mynt Lounge",
+    "cleanedName": "Mynt Lounge",
+    "changed": false
+  },
+  {
+    "id": "c82d73b2-8d5f-41c7-bdf1-4172687398c1",
+    "originalName": "NATURAL HARVESTER INC",
+    "cleanedName": "Natural Harvester",
+    "changed": true
+  },
+  {
+    "id": "19946def-bb22-447f-b673-8a0b76dd07c3",
+    "originalName": "NOBU ASSOCIATES (SOUTH BEACH), L.P.",
+    "cleanedName": "Nobu Associates (south Beach), L.p.",
+    "changed": true
+  },
+  {
+    "id": "03e2b86c-2d49-48d2-a4dc-9ecf829a32f4",
+    "originalName": "NORTH BEACH TAVERN, LLC",
+    "cleanedName": "North Beach Tavern,",
+    "changed": true
+  },
+  {
+    "id": "9c17380b-5d91-4457-9236-d9499a09c024",
+    "originalName": "NORTHERN HOSPITALITY LLC DBA THE SCAPE GOAT",
+    "cleanedName": "The Scape Goat",
+    "changed": true
+  },
+  {
+    "id": "43b26fb9-af5a-42c1-b7c8-5a9825a07c2d",
+    "originalName": "NYM MANAGEMENT, INC dba PIZZA DE MIAMI",
+    "cleanedName": "Pizza De Miami",
+    "changed": true
+  },
+  {
+    "id": "ac482a63-5f4d-47aa-b20d-a40f5d44d573",
+    "originalName": "NZR LLC DBA CHOTTO MATTE",
+    "cleanedName": "Chotto Matte",
+    "changed": true
+  },
+  {
+    "id": "07a7dde0-f4dd-42ac-a3ca-c35a3da383f4",
+    "originalName": "OCEAN CC, LLC DBA FORTE DEI MARMI",
+    "cleanedName": "Forte Dei Marmi",
+    "changed": true
+  },
+  {
+    "id": "281330bc-3794-4fba-b919-d4923b735868",
+    "originalName": "OCTOPI LLC",
+    "cleanedName": "Octopi",
+    "changed": true
+  },
+  {
+    "id": "d34c9595-0ee2-4764-8b4f-53206080f381",
+    "originalName": "ON THE ROCKS C/O BRATISLAV VLAHOVIC",
+    "cleanedName": "On the Rocks C/o Bratislav Vlahovic",
+    "changed": true
+  },
+  {
+    "id": "01491ebb-761d-4652-9c78-3e470441ff33",
+    "originalName": "Onyx Bar at the Villa Casa Casuarina",
+    "cleanedName": "Onyx Bar at the Villa Casa Casuarina",
+    "changed": false
+  },
+  {
+    "id": "cba0326a-8c21-4387-af31-7d04672ef3b8",
+    "originalName": "OUNZE CORPORATE LLC DBA/TAPELIA ",
+    "cleanedName": "Ounze Corporate Llc Dba/tapelia",
+    "changed": true
+  },
+  {
+    "id": "df8f9565-f504-422e-ab90-0099a2e31715",
+    "originalName": "P73 LLC DBA PIOLA SOUTH BEACH ",
+    "cleanedName": "Piola South Beach",
+    "changed": true
+  },
+  {
+    "id": "0048256c-b816-4581-892e-9d3d036bcced",
+    "originalName": "PAJEOLY CORP. ",
+    "cleanedName": "Pajeoly Corp.",
+    "changed": true
+  },
+  {
+    "id": "71cab879-7da3-432d-be49-e72b5fac018e",
+    "originalName": "PALACE BAR LLC",
+    "cleanedName": "Palace Bar",
+    "changed": true
+  },
+  {
+    "id": "ba3679a0-6326-4c7c-90cd-dceb5378449e",
+    "originalName": "PANIZZA LLC",
+    "cleanedName": "Panizza",
+    "changed": true
+  },
+  {
+    "id": "fb040d22-c727-4263-9735-3ecf1658c0d0",
+    "originalName": "PANTHER COFFEE BEACH LLC",
+    "cleanedName": "Panther Coffee Beach",
+    "changed": true
+  },
+  {
+    "id": "f664fc65-a598-49bd-937f-348d4c394241",
+    "originalName": "Pao by Paul Qui",
+    "cleanedName": "Pao by Paul Qui",
+    "changed": false
+  },
+  {
+    "id": "5fc50218-e6bc-4f49-bdfc-88c05cd4d1f1",
+    "originalName": "Papa John's Pizza",
+    "cleanedName": "Papa John's Pizza",
+    "changed": false
+  },
+  {
+    "id": "aac0b9cb-0756-4f94-a8dc-f43929fb5341",
+    "originalName": "Papi Steak",
+    "cleanedName": "Papi Steak",
+    "changed": false
+  },
+  {
+    "id": "ab4daf47-320c-48bf-a31b-ec8508495614",
+    "originalName": "PATRIOT SURF, CORP. DBAMANOLO CHURROS, PIZZAS & MUCH MORE",
+    "cleanedName": "Patriot Surf, Corp. Dbamanolo Churros, Pizzas & Much More",
+    "changed": true
+  },
+  {
+    "id": "d8ea3692-f8ee-400d-9982-d4cd9e212e5f",
+    "originalName": "PDS LOLO MIAMI LLC DBA LOLO SURF CANTINA",
+    "cleanedName": "Lolo Surf Cantina",
+    "changed": true
+  },
+  {
+    "id": "77d958f0-d419-4e97-99a8-a294fa8ebe50",
+    "originalName": "PENROD BROTHERS INC DBA NIKKI BEACH CLUB",
+    "cleanedName": "Nikki Beach Club",
+    "changed": true
+  },
+  {
+    "id": "98552ccc-a877-45e9-b3e4-c4a49b9bc741",
+    "originalName": "PINECREST BAKERY 9, LLC % PINECREST BAKERY LLC ",
+    "cleanedName": "Pinecrest Bakery 9, Llc % Pinecrest Bakery Llc",
+    "changed": true
+  },
+  {
+    "id": "3ad718c8-0718-42d7-8b82-727496ce80ea",
+    "originalName": "PINES ALLEY COOK",
+    "cleanedName": "Pines Alley Cook",
+    "changed": true
+  },
+  {
+    "id": "df6af341-a920-4661-b010-b98d18912da8",
+    "originalName": "Pita Hut",
+    "cleanedName": "Pita Hut",
+    "changed": false
+  },
+  {
+    "id": "837b1ec3-dc00-47ee-ba15-b91f3add9795",
+    "originalName": "PIZZA ARGENTINA LLC",
+    "cleanedName": "Pizza Argentina",
+    "changed": true
+  },
+  {
+    "id": "99281bef-7e32-4093-b1f2-de0f1dc9865f",
+    "originalName": "PIZZA BAR, LLC",
+    "cleanedName": "Pizza Bar,",
+    "changed": true
+  },
+  {
+    "id": "9b93d7da-1c73-4695-a097-617050efb29e",
+    "originalName": "Pizza Rustica",
+    "cleanedName": "Pizza Rustica",
+    "changed": false
+  },
+  {
+    "id": "070fb5cd-ced5-4669-b126-d7c118b9238e",
+    "originalName": "PizzaFiore",
+    "cleanedName": "Pizzafiore",
+    "changed": true
+  },
+  {
+    "id": "9f27c5e1-842a-4db6-8456-f779003e75a4",
+    "originalName": "PIZZAFIORE 1249 LLC DBA PIZZAFIORE",
+    "cleanedName": "Pizzafiore",
+    "changed": true
+  },
+  {
+    "id": "ba0f7552-4401-42da-b078-e86cefe18897",
+    "originalName": "PIZZETTE LLC",
+    "cleanedName": "Pizzette",
+    "changed": true
+  },
+  {
+    "id": "e4a98dea-c8d9-4a5f-93ae-9371af67953c",
+    "originalName": "PLAN DO SEE MIAMI, LLC DBA AZABU",
+    "cleanedName": "Azabu",
+    "changed": true
+  },
+  {
+    "id": "194f4feb-69b2-468c-8e36-71eda069b3be",
+    "originalName": "PLANTA MIAMI BEACH LP",
+    "cleanedName": "Planta Miami Beach Lp",
+    "changed": true
+  },
+  {
+    "id": "84a48878-171c-48cd-8bd0-ffaec9c36dcf",
+    "originalName": "PLAYA CAFE, INC",
+    "cleanedName": "Playa Cafe,",
+    "changed": true
+  },
+  {
+    "id": "dbdd0e11-ead4-43a6-9780-cca9ac4c2907",
+    "originalName": "Plnthouse",
+    "cleanedName": "Plnthouse",
+    "changed": false
+  },
+  {
+    "id": "be2f5cd5-db30-40e2-8482-560dcad3f209",
+    "originalName": "POLLO TROPICAL RESTAURANT % Mayer, Maria C. Esq.",
+    "cleanedName": "Pollo Tropical Restaurant % Mayer, Maria C. Esq.",
+    "changed": true
+  },
+  {
+    "id": "7f4fb755-fb10-45d2-a2b1-328458ce687f",
+    "originalName": "PORTOFINO CAFE, INC. D/B/A ROSINELLA",
+    "cleanedName": "Rosinella",
+    "changed": true
+  },
+  {
+    "id": "d8446a39-68f8-4ec3-be17-a1023d532c06",
+    "originalName": "PRIME 112",
+    "cleanedName": "Prime 112",
+    "changed": true
+  },
+  {
+    "id": "7e23646f-960d-4252-8cbe-4d55c1912bfd",
+    "originalName": "PRIME FISH 100 LLC D/B/A PRIME FISH",
+    "cleanedName": "Prime Fish",
+    "changed": true
+  },
+  {
+    "id": "a9d0890c-a431-4fb7-af01-fa04d18e92bb",
+    "originalName": "PT OPCO, LLC",
+    "cleanedName": "Pt Opco,",
+    "changed": true
+  },
+  {
+    "id": "f1389d3a-d706-42a1-8ae2-0e570bfbd2ee",
+    "originalName": "PUERTO SAGUA RESTAURANT CORP",
+    "cleanedName": "Puerto Sagua Restaurant",
+    "changed": true
+  },
+  {
+    "id": "a51c59df-a9be-4b7b-bb61-d4813f7134f2",
+    "originalName": "PURA VIDA MIAMI INC",
+    "cleanedName": "Pura Vida Miami",
+    "changed": true
+  },
+  {
+    "id": "9d27f372-1e45-4b7f-9790-8ba7e32de36f",
+    "originalName": "RICE HOUSE OF KABOB LLC C/O ROXANA I NASCO P.A.",
+    "cleanedName": "Rice House of Kabob Llc C/o Roxana I Nasco P.a.",
+    "changed": true
+  },
+  {
+    "id": "ac1c1cd3-f1c9-4b5d-a75c-a0944d1f1395",
+    "originalName": "RIVIERA LOFTS HOTEL LLC",
+    "cleanedName": "Riviera Lofts Hotel",
+    "changed": true
+  },
+  {
+    "id": "a8da47ff-865e-49f4-8ced-62d78391e9c3",
+    "originalName": "Roni’s By The Ocean",
+    "cleanedName": "Roni’s by the Ocean",
+    "changed": true
+  },
+  {
+    "id": "25469862-907a-44b5-a136-0e012dca2345",
+    "originalName": "RWSB",
+    "cleanedName": "Rwsb",
+    "changed": true
+  },
+  {
+    "id": "b6de2ac3-0427-43c0-ad5c-4a9ec2adfb21",
+    "originalName": "SABAI SABAI LLC ",
+    "cleanedName": "Sabai Sabai Llc",
+    "changed": true
+  },
+  {
+    "id": "0c2a0111-b961-4fa9-8dbc-3d82a666b8d5",
+    "originalName": "SAFRON, LLC",
+    "cleanedName": "Safron,",
+    "changed": true
+  },
+  {
+    "id": "0932e3cd-5bbb-4d37-a389-934828913536",
+    "originalName": "Santorini By Georgios",
+    "cleanedName": "Santorini by Georgios",
+    "changed": true
+  },
+  {
+    "id": "e9fa4d63-d751-4782-80ad-3f5a2195106a",
+    "originalName": "Sardinia Enoteca Ristorante",
+    "cleanedName": "Sardinia Enoteca Ristorante",
+    "changed": false
+  },
+  {
+    "id": "29c30aa6-5ee7-43d7-a61c-d5fa876b9dca",
+    "originalName": "Saxony Bar",
+    "cleanedName": "Saxony Bar",
+    "changed": false
+  },
+  {
+    "id": "56bd0f5a-bbcd-49ac-b175-0e9c5b9e8153",
+    "originalName": "SAZON CUBAN CUISINE, LLC",
+    "cleanedName": "Sazon Cuban Cuisine,",
+    "changed": true
+  },
+  {
+    "id": "913ba524-8c67-4705-9bf7-8047273cafc1",
+    "originalName": "SB HOSPITALITY LLC D/B/A NAKED TACO & DREAM SB",
+    "cleanedName": "Naked Taco & Dream Sb",
+    "changed": true
+  },
+  {
+    "id": "1c8fd38c-4568-4b5e-892d-f4420962441a",
+    "originalName": "Sbarro",
+    "cleanedName": "Sbarro",
+    "changed": false
+  },
+  {
+    "id": "75d6813e-717e-4cb6-ab37-69f25ccc59f3",
+    "originalName": "SEGAFREDO ESPRESSO",
+    "cleanedName": "Segafredo Espresso",
+    "changed": true
+  },
+  {
+    "id": "32935738-f3ae-4b2e-a77c-19cf1c2f796d",
+    "originalName": "SFC - Sushi Fly Chicken",
+    "cleanedName": "Sfc - Sushi Fly Chicken",
+    "changed": true
+  },
+  {
+    "id": "f23bb272-9827-4f2f-9b13-27cc9b2b9879",
+    "originalName": "SFILATINO, LLC / DBA PANE & VINO LA TRATTORIA",
+    "cleanedName": "Pane & Vino La Trattoria",
+    "changed": true
+  },
+  {
+    "id": "130908a2-d4d0-4669-9491-7a6301423388",
+    "originalName": "Shake Shack",
+    "cleanedName": "Shake Shack",
+    "changed": false
+  },
+  {
+    "id": "1986934c-ed67-49ce-a158-22870cd072da",
+    "originalName": "SHEPHERD ARTISAN COFFEE LLC- C/o BEN-ZOUR, YISHAY",
+    "cleanedName": "Shepherd Artisan Coffee Llc- C/o Ben-zour, Yishay",
+    "changed": true
+  },
+  {
+    "id": "3b6857f7-7fec-4abf-93a1-072ef2f7a723",
+    "originalName": "SHEPHERD TRITON LLC",
+    "cleanedName": "Shepherd Triton",
+    "changed": true
+  },
+  {
+    "id": "a95f8f8f-bc5b-45b4-aa91-82d54a136a92",
+    "originalName": "SMITH & WOLLENSKY RESTAURANT",
+    "cleanedName": "Smith & Wollensky Restaurant",
+    "changed": true
+  },
+  {
+    "id": "22d3c5ce-b936-459b-bc33-a8ef5bc423b2",
+    "originalName": "SMOOTHIE KING CO INC",
+    "cleanedName": "Smoothie King Co",
+    "changed": true
+  },
+  {
+    "id": "40a03321-3f8d-4a6e-ba94-4fac06fb89cb",
+    "originalName": "Snow At The Beach",
+    "cleanedName": "Snow at the Beach",
+    "changed": true
+  },
+  {
+    "id": "ad18f86a-4106-49ca-946f-f6dd4b485c09",
+    "originalName": "Sobe Toscana llc dba CALL ME GABY",
+    "cleanedName": "Call Me Gaby",
+    "changed": true
+  },
+  {
+    "id": "2992cf18-8818-4fd1-afb2-4cfbe3f6c2ea",
+    "originalName": "SOBE USA LLC D/B/A OCEANS TEN",
+    "cleanedName": "Oceans Ten",
+    "changed": true
+  },
+  {
+    "id": "d8791cd3-61de-45c2-955f-b131942fe74c",
+    "originalName": "SOHO HOUSE BEACH HOUSE, LLC (143 SEAT REST, GRD FL)",
+    "cleanedName": "Soho House Beach House, Llc (143 Seat Rest, Grd Fl)",
+    "changed": true
+  },
+  {
+    "id": "62aea6f3-9c91-4d53-b667-36895ee6927f",
+    "originalName": "SORBILLO MIAMI LLC DBA GINO SORBILLO EST. 1935 PIZZERIA NAPOLETANA",
+    "cleanedName": "Gino Sorbillo Est. 1935 Pizzeria Napoletana",
+    "changed": true
+  },
+  {
+    "id": "864eef58-c48b-48dd-b4ee-157b69a5cb8f",
+    "originalName": "SOUTH BCH MUNCHIES LATIN CAFE",
+    "cleanedName": "South Bch Munchies Latin Cafe",
+    "changed": true
+  },
+  {
+    "id": "ca6c7a6c-107d-4875-872a-4bc6a99196ff",
+    "originalName": "SOUTH BEACH ASSOCIATES, LLC D/B/A SOCIAL CAFE. R.A. FRITTELLA, STEFANO",
+    "cleanedName": "Social Cafe. R.a. Frittella, Stefano",
+    "changed": true
+  },
+  {
+    "id": "72d2f295-50fa-4ff1-ba9a-93b6bef6b864",
+    "originalName": "SOUTH BEACH DINER INC D/B/A 11TH STREET DINER",
+    "cleanedName": "11th Street Diner",
+    "changed": true
+  },
+  {
+    "id": "aefa3e12-d455-4ed9-86f7-2562deacbd6a",
+    "originalName": "SOUTH BEACH FOOD CENTER INC DBA CAFE SOUTH BEACH",
+    "cleanedName": "Cafe South Beach",
+    "changed": true
+  },
+  {
+    "id": "b0f3070b-0d5a-4f9f-9ccf-5caa703f62a5",
+    "originalName": "South Pointe Tavern",
+    "cleanedName": "South Pointe Tavern",
+    "changed": false
+  },
+  {
+    "id": "cf2f3f20-b638-4c9e-9c49-ead78e653599",
+    "originalName": "SOUTHERN OPERATIONS LLC",
+    "cleanedName": "Southern Operations",
+    "changed": true
+  },
+  {
+    "id": "1486becf-0437-4315-b7d4-afcbe36873be",
+    "originalName": "SPICE ART RESTAURANTS, INC./DBA JALAPENO MEXICAN KITCHEN C/O R.A. MAYA ALEJANDRO",
+    "cleanedName": "Spice Art Restaurants, Inc./dba Jalapeno Mexican Kitchen C/o R.a. Maya Alejandro",
+    "changed": true
+  },
+  {
+    "id": "3ccad144-b4f8-4fb6-8609-d3287404227b",
+    "originalName": "SPRIS INC.%SBROGGIO, GRAZIANO ",
+    "cleanedName": "Spris Inc.%sbroggio, Graziano",
+    "changed": true
+  },
+  {
+    "id": "089495d9-10e0-4647-aed3-63493aa4b3e3",
+    "originalName": "SRIRACHA HOUSE, LLC",
+    "cleanedName": "Sriracha House,",
+    "changed": true
+  },
+  {
+    "id": "dc46f030-23b4-4879-8717-3f3a0ce6e444",
+    "originalName": "SSC307873 LLC DBA DUNKIN DONUTS",
+    "cleanedName": "Dunkin Donuts",
+    "changed": true
+  },
+  {
+    "id": "8097004a-1a36-4061-8544-40ae7d8ce9ea",
+    "originalName": "SSC330411 LLC D/B/A DUNKIN DONUTS",
+    "cleanedName": "Dunkin Donuts",
+    "changed": true
+  },
+  {
+    "id": "0bd2fd88-9530-40d3-91da-b48ecfe57a65",
+    "originalName": "STARBUCKS # 21216",
+    "cleanedName": "Starbucks # 21216",
+    "changed": true
+  },
+  {
+    "id": "bc6cec98-643e-41e3-9e38-47b3b895533b",
+    "originalName": "STARBUCKS COFFEE #29704",
+    "cleanedName": "Starbucks Coffee",
+    "changed": true
+  },
+  {
+    "id": "2889b0d5-8d7e-462d-af19-79bc02fb2ecf",
+    "originalName": "STARBUCKS CORP/ DBA HEAR MUSIC #13007 The Prentice-Hall Corp. System Inc.",
+    "cleanedName": "Hear Music #13007 the Prentice-hall Corp. System",
+    "changed": true
+  },
+  {
+    "id": "29cb141d-8b26-4962-be99-0a270de74477",
+    "originalName": "STARLITE HOTEL & APTS (HOTEL & REST) CO MUHLRAD DAVID",
+    "cleanedName": "Starlite Hotel & Apts (hotel & Rest) Co Muhlrad David",
+    "changed": true
+  },
+  {
+    "id": "44cd98f9-8cdd-4f8d-929b-931259e3b9d0",
+    "originalName": "STK MIAMI LLC DBA STK SOUTH BEACH",
+    "cleanedName": "Stk South Beach",
+    "changed": true
+  },
+  {
+    "id": "e32360c5-0eed-4aa8-ad2f-cb492b064d6a",
+    "originalName": "SUBWAY SOUTH BEACH INC",
+    "cleanedName": "Subway South Beach",
+    "changed": true
+  },
+  {
+    "id": "e18c9441-463a-499b-9a91-e52fc8a62d75",
+    "originalName": "Sunny Poke",
+    "cleanedName": "Sunny Poke",
+    "changed": false
+  },
+  {
+    "id": "dad0dccf-c5c9-4f42-b197-ae7fd4675bb0",
+    "originalName": "SUNSHINE RESTAURANT MERGER SUB, LLC DBA INTERNATIONAL HOUSE OF PANCAKE",
+    "cleanedName": "International House of Pancake",
+    "changed": true
+  },
+  {
+    "id": "6b10a21b-92dd-4936-872a-bf373c9cc1bb",
+    "originalName": "Sushi by Bou",
+    "cleanedName": "Sushi by Bou",
+    "changed": false
+  },
+  {
+    "id": "61a94a9b-b589-4cd1-832b-c5dc826a9551",
+    "originalName": "SUSHI GARAGE, LLC- C/o Michael Reyes",
+    "cleanedName": "Sushi Garage, Llc- C/o Michael Reyes",
+    "changed": true
+  },
+  {
+    "id": "2b9f7b7a-a859-40ab-89cc-7f3d6e0edd52",
+    "originalName": "Sushi Song",
+    "cleanedName": "Sushi Song",
+    "changed": false
+  },
+  {
+    "id": "87f4fa60-ad46-4c54-9a9c-d9979a19f48b",
+    "originalName": "SUVICHE SOBE, LLC DBA SUVICHE SUSHI AND CEVICHE",
+    "cleanedName": "Suviche Sushi and Ceviche",
+    "changed": true
+  },
+  {
+    "id": "b9310d7b-d355-41a5-9661-224ec5117372",
+    "originalName": "SWEET LIBERTY BROTHERS LLC D/B/A SWEET LIBERTY",
+    "cleanedName": "Sweet Liberty",
+    "changed": true
+  },
+  {
+    "id": "f556ab90-953b-4e74-8902-61042a2694bb",
+    "originalName": "SYDELL INDIAN CREEK LLC  D/B/A 27",
+    "cleanedName": "27",
+    "changed": true
+  },
+  {
+    "id": "717288e7-3204-42b5-972a-b02c19ea6901",
+    "originalName": "SYDELL INDIAN CREEK LLC D/B/A FREEHAND MIAMI DBA BROKEN SHAK",
+    "cleanedName": "Freehand Miami Dba Broken Shak",
+    "changed": true
+  },
+  {
+    "id": "cc06343b-3763-424c-8ef1-0e8b250fbe27",
+    "originalName": "Taco Rico",
+    "cleanedName": "Taco Rico",
+    "changed": false
+  },
+  {
+    "id": "baa6b18d-3eae-4a69-9c1e-c76e9db522ca",
+    "originalName": "TANUKI, LLC ",
+    "cleanedName": "Tanuki, Llc",
+    "changed": true
+  },
+  {
+    "id": "cb7006a0-1d49-4c8f-8688-522093d08b29",
+    "originalName": "TASTE BAKERY MB CITY HALL LLC",
+    "cleanedName": "Taste Bakery Mb City Hall",
+    "changed": true
+  },
+  {
+    "id": "86cc0607-a0f7-4530-b532-59f83bc9bd35",
+    "originalName": "Taste Buds of India",
+    "cleanedName": "Taste Buds of India",
+    "changed": false
+  },
+  {
+    "id": "708373d4-18e5-4d56-9a80-1e48b2d9c65e",
+    "originalName": "TB PURDY RESTAURANT LLC",
+    "cleanedName": "Tb Purdy Restaurant",
+    "changed": true
+  },
+  {
+    "id": "a9fb015e-0f96-4013-aa99-210e608dbfc6",
+    "originalName": "Tequiztlan Mexican Restaurant and Tequila Bar",
+    "cleanedName": "Tequiztlan Mexican Restaurant and Tequila Bar",
+    "changed": false
+  },
+  {
+    "id": "ee0adb2d-918f-42a9-affa-994ea2dae87e",
+    "originalName": "Texas De Brazil",
+    "cleanedName": "Texas De Brazil",
+    "changed": false
+  },
+  {
+    "id": "642e8b91-3fd3-4ca3-88c8-696fc53e3fbe",
+    "originalName": "THAI HOUSE SOUTH BEACH, INC.",
+    "cleanedName": "Thai House South Beach,",
+    "changed": true
+  },
+  {
+    "id": "c7f78727-3f92-4ea6-a535-e55881ea0b53",
+    "originalName": "The Alley",
+    "cleanedName": "The Alley",
+    "changed": false
+  },
+  {
+    "id": "b9b5d4cc-9d6f-4988-9dc3-56b3b07e6458",
+    "originalName": "The Bar & The Courtyard",
+    "cleanedName": "The Bar & the Courtyard",
+    "changed": true
+  },
+  {
+    "id": "9740922b-9922-4f2d-a67d-a611492ad546",
+    "originalName": "THE BAZAAR BY JOSÉ ANDRÉS",
+    "cleanedName": "The Bazaar by José Andrés",
+    "changed": true
+  },
+  {
+    "id": "3f9add04-e8bc-4c4f-9e22-ce8c5781d291",
+    "originalName": "THE GRAN CAFE LLC",
+    "cleanedName": "The Gran Cafe",
+    "changed": true
+  },
+  {
+    "id": "7d896c02-daa4-4c6a-a353-76a5dbffe25f",
+    "originalName": "THE LICKING SOUTH BEACH, LLC",
+    "cleanedName": "The Licking South Beach,",
+    "changed": true
+  },
+  {
+    "id": "00530968-6212-4ac9-971b-e933c824c190",
+    "originalName": "The Lido Bayside Grill ",
+    "cleanedName": "The Lido Bayside Grill",
+    "changed": true
+  },
+  {
+    "id": "e945ff3a-667a-4802-8766-e4168329f413",
+    "originalName": "The Local House",
+    "cleanedName": "The Local House",
+    "changed": false
+  },
+  {
+    "id": "b48a50d1-c06f-4398-8460-a9810093a8da",
+    "originalName": "THE NEW ROK, LLC",
+    "cleanedName": "The New Rok,",
+    "changed": true
+  },
+  {
+    "id": "5dec937f-c072-4ccf-9770-168f380648fe",
+    "originalName": "THE OLD PADUA INC DBA CAFFE DI MAURO- C/o Luise Mauro",
+    "cleanedName": "Caffe Di Mauro- C/o Luise Mauro",
+    "changed": true
+  },
+  {
+    "id": "99b841c0-eff5-4640-b3e6-2b850bc3c836",
+    "originalName": "The Sandbox",
+    "cleanedName": "The Sandbox",
+    "changed": false
+  },
+  {
+    "id": "05dd1665-4028-4eba-8557-a51082143468",
+    "originalName": "The Social Club",
+    "cleanedName": "The Social Club",
+    "changed": false
+  },
+  {
+    "id": "6aba28d3-d5e8-4ca5-bed1-95e27cb9092e",
+    "originalName": "The Strand Bar and Grill",
+    "cleanedName": "The Strand Bar and Grill",
+    "changed": false
+  },
+  {
+    "id": "1056826b-607e-45cb-96bc-58915148a9c0",
+    "originalName": "The Tavern",
+    "cleanedName": "The Tavern",
+    "changed": false
+  },
+  {
+    "id": "6cfe6c16-b13a-4ffb-9ba9-d63558771909",
+    "originalName": "TIMOTHY WILCOX, INC D/B/A BEACHES BAR & GRILL / SUNRISE CAFE",
+    "cleanedName": "Beaches Bar & Grill / Sunrise Cafe",
+    "changed": true
+  },
+  {
+    "id": "19cbb83c-3f6b-42c2-a193-c1574cb280ce",
+    "originalName": "TNT Gigino Holding LLC",
+    "cleanedName": "Tnt Gigino Holding",
+    "changed": true
+  },
+  {
+    "id": "1ec6ad47-a01b-4438-ab72-34fae7449d5f",
+    "originalName": "Toothfairy",
+    "cleanedName": "Toothfairy",
+    "changed": false
+  },
+  {
+    "id": "36f52537-6634-4aa7-9e0c-2c02e2c888a3",
+    "originalName": "TROPICAL BEACH CAFE CORP",
+    "cleanedName": "Tropical Beach Cafe",
+    "changed": true
+  },
+  {
+    "id": "9ad1b436-ff04-4fe6-a8d9-f044318b6d87",
+    "originalName": "TWIST C/O GALE AVIATION SERVICES INC",
+    "cleanedName": "Twist C/o Gale Aviation Services",
+    "changed": true
+  },
+  {
+    "id": "f95298d9-c156-4222-8a6f-31cb34e12d7f",
+    "originalName": "UNDER THE MANGO TREE LLC",
+    "cleanedName": "Under the Mango Tree",
+    "changed": true
+  },
+  {
+    "id": "78272a1c-d66e-499e-82ec-6310ef1f90c7",
+    "originalName": "UNO RESTAURANT ASSOCIATES INC D/B/A PRIME ITALIAN",
+    "cleanedName": "Prime Italian",
+    "changed": true
+  },
+  {
+    "id": "533e9bf2-5603-45ad-b004-2002bf447f88",
+    "originalName": "Urbanica Minibar",
+    "cleanedName": "Urbanica Minibar",
+    "changed": false
+  },
+  {
+    "id": "392c6e28-3097-436c-918e-32ad893fe451",
+    "originalName": "VENEZIA PIZZA & CAFE c/o JOSE PEREZ R.A. ",
+    "cleanedName": "Venezia Pizza & Cafe C/o Jose Perez R.a.",
+    "changed": true
+  },
+  {
+    "id": "3c4a7090-34e8-4dcb-829b-88e7540bc8c6",
+    "originalName": "Veterans of Foreign Wars",
+    "cleanedName": "Veterans of Foreign Wars",
+    "changed": false
+  },
+  {
+    "id": "e86759e5-4aff-4dec-82b4-c5c0861f91c8",
+    "originalName": "VIA EMILIA 9 LLC ",
+    "cleanedName": "Via Emilia 9 Llc",
+    "changed": true
+  },
+  {
+    "id": "545609c7-1b25-47fa-aa14-d0103c80e6df",
+    "originalName": "VIDA Y ESTILO CORP",
+    "cleanedName": "Vida Y Estilo",
+    "changed": true
+  },
+  {
+    "id": "80413b11-9e72-41e9-a296-76c41a16ba46",
+    "originalName": "Villa Azur",
+    "cleanedName": "Villa Azur",
+    "changed": false
+  },
+  {
+    "id": "b54c9789-8d87-4e55-88e4-f31c00d286d1",
+    "originalName": "VLADY & LILLY TROPICAL COFFEE BAR LLC",
+    "cleanedName": "Vlady & Lilly Tropical Coffee Bar",
+    "changed": true
+  },
+  {
+    "id": "4b1a32e2-cdd5-422c-9d33-ab0d3fc63782",
+    "originalName": "VMSB, LLC DBA EL SOLE MIAMI",
+    "cleanedName": "El Sole Miami",
+    "changed": true
+  },
+  {
+    "id": "69dbe8e0-9c9d-44fa-b07d-e1e0bce79869",
+    "originalName": "WASHMONBO, INC.D/B/A FRONT PORCH CAFE",
+    "cleanedName": "Washmonbo, Inc.d/b/a Front Porch Cafe",
+    "changed": true
+  },
+  {
+    "id": "fd0d9f48-e18f-4d08-bbe6-c2a72f1281ee",
+    "originalName": "Watr At the 1 Rooftop",
+    "cleanedName": "Watr at the 1 Rooftop",
+    "changed": true
+  },
+  {
+    "id": "43d536ba-e147-4591-b156-78df33930933",
+    "originalName": "WET WILLIES",
+    "cleanedName": "Wet Willies",
+    "changed": true
+  },
+  {
+    "id": "607efc48-cda2-4319-89f2-5704beea12c0",
+    "originalName": "WHITE COFFEE CORP D/B/A NEW CAMPO ARGENTINO",
+    "cleanedName": "New Campo Argentino",
+    "changed": true
+  },
+  {
+    "id": "2bd2570e-1aba-41e7-83bc-835dd0c0dd72",
+    "originalName": "Winker's Diner",
+    "cleanedName": "Winker's Diner",
+    "changed": false
+  },
+  {
+    "id": "953d630e-b810-4af1-877a-cdf0b7a71abb",
+    "originalName": "XO ESPRESSO BAR LLC (#108)",
+    "cleanedName": "Xo Espresso Bar Llc (#108)",
+    "changed": true
+  },
+  {
+    "id": "98313328-31b4-46a0-bb37-eee3ac8f9fb9",
+    "originalName": "YARD HOUSE USA, INC D/B/A YARD HOUSE #8347",
+    "cleanedName": "Yard House",
+    "changed": true
+  },
+  {
+    "id": "53e0d29f-68eb-4fd3-ba01-979a847ac8e5",
+    "originalName": "YOU KI, INC. D/B/A IRON SUSHI C/O FINE DAVID",
+    "cleanedName": "Iron Sushi C/o Fine David",
+    "changed": true
+  },
+  {
+    "id": "7115bcbd-5da3-443c-a061-5481b1f9a02a",
+    "originalName": "ZABEL INC  D/B/A  TASTI D-LITE CAFE",
+    "cleanedName": "Tasti D-lite Cafe",
+    "changed": true
+  }
+]

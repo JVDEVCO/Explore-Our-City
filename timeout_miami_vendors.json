@@ -1,0 +1,33 @@
+{
+  "scraped_at": "2025-09-05T17:37:29.816Z",
+  "source_url": "https://www.timeoutmarket.com/miami/",
+  "total_vendors_found": 4,
+  "vendors": [
+    {
+      "name": "Time Out Market – The Best of the City Under One Roof",
+      "pattern": "Pattern 4",
+      "address": "1601 Drexel Avenue, Miami Beach, FL",
+      "parent_location": "Time Out Market Miami"
+    },
+    {
+      "name": "Ella Doyle",
+      "pattern": "Pattern 4",
+      "address": "1601 Drexel Avenue, Miami Beach, FL",
+      "parent_location": "Time Out Market Miami"
+    },
+    {
+      "name": "Time Out",
+      "pattern": "Pattern 4",
+      "address": "1601 Drexel Avenue, Miami Beach, FL",
+      "parent_location": "Time Out Market Miami"
+    },
+    {
+      "name": "Time Out Market",
+      "pattern": "Pattern 4",
+      "address": "1601 Drexel Avenue, Miami Beach, FL",
+      "parent_location": "Time Out Market Miami"
+    }
+  ],
+  "current_database_entries": 5,
+  "expected_vendors": 21
+}

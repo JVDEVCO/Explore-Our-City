@@ -1,0 +1,2706 @@
+{
+  "summary": {
+    "total_restaurants": 332,
+    "cuisines_represented": 1,
+    "unmapped_count": 0
+  },
+  "by_cuisine": {
+    "Other": {
+      "count": 332,
+      "restaurants": [
+        {
+          "name": "100x Cuisine Inc35",
+          "original_name": "100x Cuisine Inc35",
+          "address": "520 WEST AVE CU-3",
+          "phone": "305-763-8904",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "11th Street Diner",
+          "original_name": "11th Street Diner",
+          "address": "1065 Washington Avenue",
+          "phone": "305-534-6373",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "1409 Hotel",
+          "original_name": "1409 Hotel",
+          "address": "1409 Lincoln Road",
+          "phone": "(786) 284-1176",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "1435 Alton Road",
+          "original_name": "1435 Alton Road",
+          "address": "1435 Alton Road",
+          "phone": "(305) 397-8846",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "2671 Subway,",
+          "original_name": "2671 Subway,",
+          "address": "1426 ALTON RD",
+          "phone": "(305) 538-0441",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "27",
+          "original_name": "27",
+          "address": "2727 Indian Creek Drive",
+          "phone": "(786) 476-7020",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "6080 Collins Star Llc",
+          "original_name": "6080 Collins Star Llc",
+          "address": "6080 Collins Avenue",
+          "phone": "(786) 598-8705",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "660 Ocean Drive,",
+          "original_name": "660 Ocean Drive,",
+          "address": "660 Ocean Drive",
+          "phone": "305-455-3288",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "720 Ocean Drive,",
+          "original_name": "720 Ocean Drive,",
+          "address": "720 Ocean Drive",
+          "phone": "(305) 874-7920",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "7ty One",
+          "original_name": "7ty One",
+          "address": "1130 Normandy Drive",
+          "phone": "(f786) 495-5181",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Al Basha Grill",
+          "original_name": "Al Basha Grill",
+          "address": "1533 Washington Avenue",
+          "phone": "786-216-7114",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Albion Hotel (restaurant)",
+          "original_name": "Albion Hotel (restaurant)",
+          "address": "1650 James Avenue",
+          "phone": "305-913-1000",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Alma Mexicana",
+          "original_name": "Alma Mexicana",
+          "address": "1344 Washington Avenue",
+          "phone": "305-695-0880",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Aroma Espresso Bar",
+          "original_name": "Aroma Espresso Bar",
+          "address": "1601 Collins Avenue",
+          "phone": "305-397-8685",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Assi Llc. C/o Hayon, Zori P.",
+          "original_name": "Assi Llc. C/o Hayon, Zori P.",
+          "address": "1445 Washington Ave",
+          "phone": "(305) 677-3977",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Athens Juice Bar,",
+          "original_name": "Athens Juice Bar,",
+          "address": "6942 Collins Avenue",
+          "phone": "(305) 861-2143",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Azabu",
+          "original_name": "Azabu",
+          "address": "161 Ocean Drive",
+          "phone": "(786) 276-0520",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Bagatelle",
+          "original_name": "Bagatelle",
+          "address": "1669 Collins Avenue",
+          "phone": "305-704-3900",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Bagel Time",
+          "original_name": "Bagel Time",
+          "address": "3915 Alton Road",
+          "phone": "(305) 538-0300",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Balkan Florida Llc",
+          "original_name": "Balkan Florida Llc",
+          "address": "1131 Collins Avenue",
+          "phone": "(786) 558-4805",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Bar Centro",
+          "original_name": "Bar Centro",
+          "address": "1701 Collins Avenue",
+          "phone": " (305) 674-1701",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Barceloneta Llc C/o Airam Garcia",
+          "original_name": "Barceloneta Llc C/o Airam Garcia",
+          "address": "1400 20th Street",
+          "phone": "(305) 538-9299",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Basement",
+          "original_name": "Basement",
+          "address": "2901 Collins Avenue",
+          "phone": "(786) 257-4548",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Bath Club Entertainment,",
+          "original_name": "Bath Club Entertainment,",
+          "address": "5937 Collins Avenue",
+          "phone": "3058675938",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Beaches Bar & Grill / Sunrise Cafe",
+          "original_name": "Beaches Bar & Grill / Sunrise Cafe",
+          "address": "4299 Collins Avenue",
+          "phone": "305-672-1910",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Beijing Cafe 6950",
+          "original_name": "Beijing Cafe 6950",
+          "address": "6950 Collins Avenue",
+          "phone": "305-866-2855",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Bella Cuba",
+          "original_name": "Bella Cuba",
+          "address": "1659 Washington Avenue",
+          "phone": "305-672-7466",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Big Pink",
+          "original_name": "Big Pink",
+          "address": "157 Collins Avenue",
+          "phone": "(305) 532-4700",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Bk Whopper Bar,",
+          "original_name": "Bk Whopper Bar,",
+          "address": "1101 Washington Ave",
+          "phone": "305-673-4560",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Bleau Bar",
+          "original_name": "Bleau Bar",
+          "address": "4441 Collins Avenue",
+          "phone": "305-538-2000",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Blind Barber",
+          "original_name": "Blind Barber",
+          "address": "1825 Collins Avenue",
+          "phone": null,
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Blocks Pizza Deli",
+          "original_name": "Blocks Pizza Deli",
+          "address": "1447 Washington Avenue",
+          "phone": "305-763-8788",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Blu Gin",
+          "original_name": "Blu Gin",
+          "address": "5445 Collins Avenue",
+          "phone": "(305) 397-8687",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Bob's Your Uncle",
+          "original_name": "Bob's Your Uncle",
+          "address": "928 71st Street",
+          "phone": "(786) 542-5366",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Bodega",
+          "original_name": "Bodega",
+          "address": "1220 16th Street",
+          "phone": "305-704-2145",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Bodegon71",
+          "original_name": "Bodegon71",
+          "address": "1014 71st Street",
+          "phone": "305-868-8009",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Boldva",
+          "original_name": "Boldva",
+          "address": "7349 Collins Avenue",
+          "phone": "(305) 374-9852",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Bolivar Restaurant",
+          "original_name": "Bolivar Restaurant",
+          "address": "841 Washington Avenue",
+          "phone": "305-305-0801",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Bros on the Beach",
+          "original_name": "Bros on the Beach",
+          "address": "2603 Collins Avenue",
+          "phone": "(305) 535-6388",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Burbowl 3 Llc",
+          "original_name": "Burbowl 3 Llc",
+          "address": "860 Washington Avenue",
+          "phone": "(305) 397-8468",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Burger King",
+          "original_name": "Burger King",
+          "address": "1100 5th Street",
+          "phone": "(305) 531-3487",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Burger King",
+          "original_name": "Burger King",
+          "address": "910 W 41st Street",
+          "phone": "305-674-8033",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Burgerfi",
+          "original_name": "Burgerfi",
+          "address": "6812 Collins Avenue",
+          "phone": "786-803-8179",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Burgers & Shakes Inc C/o Iglesias, Maria E",
+          "original_name": "Burgers & Shakes Inc C/o Iglesias, Maria E",
+          "address": "7401 Collins Avenue",
+          "phone": "305-866-1145",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Cafe Avanti",
+          "original_name": "Cafe Avanti",
+          "address": "732 W 41st Street",
+          "phone": "305-538-4400",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Cafe Prima Pasta",
+          "original_name": "Cafe Prima Pasta",
+          "address": "414 71st Street",
+          "phone": "305-867-0106",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Cafe South Beach",
+          "original_name": "Cafe South Beach",
+          "address": "121 5th Street",
+          "phone": "(305) 640-5468",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Caffe Di Mauro- C/o Luise Mauro",
+          "original_name": "Caffe Di Mauro- C/o Luise Mauro",
+          "address": "1464 Washington Avenue",
+          "phone": "305-673-5774",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Caffe Milano Llc C/o Frittella , Stefano",
+          "original_name": "Caffe Milano Llc C/o Frittella , Stefano",
+          "address": "850 Ocean Drive",
+          "phone": "(786) 544-6595",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Call Me Gaby",
+          "original_name": "Call Me Gaby",
+          "address": "816 Commerce Street",
+          "phone": "(305) 531-4800",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Carrot Express",
+          "original_name": "Carrot Express",
+          "address": "7145 Collins Avenue",
+          "phone": " (786) 471-5597",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Casa Isola Miami",
+          "original_name": "Casa Isola Miami",
+          "address": "1418 20th Street",
+          "phone": " (786) 558-5787",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Casa Tua",
+          "original_name": "Casa Tua",
+          "address": "1700 James Avenue",
+          "phone": "305-673-1010",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Chalan on the Beach",
+          "original_name": "Chalan on the Beach",
+          "address": "1580 Washington Avenue",
+          "phone": "305-532-8880",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Cheeseburger Baby Sobe,",
+          "original_name": "Cheeseburger Baby Sobe,",
+          "address": "1505 Washington Avenue",
+          "phone": "305-531-7300",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Chez Bon Bon",
+          "original_name": "Chez Bon Bon",
+          "address": "4441 Collins Avenue",
+          "phone": "305-695-2495",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Chicken Kitchen",
+          "original_name": "Chicken Kitchen",
+          "address": "1509 ALTON RD",
+          "phone": null,
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Chicken Kitchen",
+          "original_name": "Chicken Kitchen",
+          "address": "524 W 41ST ST",
+          "phone": null,
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Chotto Matte",
+          "original_name": "Chotto Matte",
+          "address": "1664 Lenox Avenue",
+          "phone": "305-690-0743",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Cj's Crab Shack",
+          "original_name": "Cj's Crab Shack",
+          "address": "600 Ocean Drive",
+          "phone": "3056045951",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Club Madonna",
+          "original_name": "Club Madonna",
+          "address": "1527 Washington Avenue",
+          "phone": "(305) 534-2000",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Culinary Arts Catering,",
+          "original_name": "Culinary Arts Catering,",
+          "address": "1427 West Ave",
+          "phone": "305-672-8881",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Cvi.che 105 South Bea",
+          "original_name": "Cvi.che 105 South Bea",
+          "address": "1245 Lincoln Road",
+          "phone": "786-534-8651",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "D'vine",
+          "original_name": "D'vine",
+          "address": "445 Lincoln Road",
+          "phone": "305-674-8525",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Dalia",
+          "original_name": "Dalia",
+          "address": "640 Ocean Drive",
+          "phone": "305.685.2000",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Deck Sixteen",
+          "original_name": "Deck Sixteen",
+          "address": "1600 Collins Avenue",
+          "phone": "3056957400",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Deco Wings and Burgers",
+          "original_name": "Deco Wings and Burgers",
+          "address": "1361 Washington Avenue",
+          "phone": "(305) 604-5690 ",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Delicious Raw Bay Road,",
+          "original_name": "Delicious Raw Bay Road,",
+          "address": "1828 Bay Road",
+          "phone": "(786) 452-7575",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Denny's",
+          "original_name": "Denny's",
+          "address": "7140 Collins Avenue",
+          "phone": "3058666626",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Dfs Hospitality",
+          "original_name": "Dfs Hospitality",
+          "address": "4101 Pine tree Drive",
+          "phone": "305-230-4200",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Do Not Sit on the Furniture C/o Steve Polisar",
+          "original_name": "Do Not Sit on the Furniture C/o Steve Polisar",
+          "address": "423 16th Street",
+          "phone": "510-551-5067",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Dolce Italian",
+          "original_name": "Dolce Italian",
+          "address": "1690 Collins Avenue",
+          "phone": "7869752550",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Dominos Pizza",
+          "original_name": "Dominos Pizza",
+          "address": "1428 Alton Road",
+          "phone": "305-531-8211",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Dominos Pizza",
+          "original_name": "Dominos Pizza",
+          "address": "6544 Collins Avenue",
+          "phone": "305-868-3030",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Donna Mare",
+          "original_name": "Donna Mare",
+          "address": "3921 Collins Avenue",
+          "phone": "305.538.3373",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Dr. Smood C/o Simon Cooper, Officer for Inactive",
+          "original_name": "Dr. Smood C/o Simon Cooper, Officer for Inactive",
+          "address": "1800 Bay Road",
+          "phone": "(786) 675-5412",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Dunkin Donuts",
+          "original_name": "Dunkin Donuts",
+          "address": "341 41st Street",
+          "phone": "(305) 420-5492",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Dunkin Donuts",
+          "original_name": "Dunkin Donuts",
+          "address": "1606 Alton Road",
+          "phone": "305-428-3923",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "East Ocean Restaurant",
+          "original_name": "East Ocean Restaurant",
+          "address": "325 71st Street",
+          "phone": "305-865-8000",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Einstein Bros Bagels/store#780",
+          "original_name": "Einstein Bros Bagels/store#780",
+          "address": "1500 Alton Road",
+          "phone": "305-534-4003",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "El Sole Miami",
+          "original_name": "El Sole Miami",
+          "address": "1116 Ocean Drive",
+          "phone": "(786) 485-2200",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Essensia Restaurant + Lounge",
+          "original_name": "Essensia Restaurant + Lounge",
+          "address": "3025 Collins Avenue",
+          "phone": "305.908.5458",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Exchange Miami",
+          "original_name": "Exchange Miami",
+          "address": "1532 Washington Avenue",
+          "phone": "(305) 763-8264",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Fi’lia South Beach",
+          "original_name": "Fi’lia South Beach",
+          "address": "1610 Collins Avenue",
+          "phone": "786-605-0819",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Finnegans Two C/o Jason De Castro",
+          "original_name": "Finnegans Two C/o Jason De Castro",
+          "address": "942 Lincoln Road",
+          "phone": "305-538-7997",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Finnegans Way,",
+          "original_name": "Finnegans Way,",
+          "address": "1344 Ocean Drive",
+          "phone": "305-672-7747",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Five Guys Properties,",
+          "original_name": "Five Guys Properties,",
+          "address": "1500 Washington Avenue",
+          "phone": "(786) 574-5236",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Fl Cafe",
+          "original_name": "Fl Cafe",
+          "address": "1360 Collins Avenue",
+          "phone": "(305) 763-8007",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Fontainebleau Florida Hotel Llc/dba Fresh",
+          "original_name": "Fontainebleau Florida Hotel Llc/dba Fresh",
+          "address": "4441 Collins Avenue",
+          "phone": "(305) 674-4720",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Fontainebleau Florida Hotel,",
+          "original_name": "Fontainebleau Florida Hotel,",
+          "address": "4441 Collins Avenue",
+          "phone": "305-674-4710",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Forte Dei Marmi",
+          "original_name": "Forte Dei Marmi",
+          "address": "150 Ocean Drive",
+          "phone": "786.276.3095",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Fortune Cookies",
+          "original_name": "Fortune Cookies",
+          "address": "640 6th Street",
+          "phone": "305-531-4022",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Fratelli La Bufala",
+          "original_name": "Fratelli La Bufala",
+          "address": "437 Washington Ave",
+          "phone": "305-532-0700",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Freehand Miami Dba Broken Shak",
+          "original_name": "Freehand Miami Dba Broken Shak",
+          "address": "2727 Indian Creek Drive",
+          "phone": "(305) 531-2727",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Fuji Teriyaki",
+          "original_name": "Fuji Teriyaki",
+          "address": "1604 WASHINGTON AVE A",
+          "phone": "305-538-8848",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Gino Sorbillo Est. 1935 Pizzeria Napoletana",
+          "original_name": "Gino Sorbillo Est. 1935 Pizzeria Napoletana",
+          "address": "100 Collins Avenue",
+          "phone": "305-381-0588",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Gino’s Bottega Italiana",
+          "original_name": "Gino’s Bottega Italiana",
+          "address": "6606 Collins Avenue",
+          "phone": "(305) 397-8296",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Glow Bar",
+          "original_name": "Glow Bar",
+          "address": "4441 Collins Avenue",
+          "phone": "800-548-8886",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Go Go Fresh Holding Llc % Mary Parados",
+          "original_name": "Go Go Fresh Holding Llc % Mary Parados",
+          "address": "926 ALTON RD B",
+          "phone": "305-673-3137",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Grafa Pizza",
+          "original_name": "Grafa Pizza",
+          "address": "1357 Washington Ave",
+          "phone": "305-397-8975",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Grand Beach Hotel",
+          "original_name": "Grand Beach Hotel",
+          "address": "4835 Collins Avenue",
+          "phone": "305-538-8666",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Greenbrier Partners",
+          "original_name": "Greenbrier Partners",
+          "address": "3101 Indian Creek Drive",
+          "phone": "305.763.8093",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Grill House",
+          "original_name": "Grill House",
+          "address": "976 W 41st Street",
+          "phone": "305-674-9005",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Grk F& B",
+          "original_name": "Grk F& B",
+          "address": "1601 WASHINGTON AVE STE 120",
+          "phone": "786-216-7343",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Grna Lc of Fl",
+          "original_name": "Grna Lc of Fl",
+          "address": "119 Washington Ave",
+          "phone": "(786) 671 - 4840",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Groovy’s Pizza & Bar",
+          "original_name": "Groovy’s Pizza & Bar",
+          "address": "938 Lincoln Road",
+          "phone": "305-397-8285",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Habitat",
+          "original_name": "Habitat",
+          "address": "2341 Collins Avenue",
+          "phone": "(305) 604-6700",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Hakkasan",
+          "original_name": "Hakkasan",
+          "address": "4441 Collins Avenue",
+          "phone": "(877) 326-7412",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Harat's Pub",
+          "original_name": "Harat's Pub",
+          "address": "1248 Washington Avenue<br/>CU1",
+          "phone": "(786) 502-8882",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Havana 1957",
+          "original_name": "Havana 1957",
+          "address": "1410 OCEAN DR APT 01",
+          "phone": "(305) 763-8671",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Havana 1957",
+          "original_name": "Havana 1957",
+          "address": "1446 WASHINGTON AVE",
+          "phone": "305-503-3828",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Havana 1957 C/o Consulting Services of South Florida",
+          "original_name": "Havana 1957 C/o Consulting Services of South Florida",
+          "address": "819 Lincoln Road",
+          "phone": "305-397-8683",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Havana Ocean Ten Llc C/o Consulting Services of South Florida",
+          "original_name": "Havana Ocean Ten Llc C/o Consulting Services of South Florida",
+          "address": "940 Ocean Drive",
+          "phone": "(305) 534-3589",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Hear Music #13007 the Prentice-hall Corp. System",
+          "original_name": "Hear Music #13007 the Prentice-hall Corp. System",
+          "address": "605 LINCOLN RD 120",
+          "phone": "305-534-4613",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Hiro's Sushi Express",
+          "original_name": "Hiro's Sushi Express",
+          "address": "1518 Washington Avenue",
+          "phone": "North Miami Beach (305) 949-0776     Miami Beach (305) 531-6068",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Hoshi &",
+          "original_name": "Hoshi &",
+          "address": "5401 Collins Avenue",
+          "phone": "305-763-8946",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Hosteria Romana",
+          "original_name": "Hosteria Romana",
+          "address": "429 ESPANOLA WAY",
+          "phone": "305-532-4299",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Huahua's",
+          "original_name": "Huahua's",
+          "address": "1211 Lincoln Road",
+          "phone": "305-534-8226",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Hyde Beach",
+          "original_name": "Hyde Beach",
+          "address": "1701 Collins Avenue",
+          "phone": "3054552990",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Hyde Beach Bar",
+          "original_name": "Hyde Beach Bar",
+          "address": "1701 Collins Avenue",
+          "phone": "305-455-2990",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Ice Box Cafe",
+          "original_name": "Ice Box Cafe",
+          "address": "1855 Purdy Ave",
+          "phone": "305-538-8448",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Il Bolognese",
+          "original_name": "Il Bolognese",
+          "address": "1400 Ocean Drive",
+          "phone": "305-455-0399",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Il Giardino. Llc C/o Craig.m. Dorne",
+          "original_name": "Il Giardino. Llc C/o Craig.m. Dorne",
+          "address": "1236 Ocean Drive",
+          "phone": "(305) 763-4598",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Il Pastaiolo",
+          "original_name": "Il Pastaiolo",
+          "address": "1130 Collins Ave",
+          "phone": "(786) 362-0152",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "International House of Pancake",
+          "original_name": "International House of Pancake",
+          "address": "6928 Collins Avenue",
+          "phone": "305-866-8961",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Inti.mo by Juan Chipoco",
+          "original_name": "Inti.mo by Juan Chipoco",
+          "address": "840 1 ST",
+          "phone": "(305) 964-8006",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Iron Sushi C/o Fine David",
+          "original_name": "Iron Sushi C/o Fine David",
+          "address": "840 Washington Avenue",
+          "phone": "305-532-6500",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Iron Sushi, Llc C/o Fine, David",
+          "original_name": "Iron Sushi, Llc C/o Fine, David",
+          "address": "6940 Collins Avenue",
+          "phone": "(305) 864-1101",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "It Miami",
+          "original_name": "It Miami",
+          "address": "1656 Collins Avenue",
+          "phone": "(305) 397-8244",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "J.p Miami Company Llc (#111)",
+          "original_name": "J.p Miami Company Llc (#111)",
+          "address": "723 N Lincoln Lane",
+          "phone": "(786) 757-1468",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Jaya at the Setai",
+          "original_name": "Jaya at the Setai",
+          "address": "2001 Collins Avenue",
+          "phone": "8559237899",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Jnrl Resturant",
+          "original_name": "Jnrl Resturant",
+          "address": "644 6 ST",
+          "phone": "305-534-9333",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Joe & the Juice Miami",
+          "original_name": "Joe & the Juice Miami",
+          "address": "1600 COLLINS AVE",
+          "phone": null,
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Joe's Stone Crab",
+          "original_name": "Joe's Stone Crab",
+          "address": "11 Washington Ave",
+          "phone": "305-673-0365",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Juicy Gyros C/o Chaudhry, Abid",
+          "original_name": "Juicy Gyros C/o Chaudhry, Abid",
+          "address": "6944 Collins Avenue",
+          "phone": "305-397-8200",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Jules Kitchen",
+          "original_name": "Jules Kitchen",
+          "address": "3900 Collins Avenue",
+          "phone": "(305) 538-4900",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Juvia",
+          "original_name": "Juvia",
+          "address": "1111 LINCOLN RD STE 300",
+          "phone": "305-763-8272",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Kalamata",
+          "original_name": "Kalamata",
+          "address": "423 Washington Avenue",
+          "phone": "(786) 953-4662",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Katsuya",
+          "original_name": "Katsuya",
+          "address": "1701 Collins Avenue",
+          "phone": "305.455.2995",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Koa Restaurants",
+          "original_name": "Koa Restaurants",
+          "address": "1600 COLLINS AVE 103",
+          "phone": "305 539 0960",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Kosushi Restaurant",
+          "original_name": "Kosushi Restaurant",
+          "address": "801 South Pointe Drive",
+          "phone": "(786) 647-7272",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Krispy Krunchy Chicken",
+          "original_name": "Krispy Krunchy Chicken",
+          "address": "1359 Washington Ave",
+          "phone": "(305) 538-8355",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "La Cerveceria Lincoln Llc C/o Consulting Services of South Florida",
+          "original_name": "La Cerveceria Lincoln Llc C/o Consulting Services of South Florida",
+          "address": "836 Lincoln Road",
+          "phone": "(305) 535-7400",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "La Cerveceria Ocean Llc",
+          "original_name": "La Cerveceria Ocean Llc",
+          "address": "1412 Ocean Drive",
+          "phone": "(786) 359-4497",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "La Locanda",
+          "original_name": "La Locanda",
+          "address": "419 Washington Ave",
+          "phone": "305-538-6277",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "La Piscine",
+          "original_name": "La Piscine",
+          "address": "1500 BAY RD MASTER",
+          "phone": "305-397-8515",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "La Sandwicherie",
+          "original_name": "La Sandwicherie",
+          "address": "229 14th Street",
+          "phone": "305-532-8934",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "La Sombra Resturant and Lounge",
+          "original_name": "La Sombra Resturant and Lounge",
+          "address": "1000 Collins Avenue",
+          "phone": "786.520.1777",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Lilikoi Organic Living",
+          "original_name": "Lilikoi Organic Living",
+          "address": "500 S POINTE DR STE 180",
+          "phone": "(305) 763-8692",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Lingenfelser Enterprises Iii",
+          "original_name": "Lingenfelser Enterprises Iii",
+          "address": "613 LINCOLN RD",
+          "phone": null,
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Liquor Lounge Cafe,",
+          "original_name": "Liquor Lounge Cafe,",
+          "address": "1560 Collins Avenue",
+          "phone": "305-672-7171",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Little Brazil",
+          "original_name": "Little Brazil",
+          "address": "6984 Collins Avenue",
+          "phone": "305-397-8215",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Little Ceasars Pizza",
+          "original_name": "Little Ceasars Pizza",
+          "address": "6792 Collins Avenue",
+          "phone": "(305) 763 - 8588",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Liv",
+          "original_name": "Liv",
+          "address": "4441 Collins Avenue",
+          "phone": "305-674-4680",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Living Room at the W",
+          "original_name": "Living Room at the W",
+          "address": "2201 Collins Avenue",
+          "phone": "(305) 938-3000 ",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Llam Group,",
+          "original_name": "Llam Group,",
+          "address": "1330 Alton Road",
+          "phone": "305-674-6522",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Lm Sunset Harbour Llc",
+          "original_name": "Lm Sunset Harbour Llc",
+          "address": "1874 Bay Road",
+          "phone": "(305) 397-8419",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Lobster Shack",
+          "original_name": "Lobster Shack",
+          "address": "40 POINTE DR",
+          "phone": "(305) 763-8230",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Locura Marina Inc",
+          "original_name": "Locura Marina Inc",
+          "address": "7118 Collins Avenue",
+          "phone": "305-397-8555",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Lola Restaurant Grill",
+          "original_name": "Lola Restaurant Grill",
+          "address": "5555 Collins Avenue",
+          "phone": "305-397-8848",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Lolo Surf Cantina",
+          "original_name": "Lolo Surf Cantina",
+          "address": "161 Ocean Drive",
+          "phone": "(305) 735-6973",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Los Fuegos by Francis Mallmann",
+          "original_name": "Los Fuegos by Francis Mallmann",
+          "address": "3202 Collins Avenue",
+          "phone": "7866555600",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Lost Weekend/feelgoods",
+          "original_name": "Lost Weekend/feelgoods",
+          "address": "218 Espanola Way",
+          "phone": "305-672-1707",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Lt Steak & Seafood",
+          "original_name": "Lt Steak & Seafood",
+          "address": "1440 Ocean Drive",
+          "phone": "3056730044",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Lucali Miami",
+          "original_name": "Lucali Miami",
+          "address": "1930 Bay Road",
+          "phone": "305-695-4441",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "M-3 of Miami Beach Corporation",
+          "original_name": "M-3 of Miami Beach Corporation",
+          "address": "6968 Bay Dr",
+          "phone": "(305) 866-8111",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Mac's Club Deuce Bar",
+          "original_name": "Mac's Club Deuce Bar",
+          "address": "222 14th Street",
+          "phone": "305-531-6200",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Macchialina Restaurant, Llc C/o Jason Klein",
+          "original_name": "Macchialina Restaurant, Llc C/o Jason Klein",
+          "address": "820 Alton Road",
+          "phone": "305-534-2124",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Mango's Tropical Cafe",
+          "original_name": "Mango's Tropical Cafe",
+          "address": "900 Ocean Drive",
+          "phone": "305-673-4422",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Manyplus Limited Llc D/b/a: 7 Spices C/o Khudir Noureldin",
+          "original_name": "Manyplus Limited Llc D/b/a: 7 Spices C/o Khudir Noureldin",
+          "address": "610 Lincoln Road",
+          "phone": "(305) 647-2627",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Mcdonald's",
+          "original_name": "Mcdonald's",
+          "address": "1650 Washington Ave",
+          "phone": "305-672-8031",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Mcdonalds",
+          "original_name": "Mcdonalds",
+          "address": "1601 Alton Road",
+          "phone": "305-672-7055",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Mediterranean Cuisine, Inc",
+          "original_name": "Mediterranean Cuisine, Inc",
+          "address": "209 11th Street",
+          "phone": "305-674-8384",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Mega Pizza",
+          "original_name": "Mega Pizza",
+          "address": "865 COLLINS AVE C",
+          "phone": "305-673-3636",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Mi Colombia Restaurant",
+          "original_name": "Mi Colombia Restaurant",
+          "address": "702 71st Street",
+          "phone": "305-867-1013",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Miami Beach Pizza",
+          "original_name": "Miami Beach Pizza",
+          "address": "247 71st Street",
+          "phone": "305-867-6272",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Miami Live C/o: Hiersche, Nicholas R",
+          "original_name": "Miami Live C/o: Hiersche, Nicholas R",
+          "address": "912 71st Street",
+          "phone": "(786) 671-5483",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Milos by Costas Spiliadis Inc/dba Estiatorio Milos by Costa",
+          "original_name": "Milos by Costas Spiliadis Inc/dba Estiatorio Milos by Costa",
+          "address": "730 1st Street",
+          "phone": "305-604-6800",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Mister O1 Extraordinary Pizza",
+          "original_name": "Mister O1 Extraordinary Pizza",
+          "address": "1680 MICHIGAN AVE STE 101",
+          "phone": "(305) 397-8189",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Monty's South Beach",
+          "original_name": "Monty's South Beach",
+          "address": "300 Alton Road",
+          "phone": "3056721148",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Mr Jones",
+          "original_name": "Mr Jones",
+          "address": "320 Lincoln Road",
+          "phone": "305-602-3117",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Mr. Chow of Miami",
+          "original_name": "Mr. Chow of Miami",
+          "address": "2201 Collins Avenue",
+          "phone": "305-695-1695",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Mr. Pasta",
+          "original_name": "Mr. Pasta",
+          "address": "7311 Collins Avenue",
+          "phone": "(305) 866-8020",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Musigny",
+          "original_name": "Musigny",
+          "address": "1211 71st Street",
+          "phone": "(786) 803-8113",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "My Smoothie Shop",
+          "original_name": "My Smoothie Shop",
+          "address": "1229 Washington Ave",
+          "phone": "305-532-4440",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Mynt Lounge",
+          "original_name": "Mynt Lounge",
+          "address": "1921 Collins Avenue",
+          "phone": "305-532-0727",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Naked Taco & Dream Sb",
+          "original_name": "Naked Taco & Dream Sb",
+          "address": "1111 Collins Avenue",
+          "phone": "305-534-8455",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Natural Harvester",
+          "original_name": "Natural Harvester",
+          "address": "1534 Alton Road",
+          "phone": "305-538-4569",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "New Campo Argentino",
+          "original_name": "New Campo Argentino",
+          "address": "6954 Collins Avenue",
+          "phone": "305-864-3669",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Nikki Beach Club",
+          "original_name": "Nikki Beach Club",
+          "address": "1 Ocean Drive",
+          "phone": "305-538-1111",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Nobu Associates (south Beach), L.p.",
+          "original_name": "Nobu Associates (south Beach), L.p.",
+          "address": "4525 Collins Avenue",
+          "phone": "(305) 695-3232",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "North Beach Tavern,",
+          "original_name": "North Beach Tavern,",
+          "address": "6768 COLLINS AVE",
+          "phone": "305-868-9248",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Oceans Ten",
+          "original_name": "Oceans Ten",
+          "address": "960 Ocean Drive",
+          "phone": "3056041999",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Octopi",
+          "original_name": "Octopi",
+          "address": "825 Washington Avenue",
+          "phone": "(305) 397-8485",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Ola",
+          "original_name": "Ola",
+          "address": "2360 Collins Avenue",
+          "phone": "305-695-9125",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "On the Rocks C/o Bratislav Vlahovic",
+          "original_name": "On the Rocks C/o Bratislav Vlahovic",
+          "address": "217 71st Street",
+          "phone": "305-864-2444",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Onyx Bar at the Villa Casa Casuarina",
+          "original_name": "Onyx Bar at the Villa Casa Casuarina",
+          "address": "1116 Ocean Drive",
+          "phone": "786-485-2200",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Orange Blossom Restaurant and Bar",
+          "original_name": "Orange Blossom Restaurant and Bar",
+          "address": "2000 COLLINS AVE #7",
+          "phone": "(786) 741-7128",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Osteria Del Teatro",
+          "original_name": "Osteria Del Teatro",
+          "address": "1200 COLLINS AVE MASTER",
+          "phone": "305-538-7850",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Ounze Corporate Llc Dba/tapelia",
+          "original_name": "Ounze Corporate Llc Dba/tapelia",
+          "address": "551 Lincoln Road",
+          "phone": "7865220623",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pajeoly Corp.",
+          "original_name": "Pajeoly Corp.",
+          "address": "710 WASHINGTON AVE STE 2",
+          "phone": "305-673-0912",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Palace Bar",
+          "original_name": "Palace Bar",
+          "address": "1052 Ocean Drive",
+          "phone": "305.531.7234",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pane & Vino La Trattoria",
+          "original_name": "Pane & Vino La Trattoria",
+          "address": "1450 Washington Ave",
+          "phone": "305-535-9027",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Panizza",
+          "original_name": "Panizza",
+          "address": "1229 Lincoln Road",
+          "phone": "(305) 695-8800",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Panther Coffee Beach",
+          "original_name": "Panther Coffee Beach",
+          "address": "1875 Purdy Avenue",
+          "phone": "305-677-3952",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pao by Paul Qui",
+          "original_name": "Pao by Paul Qui",
+          "address": "3203 Collins Avenue",
+          "phone": "786 655 5600",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Papa John's Pizza",
+          "original_name": "Papa John's Pizza",
+          "address": "1100 15th Street",
+          "phone": "305-535-8881",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Papi Steak",
+          "original_name": "Papi Steak",
+          "address": "736 1st Street",
+          "phone": "(305) 800-7274",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Patriot Surf, Corp. Dbamanolo Churros, Pizzas & Much More",
+          "original_name": "Patriot Surf, Corp. Dbamanolo Churros, Pizzas & Much More",
+          "address": "7300 Collins Avenue",
+          "phone": "305-868-4381",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Paul",
+          "original_name": "Paul",
+          "address": "450 Lincoln Road",
+          "phone": " (305) 531-1200",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pinecrest Bakery 9, Llc % Pinecrest Bakery Llc",
+          "original_name": "Pinecrest Bakery 9, Llc % Pinecrest Bakery Llc",
+          "address": "1511 Alton Road",
+          "phone": "786.717.5958",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pines Alley Cook",
+          "original_name": "Pines Alley Cook",
+          "address": "337 W 47th Street",
+          "phone": "305-674-7001",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Piola South Beach",
+          "original_name": "Piola South Beach",
+          "address": "701 Washington Avenue",
+          "phone": "(786) 453-2132",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pita Hut",
+          "original_name": "Pita Hut",
+          "address": "530 W 41st Street",
+          "phone": "3055316090",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pizza Argentina",
+          "original_name": "Pizza Argentina",
+          "address": "6995 Collins Avenue",
+          "phone": "(305) 456-2737",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pizza Bar,",
+          "original_name": "Pizza Bar,",
+          "address": "1627 Collins Avenue",
+          "phone": "305-672-6880",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pizza Days",
+          "original_name": "Pizza Days",
+          "address": "448 OCEAN DR APT 2",
+          "phone": "305-397-8100",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pizza De Miami",
+          "original_name": "Pizza De Miami",
+          "address": "601 Collins Avenue",
+          "phone": "(305) 603-7209",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pizza Rustica",
+          "original_name": "Pizza Rustica",
+          "address": "863 Washington Avenue",
+          "phone": "305-674-8244",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pizzafiore",
+          "original_name": "Pizzafiore",
+          "address": "703 71st Street",
+          "phone": "305-865-7500",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pizzafiore",
+          "original_name": "Pizzafiore",
+          "address": "1249 Washington Avenue",
+          "phone": "(305) 672-2400",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pizzette",
+          "original_name": "Pizzette",
+          "address": "1223 Lincoln Road",
+          "phone": "786 238 7995",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Planta Miami Beach Lp",
+          "original_name": "Planta Miami Beach Lp",
+          "address": "850 Commerce Street",
+          "phone": "305.397.8513",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Playa Cafe,",
+          "original_name": "Playa Cafe,",
+          "address": "1515 Washington Ave",
+          "phone": "305-538-1551",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Plnthouse",
+          "original_name": "Plnthouse",
+          "address": "2341 Collins Avenue",
+          "phone": "305-604-6835",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pollo Tropical Restaurant % Mayer, Maria C. Esq.",
+          "original_name": "Pollo Tropical Restaurant % Mayer, Maria C. Esq.",
+          "address": "1454 Alton Road",
+          "phone": "305-672-8888",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Poseidon Greek Table & Bar",
+          "original_name": "Poseidon Greek Table & Bar",
+          "address": "1131 Washington Ave",
+          "phone": "305-534-4434",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Prime 112",
+          "original_name": "Prime 112",
+          "address": "112 Ocean Drive",
+          "phone": "305-532-8112",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Prime Fish",
+          "original_name": "Prime Fish",
+          "address": "100 Collins Avenue",
+          "phone": "305-532-4550",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Prime Italian",
+          "original_name": "Prime Italian",
+          "address": "101 OCEAN DR APT 1",
+          "phone": "305-695-8484",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pt Opco,",
+          "original_name": "Pt Opco,",
+          "address": "1200 Ocean Drive",
+          "phone": "(305) 507-8980",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Puerto Sagua Restaurant",
+          "original_name": "Puerto Sagua Restaurant",
+          "address": "700 Collins Avenue",
+          "phone": "305-673-1115",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Pura Vida Miami",
+          "original_name": "Pura Vida Miami",
+          "address": "110 WASHINGTON AVE STE 2",
+          "phone": "305-535-4142",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Rice House of Kabob Llc C/o Roxana I Nasco P.a.",
+          "original_name": "Rice House of Kabob Llc C/o Roxana I Nasco P.a.",
+          "address": "1318 Alton Road",
+          "phone": "305-531-0332",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Ricky Tiki Bar & Grill",
+          "original_name": "Ricky Tiki Bar & Grill",
+          "address": "5445 Collins AVE CU19",
+          "phone": "305-763-8483",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Riviera Lofts Hotel",
+          "original_name": "Riviera Lofts Hotel",
+          "address": "318 20th Street",
+          "phone": "305-538-7444",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Roni’s by the Ocean",
+          "original_name": "Roni’s by the Ocean",
+          "address": "7300 Ocean Terrace",
+          "phone": "(305) 397-8564",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Rosetta Bakery",
+          "original_name": "Rosetta Bakery",
+          "address": "1666 Collins Avenue",
+          "phone": "305-907-7705",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Rosetta Bakery",
+          "original_name": "Rosetta Bakery",
+          "address": "1666 Lenox Avenue",
+          "phone": "305-907-7705",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Rosinella",
+          "original_name": "Rosinella",
+          "address": "525 Lincoln Road",
+          "phone": "305-672-8777",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Rwsb",
+          "original_name": "Rwsb",
+          "address": "2201 Collins Avenue",
+          "phone": "(305) 938-3112",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Sabai Sabai Llc",
+          "original_name": "Sabai Sabai Llc",
+          "address": "933 Normandy Drive",
+          "phone": "305-867-1717",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Sabor Playa Restaurant",
+          "original_name": "Sabor Playa Restaurant",
+          "address": "7315 Collins Avenue",
+          "phone": "305-864-8266",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Safron,",
+          "original_name": "Safron,",
+          "address": "1049 Washington Ave",
+          "phone": "(305) 397-8118",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Sand Bar & Kitchen C/o Timothy Wilcox",
+          "original_name": "Sand Bar & Kitchen C/o Timothy Wilcox",
+          "address": "6752 Collins Avenue",
+          "phone": "305.397.8375",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Santorini by Georgios",
+          "original_name": "Santorini by Georgios",
+          "address": "101 Ocean Drive",
+          "phone": "3056726624",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Sardinia Enoteca Ristorante",
+          "original_name": "Sardinia Enoteca Ristorante",
+          "address": "1801 Purdy Avenue",
+          "phone": "305-531-2228",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Saxony Bar",
+          "original_name": "Saxony Bar",
+          "address": "3201 Collins Avenue",
+          "phone": "(305) 534-8800",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Sazon Cuban Cuisine,",
+          "original_name": "Sazon Cuban Cuisine,",
+          "address": "7305 Collins Avenue",
+          "phone": "305-861-4727",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Sbarro",
+          "original_name": "Sbarro",
+          "address": "1668 Collins Avenue",
+          "phone": "3056749388",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Scarpetta",
+          "original_name": "Scarpetta",
+          "address": "4441 Collins Avenue",
+          "phone": "(305) 674-4660",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Segafredo Espresso",
+          "original_name": "Segafredo Espresso",
+          "address": "1040 Lincoln Road",
+          "phone": "305-673-0047",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Sfc - Sushi Fly Chicken",
+          "original_name": "Sfc - Sushi Fly Chicken",
+          "address": "1575 Alton Road",
+          "phone": null,
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Shake Shack",
+          "original_name": "Shake Shack",
+          "address": "1111 LINCOLN RD APT 14",
+          "phone": "305-434-7787",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Shepherd Artisan Coffee Llc- C/o Ben-zour, Yishay",
+          "original_name": "Shepherd Artisan Coffee Llc- C/o Ben-zour, Yishay",
+          "address": "919 COLLINS AVE STE 1",
+          "phone": "(305) 422-9770",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Shepherd Triton",
+          "original_name": "Shepherd Triton",
+          "address": "2745 Collins Avenue",
+          "phone": "(305) 422-9770",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Smith & Wollensky Restaurant",
+          "original_name": "Smith & Wollensky Restaurant",
+          "address": "1 Washington Ave",
+          "phone": "305-673-2800",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Smoothie King Co",
+          "original_name": "Smoothie King Co",
+          "address": "1525 Alton Road",
+          "phone": "305-672-6595",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Snow at the Beach",
+          "original_name": "Snow at the Beach",
+          "address": "229 9th Street",
+          "phone": "305-801-8856",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Social Cafe. R.a. Frittella, Stefano",
+          "original_name": "Social Cafe. R.a. Frittella, Stefano",
+          "address": "1024 OCEAN DR CUA100",
+          "phone": "3056722472",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Soho House Beach House, Llc (143 Seat Rest, Grd Fl)",
+          "original_name": "Soho House Beach House, Llc (143 Seat Rest, Grd Fl)",
+          "address": "4385 Collins Avenue",
+          "phone": "786-507-7902",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "South Bch Munchies Latin Cafe",
+          "original_name": "South Bch Munchies Latin Cafe",
+          "address": "324 Lincoln Road",
+          "phone": "305-531-0559",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "South Pointe Tavern",
+          "original_name": "South Pointe Tavern",
+          "address": "40 South Pointe Drive",
+          "phone": "(305) 763-8368",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Southern Operations",
+          "original_name": "Southern Operations",
+          "address": "1600 Lenox Avenue",
+          "phone": "(305) 538-5220",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Spice Art Restaurants, Inc./dba Jalapeno Mexican Kitchen C/o R.a. Maya Alejandro",
+          "original_name": "Spice Art Restaurants, Inc./dba Jalapeno Mexican Kitchen C/o R.a. Maya Alejandro",
+          "address": "530 Ocean Drive",
+          "phone": "(305) 532-4747",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Spris Inc.%sbroggio, Graziano",
+          "original_name": "Spris Inc.%sbroggio, Graziano",
+          "address": "731 Lincoln Road",
+          "phone": "305-673-2020",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Sriracha House,",
+          "original_name": "Sriracha House,",
+          "address": "1502 Washington Ave",
+          "phone": "305-534-0303",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Starbucks # 21216",
+          "original_name": "Starbucks # 21216",
+          "address": "827 W 41st Street",
+          "phone": "786-566-0341",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Starbucks Coffee",
+          "original_name": "Starbucks Coffee",
+          "address": "2912 Collins Avenue",
+          "phone": "(786) 801-8718",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Starlite Hotel & Apts (hotel & Rest) Co Muhlrad David",
+          "original_name": "Starlite Hotel & Apts (hotel & Rest) Co Muhlrad David",
+          "address": "750 Ocean Drive",
+          "phone": "(305) 510-8463",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Stk South Beach",
+          "original_name": "Stk South Beach",
+          "address": "2305 Collins Avenue",
+          "phone": "3056046988",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Story",
+          "original_name": "Story",
+          "address": "136 Collins Avenue",
+          "phone": "(305) 479-4426",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Stripsteak",
+          "original_name": "Stripsteak",
+          "address": "4441 Collins Avenue",
+          "phone": " (305) 674-4780",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Stubborn Seed",
+          "original_name": "Stubborn Seed",
+          "address": "101 Washington Avenue",
+          "phone": "(786) 723-3732",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Subway",
+          "original_name": "Subway",
+          "address": "847 Washington Avenue",
+          "phone": "305-397-8027",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Subway",
+          "original_name": "Subway",
+          "address": "508 Washington Avenue",
+          "phone": "(305) 534-6633",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Subway South Beach",
+          "original_name": "Subway South Beach",
+          "address": "1614 Washington Ave",
+          "phone": "305-531-5855",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Sunny Poke",
+          "original_name": "Sunny Poke",
+          "address": "1784 West Avenue",
+          "phone": "(305) 974-1970",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Sushi by Bou",
+          "original_name": "Sushi by Bou",
+          "address": "1116 Ocean Drive",
+          "phone": "(305) 922-9195",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Sushi Garage, Llc- C/o Michael Reyes",
+          "original_name": "Sushi Garage, Llc- C/o Michael Reyes",
+          "address": "1784 WEST AVE BAY #1",
+          "phone": "305-763-8355",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Sushi Song",
+          "original_name": "Sushi Song",
+          "address": "1239 Washington Ave",
+          "phone": "(786) 536-2500",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Suviche Sushi and Ceviche",
+          "original_name": "Suviche Sushi and Ceviche",
+          "address": "1119 16th Street",
+          "phone": "305-777-3555",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Sweet Liberty",
+          "original_name": "Sweet Liberty",
+          "address": "237 20th Street STE B",
+          "phone": "305-763-8217",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Taco Rico",
+          "original_name": "Taco Rico",
+          "address": "409 15th Street",
+          "phone": "305-535-5757",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Tanuki, Llc",
+          "original_name": "Tanuki, Llc",
+          "address": "1080 Alton Road",
+          "phone": "(786) 977-3338",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Taquiza",
+          "original_name": "Taquiza",
+          "address": "1351 Collins Avenue",
+          "phone": "(305) 203-2197",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Taste Bakery Mb City Hall",
+          "original_name": "Taste Bakery Mb City Hall",
+          "address": "773 17th Street",
+          "phone": "(305) 397-8573",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Taste Buds of India",
+          "original_name": "Taste Buds of India",
+          "address": "946 Normandy Drive",
+          "phone": "(786) 773-2033 ",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Tasti D-lite Cafe",
+          "original_name": "Tasti D-lite Cafe",
+          "address": "4041 Royal Palm Avenue",
+          "phone": "305-673-5483",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Taverna",
+          "original_name": "Taverna",
+          "address": "719 Lincoln Road",
+          "phone": "(305) 497-4445",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Tb Purdy Restaurant",
+          "original_name": "Tb Purdy Restaurant",
+          "address": "1787 Purdy Avenue",
+          "phone": "(786) 655-4365",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Tequiztlan Mexican Restaurant and Tequila Bar",
+          "original_name": "Tequiztlan Mexican Restaurant and Tequila Bar",
+          "address": "1884 Bay Road",
+          "phone": "305-397-8442",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Texas De Brazil",
+          "original_name": "Texas De Brazil",
+          "address": "300 Alton Road",
+          "phone": " (305) 695-7702",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Tgi Fridays",
+          "original_name": "Tgi Fridays",
+          "address": "500 Ocean Drive",
+          "phone": "305-673-8443",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Thai House South Beach,",
+          "original_name": "Thai House South Beach,",
+          "address": "1137 Washington Avenue",
+          "phone": "3055314841",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "The Alley",
+          "original_name": "The Alley",
+          "address": "1433 Collins Avenue",
+          "phone": "(305) 760-6903",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "The Bar & the Courtyard",
+          "original_name": "The Bar & the Courtyard",
+          "address": "2001 Collins Avenue",
+          "phone": "(305) 520-6700",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "The Bazaar by José Andrés",
+          "original_name": "The Bazaar by José Andrés",
+          "address": "1701 Collins Avenue",
+          "phone": "3054552999",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "The Carlyle Cafe",
+          "original_name": "The Carlyle Cafe",
+          "address": "1250 Ocean Drive",
+          "phone": "305-531-3238",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "The Gran Cafe",
+          "original_name": "The Gran Cafe",
+          "address": "100 COLLINS AVE CU-15",
+          "phone": "(305) 794-3794",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "The Licking South Beach,",
+          "original_name": "The Licking South Beach,",
+          "address": "754 WASHINGTON AVE CU-4",
+          "phone": "(305) 397-8588",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "The Lido Bayside Grill",
+          "original_name": "The Lido Bayside Grill",
+          "address": "40 Island Avenue",
+          "phone": "(305) 673-1717",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "The Local House",
+          "original_name": "The Local House",
+          "address": "400 Ocean Drive",
+          "phone": "(786) 230-8396",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "The Matador Room",
+          "original_name": "The Matador Room",
+          "address": "2901 Collins Avenue",
+          "phone": "786-257-4500",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "The New Rok,",
+          "original_name": "The New Rok,",
+          "address": "1905 Collins Avenue",
+          "phone": "(786) 610-4200",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "The Sandbox",
+          "original_name": "The Sandbox",
+          "address": "2395 Collns Avenue",
+          "phone": "(305) 604-6700",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "The Scape Goat",
+          "original_name": "The Scape Goat",
+          "address": "100 Collins Avenue",
+          "phone": "786.275.6488",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "The Social Club",
+          "original_name": "The Social Club",
+          "address": "1717 Collins Avenue",
+          "phone": "305-604-1800",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "The Strand Bar and Grill",
+          "original_name": "The Strand Bar and Grill",
+          "address": "6801 Collins Avenue",
+          "phone": "(305) 514-7474",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "The Tavern",
+          "original_name": "The Tavern",
+          "address": "3720 Collins Avenue",
+          "phone": "(305) 938-1145",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Tnt Gigino Holding",
+          "original_name": "Tnt Gigino Holding",
+          "address": "409 ESPANOLA WAY",
+          "phone": "305.604.3432",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Toothfairy",
+          "original_name": "Toothfairy",
+          "address": "1575 Alton Road",
+          "phone": null,
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Treehouse C/o Jeremy Waks",
+          "original_name": "Treehouse C/o Jeremy Waks",
+          "address": "323 W 23rd Street",
+          "phone": "(786) 318-1908",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Tropical Beach Cafe",
+          "original_name": "Tropical Beach Cafe",
+          "address": "2891 Collins Avenue",
+          "phone": "305-538-0359",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Twist C/o Gale Aviation Services",
+          "original_name": "Twist C/o Gale Aviation Services",
+          "address": "1057 Washington Avenue",
+          "phone": "305-538-9478",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Under the Mango Tree",
+          "original_name": "Under the Mango Tree",
+          "address": "737 5th Street",
+          "phone": "(786) 558-5103",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Urbanica Minibar",
+          "original_name": "Urbanica Minibar",
+          "address": "418 Meridian Avenue",
+          "phone": "(305) 763-8934",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Venezia Pizza & Cafe C/o Jose Perez R.a.",
+          "original_name": "Venezia Pizza & Cafe C/o Jose Perez R.a.",
+          "address": "6646 Collins Avenue",
+          "phone": "305-868-2267",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Veterans of Foreign Wars",
+          "original_name": "Veterans of Foreign Wars",
+          "address": "650 West Ave",
+          "phone": "3056721990",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Via Emilia 9 Llc",
+          "original_name": "Via Emilia 9 Llc",
+          "address": "1120 15th Street",
+          "phone": "786-216-7150",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Vida",
+          "original_name": "Vida",
+          "address": "4441 Collins Avenue",
+          "phone": "305-674-4730",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Vida Y Estilo",
+          "original_name": "Vida Y Estilo",
+          "address": "410 ESPANOLA WAY",
+          "phone": "(305) 532-0490",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Villa Azur",
+          "original_name": "Villa Azur",
+          "address": "309 23rd Street",
+          "phone": "3057638688",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Vita,  Baoli Vita",
+          "original_name": "Vita,  Baoli Vita",
+          "address": "1906 Collins Avenue",
+          "phone": " 305-674-8822",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Vlady & Lilly Tropical Coffee Bar",
+          "original_name": "Vlady & Lilly Tropical Coffee Bar",
+          "address": "7111 COLLINS AVE",
+          "phone": "(786) 338-5339",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Voodoo Rooftop Lounge & Hookah C/0 Calara , Mandy",
+          "original_name": "Voodoo Rooftop Lounge & Hookah C/0 Calara , Mandy",
+          "address": "928 Ocean Drive",
+          "phone": "(305) 206-6404",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Washmonbo, Inc.d/b/a Front Porch Cafe",
+          "original_name": "Washmonbo, Inc.d/b/a Front Porch Cafe",
+          "address": "1458 Ocean Drive",
+          "phone": "305-531-8300",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Watr at the 1 Rooftop",
+          "original_name": "Watr at the 1 Rooftop",
+          "address": "2341 Collins Avenue",
+          "phone": "(305) 604-1000",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Wet Willies",
+          "original_name": "Wet Willies",
+          "address": "760 Ocean Drive",
+          "phone": "305-532-5650",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Winker's Diner",
+          "original_name": "Winker's Diner",
+          "address": "1575 Alton Road",
+          "phone": null,
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Xo Espresso Bar Llc (#108)",
+          "original_name": "Xo Espresso Bar Llc (#108)",
+          "address": "723 N Lincoln Lane",
+          "phone": "(786) 862-5334",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        },
+        {
+          "name": "Yard House",
+          "original_name": "Yard House",
+          "address": "1681 Lenox Avenue",
+          "phone": "305-535-5660",
+          "cuisine": "Other",
+          "source": "miamiandbeaches.com"
+        }
+      ]
+    }
+  },
+  "unmapped": [],
+  "gaps_analysis": [
+    "American",
+    "Argentinian",
+    "BBQ",
+    "Brazilian",
+    "British",
+    "Burgers",
+    "Caribbean",
+    "Chinese",
+    "Cuban",
+    "Ethiopian",
+    "French",
+    "Fusion",
+    "German",
+    "Greek",
+    "Indian",
+    "Italian",
+    "Japanese",
+    "Korean",
+    "Lebanese",
+    "Maine Lobster",
+    "Mediterranean",
+    "Mexican",
+    "Peruvian",
+    "Pizza",
+    "Seafood",
+    "Spanish",
+    "Steakhouse",
+    "Sushi",
+    "Thai",
+    "Turkish",
+    "Vietnamese",
+    "Vegan",
+    "Vegetarian"
+  ]
+}

@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 export default function Home() {
@@ -73,7 +73,7 @@ export default function Home() {
         setSelectedCuisine('')
 
         if (selectedCategory === 'dining' && budget) {
-            await fetchCuisinesForBudget(budget)
+            await fetchCuisinesForBudget
         } else if (selectedCategory && selectedCategory !== 'dining' && budget) {
             navigateToResults()
         }

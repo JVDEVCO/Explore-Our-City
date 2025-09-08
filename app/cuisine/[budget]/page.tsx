@@ -11,7 +11,7 @@ export default function Home() {
     const [selectedBudget, setSelectedBudget] = useState('')
     const [selectedCuisine, setSelectedCuisine] = useState('')
     const [cuisines, setCuisines] = useState<string[]>([])
-    const [isMobile, setIsMobile] = useState(true)
+
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -109,7 +109,7 @@ export default function Home() {
         router.push(`/restaurants?${params.toString()}`)
     }
 
-    const fetchCuisinesForBudget = async (budget: string) => {
+    const fetchCuisinesForBudget = async () => {
         // Alphabetized list of proper cuisine types with smart categorization
         const properCuisines = [
             'American',

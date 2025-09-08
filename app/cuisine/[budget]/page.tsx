@@ -43,7 +43,7 @@ export default function Home() {
         { id: 'aventura', name: 'Aventura', city: 'miami' }
     ]
 
-    const handleCitySelection = (city) => {
+    const handleCitySelection = (city: string) => {
         setSelectedCity(city)
         // Reset all subsequent selections
         setSelectedAreaType('')

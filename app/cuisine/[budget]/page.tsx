@@ -54,7 +54,7 @@ export default function Home() {
         setCuisines([])
     }
 
-    const handleAreaTypeSelection = (areaType) => {
+    const handleAreaTypeSelection = (areaType: string) => {
         setSelectedAreaType(areaType)
         // Reset subsequent selections
         setSelectedNeighborhood('')
@@ -64,7 +64,7 @@ export default function Home() {
         setCuisines([])
     }
 
-    const handleNeighborhoodSelection = (neighborhood) => {
+    const handleNeighborhoodSelection = (neighborhood: string) => {
         setSelectedNeighborhood(neighborhood)
         // Reset subsequent selections
         setSelectedCategory('')
@@ -73,14 +73,14 @@ export default function Home() {
         setCuisines([])
     }
 
-    const handleCategorySelection = (category) => {
+    const handleCategorySelection = (category: string) => {
         setSelectedCategory(category)
         setSelectedBudget('')
         setSelectedCuisine('')
         setCuisines([])
     }
 
-    const handleBudgetSelection = async (budget) => {
+    const handleBudgetSelection = async (budget: string) => {
         setSelectedBudget(budget)
         setSelectedCuisine('')
 
@@ -91,7 +91,7 @@ export default function Home() {
         }
     }
 
-    const handleCuisineSelection = (cuisine) => {
+    const handleCuisineSelection = (cuisine: string) => {
         setSelectedCuisine(cuisine)
         if (cuisine && selectedBudget) {
             navigateToResults()

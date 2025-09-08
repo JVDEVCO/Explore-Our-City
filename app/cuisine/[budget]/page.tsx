@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-const { supabase } = require('../../../lib/supabase')
+import RestaurantCard from '../../components/RestaurantCard';
 
 export default function Home() {
     const router = useRouter()
@@ -110,7 +110,7 @@ export default function Home() {
         router.push(`/restaurants?${params.toString()}`)
     }
 
-    const fetchCuisinesForBudget = async (budget) => {
+    const fetchCuisinesForBudget = async () => {
         try {
             const budgetToPriceRange = {
                 quick: '$',

@@ -1,4 +1,5 @@
 'use client'
+import { Suspense } from 'react'
 import { useState, useEffect, useCallback } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
@@ -16,7 +17,7 @@ interface Restaurant {
     rating?: number
 }
 
-export default function RestaurantsPage() {
+function RestaurantsContent() {
     const searchParams = useSearchParams()
     const [restaurants, setRestaurants] = useState<Restaurant[]>([])
     const [loading, setLoading] = useState(true)
@@ -25,7 +26,6 @@ export default function RestaurantsPage() {
     const neighborhood = searchParams.get('neighborhood')
     const cuisine = searchParams.get('cuisine')
     const budget = searchParams.get('budget')
-    const category = searchParams.get('category')
 
     const fetchRestaurants = useCallback(async () => {
         try {
@@ -79,7 +79,7 @@ export default function RestaurantsPage() {
         } finally {
             setLoading(false)
         }
-    }, [neighborhood, cuisine, budget, category])
+    }, [neighborhood, cuisine, budget])
 
     useEffect(() => {
         fetchRestaurants()
@@ -90,7 +90,6 @@ export default function RestaurantsPage() {
         if (neighborhood) filters.push(`in ${neighborhood.replace(/-/g, ' ')}`)
         if (cuisine) filters.push(cuisine)
         if (budget) filters.push(`${budget} dining`)
-        if (category) filters.push(category)
 
         return filters.length > 0
             ? `Showing restaurants ${filters.join(', ')}`
@@ -227,5 +226,21 @@ export default function RestaurantsPage() {
                 </div>
             </div>
         </div>
+    )
+}
+
+export default function RestaurantsPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-4">
+                <div className="max-w-6xl mx-auto">
+                    <div className="text-center py-12">
+                        <div className="text-2xl text-gray-600">Loading...</div>
+                    </div>
+                </div>
+            </div>
+        }>
+            <RestaurantsContent />
+        </Suspense>
     )
 }

@@ -1,511 +1,503 @@
 'use client'
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
 
-import { useState, type ChangeEvent } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 
-// Type definitions
 interface City {
-  id: string
-  name: string
+  id: string;
+  name: string;
 }
 
 interface BudgetLevel {
-  symbol: string
-  label: string
-  value: string
+  symbol: string;
+  label: string;
+  value: string;
 }
 
 interface Restaurant {
-  id: number
-  name: string
-  cuisine: string
-  rating: number
-  price: string
-  image: string
-  address: string
+  id: string;
+  name: string;
+  cuisine_type: string;
+  budget_level: string;
+  neighborhood: string;
+  city: string;
+  phone?: string;
+  address?: string;
+  website?: string;
+  image_url?: string;
 }
 
-export default function Home() {
+function SearchContent() {
+  const searchParams = useSearchParams()
   const router = useRouter()
 
-  // Core states with explicit types
+  // State management
   const [selectedCity, setSelectedCity] = useState<string>('')
-  const [cityDropdownOpen, setCityDropdownOpen] = useState<boolean>(false)
-  const [areaMode, setAreaMode] = useState<string>('') // 'specific' or 'all'
+  const [selectedAreaType, setSelectedAreaType] = useState<string>('')
   const [selectedNeighborhood, setSelectedNeighborhood] = useState<string>('')
-  const [selectedCategory, setSelectedCategory] = useState<string>('')
+  const [selectedCategory, setSelectedCategory] = useState<string>('dining')
   const [selectedBudget, setSelectedBudget] = useState<string>('')
   const [selectedCuisine, setSelectedCuisine] = useState<string>('')
-  const [searchText, setSearchText] = useState<string>('')
   const [restaurants, setRestaurants] = useState<Restaurant[]>([])
-  const [loading, setLoading] = useState<boolean>(false)
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null)
-  const [showActions, setShowActions] = useState<boolean>(false)
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
-  // Cities data
+  // Data arrays
   const cities: City[] = [
-    { id: 'miami', name: 'Miami & Beaches' },
-    { id: 'nashville', name: 'Nashville, TN' },
-    { id: 'nyc', name: 'New York City, NY' }
+    { id: 'miami-beaches', name: 'Miami & Beaches' },
+    { id: 'fort-lauderdale', name: 'Fort Lauderdale' },
+    { id: 'palm-beach', name: 'Palm Beach' },
+    { id: 'keys', name: 'Florida Keys' }
   ]
 
-  // Neighborhoods (for Miami)
-  const neighborhoods: string[] = [
-    'South Beach', 'Mid Beach', 'North Beach', 'Downtown Miami',
-    'Brickell', 'Wynwood', 'Design District', 'Coral Gables',
-    'Coconut Grove', 'Little Havana', 'Aventura', 'Bal Harbour'
-  ]
+  const neighborhoods: Record<string, string[]> = {
+    'miami-beaches': ['South Beach', 'Mid Beach', 'North Beach', 'Downtown Miami', 'Brickell', 'Wynwood', 'Design District', 'Little Havana', 'Coral Gables', 'Coconut Grove'],
+    'fort-lauderdale': ['Las Olas', 'Beach Area', 'Downtown', 'Port Everglades', 'Victoria Park'],
+    'palm-beach': ['Worth Avenue', 'Clematis Street', 'CityPlace', 'Palm Beach Island'],
+    'keys': ['Key Largo', 'Islamorada', 'Marathon', 'Key West']
+  }
 
-  // Categories
-  const categories: string[] = [
-    'Dining',
-    'Entertainment',
-    'Adventure',
-    'Nature',
-    'Culture'
-  ]
+  const categories: string[] = ['dining', 'entertainment', 'adventure', 'nature', 'culture']
 
-  // Budget levels
   const budgetLevels: BudgetLevel[] = [
-    { symbol: '$', label: 'Quick Bite (Under $25/person)', value: 'quick' },
-    { symbol: '$$', label: 'Casual Dining ($25-75/person)', value: 'casual' },
-    { symbol: '$$$', label: 'Upscale ($75-150/person)', value: 'upscale' },
-    { symbol: '$$$$', label: 'Fine Dining ($150-300/person)', value: 'fine' },
-    { symbol: '$$$$$', label: 'Ultra Luxury ($300+/person)', value: 'luxury' }
+    { symbol: '$', label: 'Quick Bite (Under $25/person)', value: 'budget' },
+    { symbol: '$$', label: 'Casual Dining ($25-60/person)', value: 'mid-range' },
+    { symbol: '$$$', label: 'Fine Dining ($60-120/person)', value: 'upscale' },
+    { symbol: '$$$$', label: 'Luxury Experience ($120+/person)', value: 'luxury' }
   ]
 
-  // Cuisine types
   const cuisineTypes: string[] = [
-    'American', 'Argentinian', 'Asian', 'BBQ', 'Brazilian', 'British',
-    'Burgers', 'Caribbean', 'Chinese', 'Colombian', 'Contemporary',
-    'Cuban', 'French', 'German', 'Greek', 'Haitian', 'Ice Cream',
-    'Indian', 'Italian', 'Japanese', 'Korean', 'Lebanese', 'Maine Lobster',
-    'Mediterranean', 'Mexican', 'Nicaraguan', 'Peruvian', 'Pizza',
-    'Russian', 'Seafood', 'Spanish', 'Steakhouse', 'Sushi', 'Thai',
-    'Turkish', 'Venezuelan', 'Vietnamese'
+    'American',
+    'Argentinian',
+    'BBQ',
+    'Brazilian',
+    'British',
+    'Burgers',
+    'Caribbean',
+    'Chinese',
+    'Cuban',
+    'Ethiopian',
+    'French',
+    'Fusion',
+    'German',
+    'Greek',
+    'Indian',
+    'Italian',
+    'Japanese',
+    'Korean',
+    'Lebanese',
+    'Maine Lobster', // Special Miami category
+    'Mediterranean',
+    'Mexican',
+    'Moroccan',
+    'Peruvian',
+    'Pizza',
+    'Russian',
+    'Seafood',
+    'Spanish',
+    'Steakhouse',
+    'Sushi',
+    'Thai',
+    'Turkish',
+    'Vegan',
+    'Vegetarian',
+    'Vietnamese'
   ]
 
-  const handleCitySelect = (cityId: string): void => {
-    const city = cities.find(c => c.id === cityId)
-    if (city) {
-      setSelectedCity(city.name)
-      setCityDropdownOpen(false)
-      // Reset all selections when city changes
-      setAreaMode('')
-      setSelectedNeighborhood('')
-      setSelectedCategory('')
-      setSelectedBudget('')
-      setSelectedCuisine('')
-      setRestaurants([])
-    }
-  }
-
-  const handleAreaModeSelect = (mode: string): void => {
-    setAreaMode(mode)
-    // Reset downstream selections
+  // Handler functions
+  const handleCitySelection = (city: string) => {
+    setSelectedCity(city)
+    setSelectedAreaType('')
     setSelectedNeighborhood('')
-    setSelectedCategory('')
     setSelectedBudget('')
     setSelectedCuisine('')
     setRestaurants([])
-
-    // If Explore All, auto-set category to Dining for now
-    if (mode === 'all') {
-      setSelectedCategory('Dining')
-    }
   }
 
-  const handleNeighborhoodSelect = (e: ChangeEvent<HTMLSelectElement>): void => {
-    const neighborhood = e.target.value
+  const handleAreaTypeSelection = (areaType: string) => {
+    setSelectedAreaType(areaType)
+    setSelectedNeighborhood('')
+    setSelectedBudget('')
+    setSelectedCuisine('')
+    setRestaurants([])
+  }
+
+  const handleNeighborhoodSelection = (neighborhood: string) => {
     setSelectedNeighborhood(neighborhood)
-    // Auto-set category to Dining when neighborhood is selected
-    if (neighborhood) {
-      setSelectedCategory('Dining')
-    }
-    // Reset downstream selections
     setSelectedBudget('')
     setSelectedCuisine('')
     setRestaurants([])
   }
 
-  const handleCategorySelect = (category: string): void => {
+  const handleCategorySelection = (category: string) => {
     setSelectedCategory(category)
-    // Reset downstream selections
     setSelectedBudget('')
     setSelectedCuisine('')
     setRestaurants([])
   }
 
-  const handleBudgetSelect = (e: ChangeEvent<HTMLSelectElement>): void => {
-    const budget = e.target.value
+  const handleBudgetSelection = (budget: string) => {
     setSelectedBudget(budget)
-    // Reset downstream selections
     setSelectedCuisine('')
     setRestaurants([])
   }
 
-  const fetchRestaurants = async (cuisine: string): Promise<void> => {
-    setLoading(true)
+  const handleCuisineSelection = async (cuisine: string) => {
     setSelectedCuisine(cuisine)
-
-    const selectedBudgetObj = budgetLevels.find(b => b.label === selectedBudget)
+    setLoading(true)
 
     try {
-      // TODO: Replace with actual Supabase query
-      // const { data, error } = await supabase
-      //   .from('restaurants')
-      //   .select('*')
-      //   .eq('cuisine', cuisine)
-      //   .eq('budget', selectedBudgetObj?.value)
-      //   .eq('neighborhood', selectedNeighborhood || 'all')
+      const params = new URLSearchParams({
+        city: selectedCity,
+        neighborhood: selectedNeighborhood,
+        budget: selectedBudget,
+        cuisine: cuisine
+      })
 
-      // Mock data for now - remove when connecting to Supabase
-      const mockRestaurants: Restaurant[] = [
-        {
-          id: 1,
-          name: 'Sample Restaurant 1',
-          cuisine: cuisine,
-          rating: 4.5,
-          price: selectedBudgetObj?.symbol || '$',
-          image: '/api/placeholder/300/200',
-          address: '123 Ocean Drive'
-        },
-        {
-          id: 2,
-          name: 'Sample Restaurant 2',
-          cuisine: cuisine,
-          rating: 4.8,
-          price: selectedBudgetObj?.symbol || '$',
-          image: '/api/placeholder/300/200',
-          address: '456 Collins Ave'
-        }
-      ]
-
-      setRestaurants(mockRestaurants)
+      const response = await fetch(`/api/restaurants?${params}`)
+      if (response.ok) {
+        const data = await response.json()
+        setRestaurants(data)
+      }
     } catch (error) {
       console.error('Error fetching restaurants:', error)
-      setRestaurants([])
     } finally {
       setLoading(false)
     }
   }
 
-  const handleCuisineSelect = (e: ChangeEvent<HTMLSelectElement>): void => {
-    const cuisine = e.target.value
-    if (cuisine) {
-      void fetchRestaurants(cuisine) // void to handle async properly
+  // CTA Handler functions
+  const handleCall = (restaurant: Restaurant) => {
+    if (restaurant.phone) {
+      window.open(`tel:${restaurant.phone}`, '_self')
     }
   }
 
-  const handleSearch = (): void => {
-    if (!searchText.trim()) return
-
-    // Navigate with search query
-    const params = new URLSearchParams({
-      search: searchText,
-      city: selectedCity || 'Miami & Beaches'
-    })
-    router.push(`/restaurants?${params.toString()}`)
-  }
-
-  const handleSearchKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === 'Enter') {
-      handleSearch()
+  const handleDirections = (restaurant: Restaurant) => {
+    if (restaurant.address) {
+      const encodedAddress = encodeURIComponent(restaurant.address)
+      window.open(`https://maps.google.com/?q=${encodedAddress}`, '_blank')
     }
   }
 
-  const handleRestaurantSelect = (restaurantId: number): void => {
-    // Navigate to restaurant detail or show action buttons
-    router.push(`/restaurant/${restaurantId}`)
+  const handleUber = (restaurant: Restaurant) => {
+    if (restaurant.address) {
+      const encodedAddress = encodeURIComponent(restaurant.address)
+      window.open(`https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=${encodedAddress}`, '_blank')
+    }
   }
 
-  // Determine what should be enabled
-  const isNeighborhoodEnabled: boolean = areaMode === 'specific' && selectedCity === 'Miami & Beaches'
-  const isCategoryEnabled: boolean = (areaMode === 'all' || (areaMode === 'specific' && selectedNeighborhood !== '')) && selectedCity === 'Miami & Beaches'
-  const isBudgetEnabled: boolean = selectedCategory === 'Dining'
-  const isCuisineEnabled: boolean = selectedBudget !== ''
-  const isComingSoon: boolean = selectedCity !== '' && selectedCity !== 'Miami & Beaches'
+  const handleReservation = (restaurant: Restaurant) => {
+    if (restaurant.website) {
+      window.open(restaurant.website, '_blank')
+    } else if (restaurant.phone) {
+      window.open(`tel:${restaurant.phone}`, '_self')
+    }
+  }
+
+  const openModal = (restaurant: Restaurant) => {
+    setSelectedRestaurant(restaurant)
+    setShowModal(true)
+  }
+
+  const closeModal = () => {
+    setShowModal(false)
+    setSelectedRestaurant(null)
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#3B2F8F] via-[#4A3A9F] to-[#5A4AAF] text-white">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold text-[#FFA500] mb-4">Explore Our City</h1>
-          <p className="text-xl mb-2">Dining. Entertainment. Adventure. Nature. Culture.</p>
-          <p className="text-lg mb-2">The Ultimate Find-Reserve-Go Experience</p>
-          <p className="text-md">From $5 authentic tacos to $50,000 yacht experiences</p>
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-purple-800">
+      {/* Header */}
+      <div className="text-center py-12 px-4">
+        <h1 className="text-5xl font-bold text-yellow-400 mb-4">
+          Explore Our City
+        </h1>
+        <p className="text-xl text-gray-200 mb-2">
+          Dining. Entertainment. Adventure. Nature. Culture.
+        </p>
+        <p className="text-lg text-gray-300 mb-4">
+          The Ultimate Find-Reserve-Go Experience
+        </p>
+        <p className="text-gray-400">
+          From $5 authentic tacos to $50,000 yacht experiences
+        </p>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 space-y-6">
+        {/* City Selection */}
+        <div className="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-red-400">📍</span>
+            <h3 className="text-white text-lg font-semibold">Select City</h3>
+            <span className="text-gray-400">→</span>
+          </div>
+          <select
+            value={selectedCity}
+            onChange={(e) => handleCitySelection(e.target.value)}
+            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none"
+          >
+            <option value="">Choose your city...</option>
+            {cities.map((city) => (
+              <option key={city.id} value={city.id}>
+                {city.name}
+              </option>
+            ))}
+          </select>
         </div>
 
-        <div className="max-w-3xl mx-auto space-y-4">
-          {/* 1. City Selection Dropdown */}
-          <div className="bg-white/10 backdrop-blur rounded-lg">
-            <button
-              onClick={() => setCityDropdownOpen(!cityDropdownOpen)}
-              className="w-full p-4 text-left flex items-center justify-between hover:bg-white/5 transition-colors"
-              type="button"
-            >
-              <span className="text-xl">📍 {selectedCity || 'Select City'}</span>
-              <span className="transform transition-transform">
-                {cityDropdownOpen ? '▼' : '▶'}
-              </span>
-            </button>
-
-            {cityDropdownOpen && (
-              <div className="px-4 pb-4">
-                <div className="space-y-2">
-                  {cities.map(city => (
-                    <button
-                      key={city.id}
-                      onClick={() => handleCitySelect(city.id)}
-                      className="w-full p-3 rounded-lg text-left bg-white/20 hover:bg-white/30 transition-colors"
-                      type="button"
-                    >
-                      {city.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
+        {/* Area Type Selection */}
+        <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 transition-opacity duration-300 ${!selectedCity ? 'opacity-50' : 'opacity-100'
+          }`}>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-yellow-400">🎯</span>
+            <h3 className="text-white text-lg font-semibold">Area Focus</h3>
           </div>
+          <div className="grid grid-cols-2 gap-4">
+            <button
+              disabled={!selectedCity}
+              onClick={() => handleAreaTypeSelection('specific')}
+              className={`p-3 rounded-lg transition-colors ${selectedAreaType === 'specific'
+                  ? 'bg-yellow-500 text-black'
+                  : 'bg-gray-700 text-white hover:bg-gray-600'
+                } ${!selectedCity ? 'cursor-not-allowed opacity-50' : ''}`}
+            >
+              📍 Specific Area
+            </button>
+            <button
+              disabled={!selectedCity}
+              onClick={() => handleAreaTypeSelection('explore-all')}
+              className={`p-3 rounded-lg transition-colors ${selectedAreaType === 'explore-all'
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-700 text-white hover:bg-gray-600'
+                } ${!selectedCity ? 'cursor-not-allowed opacity-50' : ''}`}
+            >
+              🔍 Explore All
+            </button>
+          </div>
+        </div>
 
-          {/* Show all controls upfront when Miami is selected */}
-          {selectedCity === 'Miami & Beaches' && (
-            <>
-              {/* 2. Specific Area / Explore All buttons */}
-              <div className="grid grid-cols-2 gap-4">
-                <button
-                  onClick={() => handleAreaModeSelect('specific')}
-                  className={`p-4 rounded-lg font-semibold transition-all ${areaMode === 'specific'
-                    ? 'bg-[#FFA500] text-black shadow-lg'
-                    : 'bg-white/20 hover:bg-white/30'
-                    }`}
-                  type="button"
-                >
-                  📍 Specific Area
-                </button>
-                <button
-                  onClick={() => handleAreaModeSelect('all')}
-                  className={`p-4 rounded-lg font-semibold transition-all ${areaMode === 'all'
-                    ? 'bg-white/30 text-white shadow-lg'
-                    : 'bg-white/20 hover:bg-white/30'
-                    }`}
-                  type="button"
-                >
-                  {areaMode === 'all' ? '☑️' : '☐'} Explore All
-                </button>
-              </div>
+        {/* Neighborhood Selection */}
+        <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 transition-opacity duration-300 ${!selectedAreaType ? 'opacity-50' : 'opacity-100'
+          }`}>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-green-400">🏘️</span>
+            <h3 className="text-white text-lg font-semibold">Neighborhood</h3>
+          </div>
+          <select
+            value={selectedNeighborhood}
+            onChange={(e) => handleNeighborhoodSelection(e.target.value)}
+            disabled={!selectedAreaType}
+            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <option value="">Choose neighborhood...</option>
+            {selectedCity && neighborhoods[selectedCity]?.map((neighborhood) => (
+              <option key={neighborhood} value={neighborhood}>
+                {neighborhood}
+              </option>
+            ))}
+          </select>
+        </div>
 
-              {/* 3. Neighborhoods dropdown - visible but disabled until Specific Area selected */}
-              <select
-                value={selectedNeighborhood}
-                onChange={handleNeighborhoodSelect}
-                disabled={!isNeighborhoodEnabled}
-                className={`w-full p-4 rounded-lg font-semibold transition-all ${isNeighborhoodEnabled
-                  ? 'bg-[#FFA500] text-black cursor-pointer'
-                  : 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
-                  }`}
+        {/* Category Selection */}
+        <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 transition-opacity duration-300 ${!selectedNeighborhood ? 'opacity-50' : 'opacity-100'
+          }`}>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-purple-400">🎭</span>
+            <h3 className="text-white text-lg font-semibold">Category</h3>
+          </div>
+          <div className="grid grid-cols-5 gap-3">
+            {categories.map((category) => (
+              <button
+                key={category}
+                disabled={!selectedNeighborhood}
+                onClick={() => handleCategorySelection(category)}
+                className={`p-3 rounded-lg text-sm transition-colors ${selectedCategory === category
+                    ? 'bg-purple-500 text-white'
+                    : 'bg-gray-700 text-white hover:bg-gray-600'
+                  } ${!selectedNeighborhood ? 'cursor-not-allowed opacity-50' : ''}`}
               >
-                <option value="">Neighborhoods</option>
-                {neighborhoods.map(neighborhood => (
-                  <option key={neighborhood} value={neighborhood}>
-                    {neighborhood}
-                  </option>
-                ))}
-              </select>
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </button>
+            ))}
+          </div>
+        </div>
 
-              {/* 4. Category dropdown - enabled after area selection */}
-              <select
-                value={selectedCategory}
-                onChange={(e) => handleCategorySelect(e.target.value)}
-                disabled={!isCategoryEnabled}
-                className={`w-full p-4 rounded-lg font-semibold transition-all ${isCategoryEnabled
-                  ? 'bg-white/10 backdrop-blur text-white cursor-pointer'
-                  : 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
-                  }`}
+        {/* Budget Selection */}
+        <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 transition-opacity duration-300 ${!selectedCategory ? 'opacity-50' : 'opacity-100'
+          }`}>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-green-400">💰</span>
+            <h3 className="text-white text-lg font-semibold">Budget Level</h3>
+          </div>
+          <div className="space-y-3">
+            {budgetLevels.map((budget) => (
+              <button
+                key={budget.value}
+                disabled={!selectedCategory}
+                onClick={() => handleBudgetSelection(budget.value)}
+                className={`w-full p-3 rounded-lg text-left transition-colors ${selectedBudget === budget.value
+                    ? 'bg-yellow-500 text-black'
+                    : 'bg-gray-700 text-white hover:bg-gray-600'
+                  } ${!selectedCategory ? 'cursor-not-allowed opacity-50' : ''}`}
               >
-                <option value="">Dining. Entertainment. Adventure. Nature. Culture.</option>
-                <option value="Dining">🍽️ Dining</option>
-                <option value="Entertainment">🎭 Entertainment</option>
-                <option value="Adventure">🏄 Adventure</option>
-                <option value="Nature">🌿 Nature</option>
-                <option value="Culture">🎨 Culture</option>
-              </select>
+                <span className="font-bold">{budget.symbol}</span> - {budget.label}
+              </button>
+            ))}
+          </div>
+        </div>
 
-              {/* 5. Budget Category dropdown - visible but disabled until Dining selected */}
-              <select
-                value={selectedBudget}
-                onChange={handleBudgetSelect}
-                disabled={!isBudgetEnabled}
-                className={`w-full p-4 rounded-lg font-semibold transition-all ${isBudgetEnabled
-                  ? 'bg-[#FFA500] text-black cursor-pointer'
-                  : 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
-                  }`}
-              >
-                <option value="">Budget Category</option>
-                {budgetLevels.map(level => (
-                  <option key={level.value} value={level.label}>
-                    {level.symbol} - {level.label}
-                  </option>
-                ))}
-              </select>
+        {/* Cuisine Selection */}
+        <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 transition-opacity duration-300 ${!selectedBudget ? 'opacity-50' : 'opacity-100'
+          }`}>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-orange-400">🍽️</span>
+            <h3 className="text-white text-lg font-semibold">Cuisine Type</h3>
+          </div>
+          <select
+            value={selectedCuisine}
+            onChange={(e) => handleCuisineSelection(e.target.value)}
+            disabled={!selectedBudget}
+            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <option value="">Choose your cuisine type...</option>
+            {cuisineTypes.map((cuisine) => (
+              <option key={cuisine} value={cuisine}>
+                {cuisine}
+              </option>
+            ))}
+          </select>
+        </div>
 
-              {/* 6. Cuisine Selection dropdown - visible but disabled until budget selected */}
-              <select
-                value={selectedCuisine}
-                onChange={handleCuisineSelect}
-                disabled={!isCuisineEnabled}
-                className={`w-full p-4 rounded-lg font-semibold transition-all ${isCuisineEnabled
-                  ? 'bg-[#2FA488] text-white cursor-pointer'
-                  : 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
-                  }`}
-              >
-                <option value="">🍴 Select Cuisine</option>
-                {cuisineTypes.map(cuisine => (
-                  <option key={cuisine} value={cuisine}>
-                    {cuisine}
-                  </option>
-                ))}
-              </select>
-
-              {/* Restaurant Tiles - Show after cuisine selection */}
-              {loading && (
-                <div className="text-center py-8">
-                  <div className="text-2xl">Loading restaurants...</div>
-                </div>
-              )}
-
-              {restaurants.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-                  {restaurants.map(restaurant => (
-                    <div
-                      key={restaurant.id}
-                      onClick={() => handleRestaurantSelect(restaurant.id)}
-                      className="bg-white/10 backdrop-blur rounded-lg overflow-hidden cursor-pointer hover:bg-white/20 transition-all transform hover:scale-105"
-                      role="button"
-                      tabIndex={0}
-                      onKeyPress={(e) => {
-                        if (e.key === 'Enter') handleRestaurantSelect(restaurant.id)
-                      }}
-                    >
-                      <Image
-                        src={restaurant.image}
-                        alt={restaurant.name}
-                        width={300}
-                        height={200}
-                        className="w-full h-48 object-cover"
-                      />
-                      <div className="p-4">
-                        <h3 className="font-bold text-lg mb-1">{restaurant.name}</h3>
-                        <p className="text-sm mb-2">{restaurant.cuisine} • {restaurant.price}</p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-yellow-400">⭐ {restaurant.rating}</span>
-                          <span className="text-sm text-gray-300">{restaurant.address}</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-              {/* CTA Modal */}
-              {showActions && selectedRestaurant && (
-                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-                  <div className="bg-gradient-to-br from-[#3B2F8F] to-[#5A4AAF] rounded-xl p-6 max-w-md w-full border-2 border-[#FFA500]/30">
-                    <h2 className="text-2xl font-bold mb-4 text-[#FFA500]">{selectedRestaurant.name}</h2>
-
-                    <div className="space-y-3">
-                      <button
-                        onClick={handleCall}
-                        className="w-full p-4 bg-green-600 hover:bg-green-700 rounded-lg transition-colors flex items-center justify-center gap-2"
-                        type="button"
-                      >
-                        📞 Call Restaurant
-                      </button>
-
-                      <button
-                        onClick={handleReservation}
-                        className="w-full p-4 bg-[#FFA500] hover:bg-[#FFB520] text-black rounded-lg transition-colors flex items-center justify-center gap-2"
-                        type="button"
-                      >
-                        🍽️ Make Reservation
-                      </button>
-
-                      <div className="grid grid-cols-2 gap-2">
-                        <button
-                          onClick={() => handleUberLyft('uber')}
-                          className="p-4 bg-black hover:bg-gray-900 rounded-lg transition-colors"
-                          type="button"
-                        >
-                          🚗 Uber
-                        </button>
-                        <button
-                          onClick={() => handleUberLyft('lyft')}
-                          className="p-4 bg-pink-600 hover:bg-pink-700 rounded-lg transition-colors"
-                          type="button"
-                        >
-                          🚗 Lyft
-                        </button>
-                      </div>
-
-                      <button
-                        onClick={handleDirections}
-                        className="w-full p-4 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors flex items-center justify-center gap-2"
-                        type="button"
-                      >
-                        🗺️ Get Directions
-                      </button>
-
-                      <button
-                        onClick={() => setShowActions(false)}
-                        className="w-full p-4 bg-white/20 hover:bg-white/30 rounded-lg transition-colors"
-                        type="button"
-                      >
-                        Close
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </>
-          )}
-
-          {/* Coming Soon message for other cities */}
-          {isComingSoon && (
-            <div className="bg-white/10 backdrop-blur rounded-lg p-8 text-center">
-              <h2 className="text-2xl mb-4">🚧 Coming Soon!</h2>
-              <p className="text-lg">
-                {selectedCity} will be available soon.
-              </p>
-              <p className="text-md mt-2">
-                Please select Miami & Beaches to explore available options.
-              </p>
-            </div>
-          )}
-
-          {/* Search Bar - Always visible */}
-          <div className="relative mt-8">
+        {/* Search Bar */}
+        <div className="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4">
+          <div className="relative">
             <input
               type="text"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              onKeyPress={handleSearchKeyPress}
-              placeholder="🔍 Search restaurants, venues, or experiences..."
-              className="w-full p-4 pr-12 rounded-full bg-white/10 backdrop-blur border-2 border-[#FFA500]/50 text-white placeholder-white/60 focus:border-[#FFA500] focus:outline-none transition-colors"
+              placeholder="Search restaurants, venues, or experiences..."
+              className="w-full p-4 pr-16 bg-gray-700 text-white rounded-lg border border-yellow-500 focus:border-yellow-400 focus:outline-none"
             />
-            <button
-              onClick={handleSearch}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-[#FFA500] rounded-full hover:bg-[#FFB520] transition-colors"
-              type="button"
-              aria-label="Search"
-            >
+            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-600 text-black p-2 rounded-lg transition-colors">
               🔍
             </button>
           </div>
         </div>
+
+        {/* Loading State */}
+        {loading && (
+          <div className="text-center py-8">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-400 mx-auto"></div>
+            <p className="text-white mt-4">Finding perfect matches...</p>
+          </div>
+        )}
+
+        {/* Restaurant Results */}
+        {restaurants.length > 0 && (
+          <div className="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-6">
+            <h3 className="text-white text-xl font-semibold mb-4">
+              Found {restaurants.length} restaurants
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {restaurants.map((restaurant) => (
+                <div
+                  key={restaurant.id}
+                  className="bg-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition-colors"
+                  onClick={() => openModal(restaurant)}
+                >
+                  {restaurant.image_url && (
+                    <div className="relative h-40 mb-3 rounded-lg overflow-hidden">
+                      <Image
+                        src={restaurant.image_url}
+                        alt={restaurant.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
+                  <h4 className="text-white font-semibold text-lg mb-2">
+                    {restaurant.name}
+                  </h4>
+                  <p className="text-gray-300 mb-1">
+                    {restaurant.cuisine_type} • {restaurant.budget_level}
+                  </p>
+                  <p className="text-gray-400 text-sm">
+                    {restaurant.neighborhood}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
+
+      {/* CTA Modal */}
+      {showModal && selectedRestaurant && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-800 rounded-lg max-w-md w-full p-6">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-white text-xl font-semibold">
+                {selectedRestaurant.name}
+              </h3>
+              <button
+                onClick={closeModal}
+                className="text-gray-400 hover:text-white text-2xl"
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="space-y-3">
+              <button
+                onClick={() => handleCall(selectedRestaurant)}
+                className="w-full p-4 bg-green-600 hover:bg-green-700 rounded-lg transition-colors flex items-center justify-center gap-2"
+                type="button"
+              >
+                📞 Call Restaurant
+              </button>
+
+              <button
+                onClick={() => handleReservation(selectedRestaurant)}
+                className="w-full p-4 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors flex items-center justify-center gap-2"
+                type="button"
+              >
+                🍽️ Make Reservation
+              </button>
+
+              <button
+                onClick={() => handleUber(selectedRestaurant)}
+                className="w-full p-4 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors flex items-center justify-center gap-2"
+                type="button"
+              >
+                🚗 Get Uber/Lyft
+              </button>
+
+              <button
+                onClick={() => handleDirections(selectedRestaurant)}
+                className="w-full p-4 bg-yellow-600 hover:bg-yellow-700 rounded-lg transition-colors flex items-center justify-center gap-2"
+                type="button"
+              >
+                🗺️ Get Directions
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
+  )
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-purple-800 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-400 mx-auto mb-4"></div>
+          <p className="text-white">Loading Explore Our City...</p>
+        </div>
+      </div>
+    }>
+      <SearchContent />
+    </Suspense>
   )
 }

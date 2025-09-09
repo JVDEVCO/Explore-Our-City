@@ -39,6 +39,8 @@ export default function Home() {
   const [searchText, setSearchText] = useState<string>('')
   const [restaurants, setRestaurants] = useState<Restaurant[]>([])
   const [loading, setLoading] = useState<boolean>(false)
+  const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null)
+  const [showActions, setShowActions] = useState<boolean>(false)
 
   // Cities data
   const cities: City[] = [
@@ -312,35 +314,23 @@ export default function Home() {
                 ))}
               </select>
 
-              {/* 4. Category section - always visible, shows current selection */}
-              <div className="bg-white/10 backdrop-blur rounded-lg p-4">
-                <div className="text-lg mb-3">
-                  {selectedCategory ? `${selectedCategory === 'Dining' ? '🍽️' : ''} ${selectedCategory}` : 'Select Category'}
-                </div>
-                {/* Category buttons grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-                  {categories.filter(cat => cat !== 'Dining').map(category => (
-                    <button
-                      key={category}
-                      onClick={() => handleCategorySelect(category)}
-                      disabled={!isCategoryEnabled || selectedCategory === 'Dining'}
-                      className={`p-3 rounded-lg transition-all ${selectedCategory === category
-                          ? 'bg-[#FFA500] text-black'
-                          : isCategoryEnabled && selectedCategory !== 'Dining'
-                            ? 'bg-white/20 hover:bg-white/30'
-                            : 'bg-gray-600/30 text-gray-400 cursor-not-allowed'
-                        }`}
-                      type="button"
-                    >
-                      {category === 'Entertainment' && '🎭 '}
-                      {category === 'Adventure' && '🏄 '}
-                      {category === 'Nature' && '🌿 '}
-                      {category === 'Culture' && '🎨 '}
-                      {category}
-                    </button>
-                  ))}
-                </div>
-              </div>
+              {/* 4. Category dropdown - enabled after area selection */}
+              <select
+                value={selectedCategory}
+                onChange={(e) => handleCategorySelect(e.target.value)}
+                disabled={!isCategoryEnabled}
+                className={`w-full p-4 rounded-lg font-semibold transition-all ${isCategoryEnabled
+                    ? 'bg-white/10 backdrop-blur text-white cursor-pointer'
+                    : 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
+                  }`}
+              >
+                <option value="">Dining. Entertainment. Adventure. Nature. Culture.</option>
+                <option value="Dining">🍽️ Dining</option>
+                <option value="Entertainment">🎭 Entertainment</option>
+                <option value="Adventure">🏄 Adventure</option>
+                <option value="Nature">🌿 Nature</option>
+                <option value="Culture">🎨 Culture</option>
+              </select>
 
               {/* 5. Budget Category dropdown - visible but disabled until Dining selected */}
               <select

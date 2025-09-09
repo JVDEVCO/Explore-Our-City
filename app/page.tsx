@@ -88,7 +88,7 @@ export default function Home() {
     if (city) {
       setSelectedCity(city.name)
       setCityDropdownOpen(false)
-      // Reset downstream selections
+      // Reset all selections when city changes
       setAreaMode('')
       setSelectedNeighborhood('')
       setSelectedCategory('')
@@ -106,20 +106,27 @@ export default function Home() {
     setSelectedBudget('')
     setSelectedCuisine('')
     setRestaurants([])
+
+    // If Explore All, auto-set category to Dining for now
+    if (mode === 'all') {
+      setSelectedCategory('Dining')
+    }
   }
 
   const handleNeighborhoodSelect = (e: ChangeEvent<HTMLSelectElement>): void => {
     const neighborhood = e.target.value
     setSelectedNeighborhood(neighborhood)
+    // Auto-set category to Dining when neighborhood is selected
+    if (neighborhood) {
+      setSelectedCategory('Dining')
+    }
     // Reset downstream selections
-    setSelectedCategory('')
     setSelectedBudget('')
     setSelectedCuisine('')
     setRestaurants([])
   }
 
-  const handleCategorySelect = (e: ChangeEvent<HTMLSelectElement>): void => {
-    const category = e.target.value
+  const handleCategorySelect = (category: string): void => {
     setSelectedCategory(category)
     // Reset downstream selections
     setSelectedBudget('')
@@ -210,11 +217,11 @@ export default function Home() {
     router.push(`/restaurant/${restaurantId}`)
   }
 
-  // Determine what to show based on selections
-  const showNeighborhoodDropdown: boolean = areaMode === 'specific' && selectedCity === 'Miami & Beaches'
-  const showCategoryDropdown: boolean = (areaMode === 'all' || (areaMode === 'specific' && selectedNeighborhood !== '')) && selectedCity === 'Miami & Beaches'
-  const showBudgetDropdown: boolean = selectedCategory === 'Dining'
-  const showCuisineDropdown: boolean = selectedBudget !== ''
+  // Determine what should be enabled
+  const isNeighborhoodEnabled: boolean = areaMode === 'specific' && selectedCity === 'Miami & Beaches'
+  const isCategoryEnabled: boolean = (areaMode === 'all' || (areaMode === 'specific' && selectedNeighborhood !== '')) && selectedCity === 'Miami & Beaches'
+  const isBudgetEnabled: boolean = selectedCategory === 'Dining'
+  const isCuisineEnabled: boolean = selectedBudget !== ''
   const isComingSoon: boolean = selectedCity !== '' && selectedCity !== 'Miami & Beaches'
 
   return (
@@ -260,8 +267,8 @@ export default function Home() {
             )}
           </div>
 
-          {/* Show content only after city selection */}
-          {selectedCity && !isComingSoon && (
+          {/* Show all controls upfront when Miami is selected */}
+          {selectedCity === 'Miami & Beaches' && (
             <>
               {/* 2. Specific Area / Explore All buttons */}
               <div className="grid grid-cols-2 gap-4">
@@ -287,69 +294,89 @@ export default function Home() {
                 </button>
               </div>
 
-              {/* 3. Neighborhoods dropdown (only if Specific Area selected) */}
-              {showNeighborhoodDropdown && (
-                <select
-                  value={selectedNeighborhood}
-                  onChange={handleNeighborhoodSelect}
-                  className="w-full p-4 rounded-lg bg-[#FFA500] text-black font-semibold"
-                >
-                  <option value="">Neighborhoods</option>
-                  {neighborhoods.map(neighborhood => (
-                    <option key={neighborhood} value={neighborhood}>
-                      {neighborhood}
-                    </option>
-                  ))}
-                </select>
-              )}
+              {/* 3. Neighborhoods dropdown - visible but disabled until Specific Area selected */}
+              <select
+                value={selectedNeighborhood}
+                onChange={handleNeighborhoodSelect}
+                disabled={!isNeighborhoodEnabled}
+                className={`w-full p-4 rounded-lg font-semibold transition-all ${isNeighborhoodEnabled
+                    ? 'bg-[#FFA500] text-black cursor-pointer'
+                    : 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
+                  }`}
+              >
+                <option value="">Neighborhoods</option>
+                {neighborhoods.map(neighborhood => (
+                  <option key={neighborhood} value={neighborhood}>
+                    {neighborhood}
+                  </option>
+                ))}
+              </select>
 
-              {/* 4. Category dropdown */}
-              {showCategoryDropdown && (
-                <select
-                  value={selectedCategory}
-                  onChange={handleCategorySelect}
-                  className="w-full p-4 rounded-lg bg-white/10 backdrop-blur text-white font-semibold"
-                >
-                  <option value="">Dining. Entertainment. Adventure. Nature. Culture.</option>
-                  {categories.map(category => (
-                    <option key={category} value={category}>
+              {/* 4. Category section - always visible, shows current selection */}
+              <div className="bg-white/10 backdrop-blur rounded-lg p-4">
+                <div className="text-lg mb-3">
+                  {selectedCategory ? `${selectedCategory === 'Dining' ? '🍽️' : ''} ${selectedCategory}` : 'Select Category'}
+                </div>
+                {/* Category buttons grid */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                  {categories.filter(cat => cat !== 'Dining').map(category => (
+                    <button
+                      key={category}
+                      onClick={() => handleCategorySelect(category)}
+                      disabled={!isCategoryEnabled || selectedCategory === 'Dining'}
+                      className={`p-3 rounded-lg transition-all ${selectedCategory === category
+                          ? 'bg-[#FFA500] text-black'
+                          : isCategoryEnabled && selectedCategory !== 'Dining'
+                            ? 'bg-white/20 hover:bg-white/30'
+                            : 'bg-gray-600/30 text-gray-400 cursor-not-allowed'
+                        }`}
+                      type="button"
+                    >
+                      {category === 'Entertainment' && '🎭 '}
+                      {category === 'Adventure' && '🏄 '}
+                      {category === 'Nature' && '🌿 '}
+                      {category === 'Culture' && '🎨 '}
                       {category}
-                    </option>
+                    </button>
                   ))}
-                </select>
-              )}
+                </div>
+              </div>
 
-              {/* 5. Budget Category dropdown (only for Dining) */}
-              {showBudgetDropdown && (
-                <select
-                  value={selectedBudget}
-                  onChange={handleBudgetSelect}
-                  className="w-full p-4 rounded-lg bg-[#FFA500] text-black font-semibold"
-                >
-                  <option value="">Budget Category</option>
-                  {budgetLevels.map(level => (
-                    <option key={level.value} value={level.label}>
-                      {level.symbol} - {level.label}
-                    </option>
-                  ))}
-                </select>
-              )}
+              {/* 5. Budget Category dropdown - visible but disabled until Dining selected */}
+              <select
+                value={selectedBudget}
+                onChange={handleBudgetSelect}
+                disabled={!isBudgetEnabled}
+                className={`w-full p-4 rounded-lg font-semibold transition-all ${isBudgetEnabled
+                    ? 'bg-[#FFA500] text-black cursor-pointer'
+                    : 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
+                  }`}
+              >
+                <option value="">Budget Category</option>
+                {budgetLevels.map(level => (
+                  <option key={level.value} value={level.label}>
+                    {level.symbol} - {level.label}
+                  </option>
+                ))}
+              </select>
 
-              {/* 6. Cuisine Selection dropdown */}
-              {showCuisineDropdown && (
-                <select
-                  value={selectedCuisine}
-                  onChange={handleCuisineSelect}
-                  className="w-full p-4 rounded-lg bg-[#2FA488] text-white font-semibold"
-                >
-                  <option value="">🍴 Select Cuisine</option>
-                  {cuisineTypes.map(cuisine => (
-                    <option key={cuisine} value={cuisine}>
-                      {cuisine}
-                    </option>
-                  ))}
-                </select>
-              )}
+              {/* 6. Cuisine Selection dropdown - visible but disabled until budget selected */}
+              <select
+                value={selectedCuisine}
+                onChange={handleCuisineSelect}
+                disabled={!isCuisineEnabled}
+                className={`w-full p-4 rounded-lg font-semibold transition-all ${isCuisineEnabled
+                    ? 'bg-[#2FA488] text-white cursor-pointer'
+                    : 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
+                  }`}
+              >
+                <option value="">🍴 Select Cuisine</option>
+                {cuisineTypes.map(cuisine => (
+                  <option key={cuisine} value={cuisine}>
+                    {cuisine}
+                  </option>
+                ))}
+              </select>
 
               {/* Restaurant Tiles - Show after cuisine selection */}
               {loading && (

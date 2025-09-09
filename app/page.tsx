@@ -1,4 +1,7 @@
 'use client'
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 import { useState, type ChangeEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
@@ -277,8 +280,8 @@ export default function Home() {
                 <button
                   onClick={() => handleAreaModeSelect('specific')}
                   className={`p-4 rounded-lg font-semibold transition-all ${areaMode === 'specific'
-                      ? 'bg-[#FFA500] text-black shadow-lg'
-                      : 'bg-white/20 hover:bg-white/30'
+                    ? 'bg-[#FFA500] text-black shadow-lg'
+                    : 'bg-white/20 hover:bg-white/30'
                     }`}
                   type="button"
                 >
@@ -287,8 +290,8 @@ export default function Home() {
                 <button
                   onClick={() => handleAreaModeSelect('all')}
                   className={`p-4 rounded-lg font-semibold transition-all ${areaMode === 'all'
-                      ? 'bg-white/30 text-white shadow-lg'
-                      : 'bg-white/20 hover:bg-white/30'
+                    ? 'bg-white/30 text-white shadow-lg'
+                    : 'bg-white/20 hover:bg-white/30'
                     }`}
                   type="button"
                 >
@@ -302,8 +305,8 @@ export default function Home() {
                 onChange={handleNeighborhoodSelect}
                 disabled={!isNeighborhoodEnabled}
                 className={`w-full p-4 rounded-lg font-semibold transition-all ${isNeighborhoodEnabled
-                    ? 'bg-[#FFA500] text-black cursor-pointer'
-                    : 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
+                  ? 'bg-[#FFA500] text-black cursor-pointer'
+                  : 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
                   }`}
               >
                 <option value="">Neighborhoods</option>
@@ -320,8 +323,8 @@ export default function Home() {
                 onChange={(e) => handleCategorySelect(e.target.value)}
                 disabled={!isCategoryEnabled}
                 className={`w-full p-4 rounded-lg font-semibold transition-all ${isCategoryEnabled
-                    ? 'bg-white/10 backdrop-blur text-white cursor-pointer'
-                    : 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
+                  ? 'bg-white/10 backdrop-blur text-white cursor-pointer'
+                  : 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
                   }`}
               >
                 <option value="">Dining. Entertainment. Adventure. Nature. Culture.</option>
@@ -338,8 +341,8 @@ export default function Home() {
                 onChange={handleBudgetSelect}
                 disabled={!isBudgetEnabled}
                 className={`w-full p-4 rounded-lg font-semibold transition-all ${isBudgetEnabled
-                    ? 'bg-[#FFA500] text-black cursor-pointer'
-                    : 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
+                  ? 'bg-[#FFA500] text-black cursor-pointer'
+                  : 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
                   }`}
               >
                 <option value="">Budget Category</option>
@@ -356,8 +359,8 @@ export default function Home() {
                 onChange={handleCuisineSelect}
                 disabled={!isCuisineEnabled}
                 className={`w-full p-4 rounded-lg font-semibold transition-all ${isCuisineEnabled
-                    ? 'bg-[#2FA488] text-white cursor-pointer'
-                    : 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
+                  ? 'bg-[#2FA488] text-white cursor-pointer'
+                  : 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
                   }`}
               >
                 <option value="">🍴 Select Cuisine</option>
@@ -405,6 +408,65 @@ export default function Home() {
                       </div>
                     </div>
                   ))}
+                </div>
+              )}
+              {/* CTA Modal */}
+              {showActions && selectedRestaurant && (
+                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+                  <div className="bg-gradient-to-br from-[#3B2F8F] to-[#5A4AAF] rounded-xl p-6 max-w-md w-full border-2 border-[#FFA500]/30">
+                    <h2 className="text-2xl font-bold mb-4 text-[#FFA500]">{selectedRestaurant.name}</h2>
+
+                    <div className="space-y-3">
+                      <button
+                        onClick={handleCall}
+                        className="w-full p-4 bg-green-600 hover:bg-green-700 rounded-lg transition-colors flex items-center justify-center gap-2"
+                        type="button"
+                      >
+                        📞 Call Restaurant
+                      </button>
+
+                      <button
+                        onClick={handleReservation}
+                        className="w-full p-4 bg-[#FFA500] hover:bg-[#FFB520] text-black rounded-lg transition-colors flex items-center justify-center gap-2"
+                        type="button"
+                      >
+                        🍽️ Make Reservation
+                      </button>
+
+                      <div className="grid grid-cols-2 gap-2">
+                        <button
+                          onClick={() => handleUberLyft('uber')}
+                          className="p-4 bg-black hover:bg-gray-900 rounded-lg transition-colors"
+                          type="button"
+                        >
+                          🚗 Uber
+                        </button>
+                        <button
+                          onClick={() => handleUberLyft('lyft')}
+                          className="p-4 bg-pink-600 hover:bg-pink-700 rounded-lg transition-colors"
+                          type="button"
+                        >
+                          🚗 Lyft
+                        </button>
+                      </div>
+
+                      <button
+                        onClick={handleDirections}
+                        className="w-full p-4 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors flex items-center justify-center gap-2"
+                        type="button"
+                      >
+                        🗺️ Get Directions
+                      </button>
+
+                      <button
+                        onClick={() => setShowActions(false)}
+                        className="w-full p-4 bg-white/20 hover:bg-white/30 rounded-lg transition-colors"
+                        type="button"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
                 </div>
               )}
             </>

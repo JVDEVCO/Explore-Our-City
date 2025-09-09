@@ -222,9 +222,9 @@ function SearchContent() {
         </p>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 space-y-6">
+      <div className="max-w-4xl mx-auto px-4 space-y-4">
         {/* City Selection */}
-        <div className="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4">
+        <div className="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-3">
           <select
             value={selectedCity}
             onChange={(e) => handleCitySelection(e.target.value)}
@@ -240,7 +240,7 @@ function SearchContent() {
         </div>
 
         {/* Area Type Selection */}
-        <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 transition-opacity duration-300 ${!selectedCity ? 'opacity-50' : 'opacity-100'
+        <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-3 transition-opacity duration-300 ${!selectedCity ? 'opacity-50' : 'opacity-100'
           }`}>
           <div className="grid grid-cols-2 gap-4">
             <button
@@ -267,7 +267,7 @@ function SearchContent() {
         </div>
 
         {/* Neighborhood Selection */}
-        <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 transition-opacity duration-300 ${!selectedAreaType ? 'opacity-50' : 'opacity-100'
+        <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-3 transition-opacity duration-300 ${!selectedAreaType ? 'opacity-50' : 'opacity-100'
           }`}>
           <select
             value={selectedNeighborhood}
@@ -284,28 +284,26 @@ function SearchContent() {
           </select>
         </div>
 
-        {/* Category Selection */}
-        <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 transition-opacity duration-300 ${!selectedNeighborhood ? 'opacity-50' : 'opacity-100'
+        {/* Category Selection - Now as dropdown */}
+        <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-3 transition-opacity duration-300 ${!selectedNeighborhood ? 'opacity-50' : 'opacity-100'
           }`}>
-          <div className="grid grid-cols-5 gap-3">
+          <select
+            value={selectedCategory}
+            onChange={(e) => handleCategorySelection(e.target.value)}
+            disabled={!selectedNeighborhood}
+            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <option value="">🎭 Dining. Entertainment. Adventure. Nature. Culture.</option>
             {categories.map((category) => (
-              <button
-                key={category}
-                disabled={!selectedNeighborhood}
-                onClick={() => handleCategorySelection(category)}
-                className={`p-3 rounded-lg text-sm transition-colors ${selectedCategory === category
-                    ? 'bg-purple-500 text-white'
-                    : 'bg-gray-700 text-white hover:bg-gray-600'
-                  } ${!selectedNeighborhood ? 'cursor-not-allowed opacity-50' : ''}`}
-              >
+              <option key={category} value={category}>
                 {category.charAt(0).toUpperCase() + category.slice(1)}
-              </button>
+              </option>
             ))}
-          </div>
+          </select>
         </div>
 
         {/* Budget Selection - Now as dropdown */}
-        <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 transition-opacity duration-300 ${!selectedCategory ? 'opacity-50' : 'opacity-100'
+        <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-3 transition-opacity duration-300 ${!selectedCategory ? 'opacity-50' : 'opacity-100'
           }`}>
           <select
             value={selectedBudget}
@@ -323,7 +321,7 @@ function SearchContent() {
         </div>
 
         {/* Cuisine Selection */}
-        <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 transition-opacity duration-300 ${!selectedBudget ? 'opacity-50' : 'opacity-100'
+        <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-3 transition-opacity duration-300 ${!selectedBudget ? 'opacity-50' : 'opacity-100'
           }`}>
           <select
             value={selectedCuisine}
@@ -341,12 +339,12 @@ function SearchContent() {
         </div>
 
         {/* Search Bar */}
-        <div className="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4">
+        <div className="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-3">
           <div className="relative">
             <input
               type="text"
               placeholder="Search restaurants, venues, or experiences..."
-              className="w-full p-4 pr-16 bg-gray-700 text-white rounded-lg border border-yellow-500 focus:border-yellow-400 focus:outline-none"
+              className="w-full p-3 pr-16 bg-gray-700 text-white rounded-lg border border-yellow-500 focus:border-yellow-400 focus:outline-none"
             />
             <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-500 hover:bg-yellow-600 text-black p-2 rounded-lg transition-colors">
               🔍

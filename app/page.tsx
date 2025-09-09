@@ -429,7 +429,7 @@ function SearchContent() {
                 className="w-full p-4 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors flex items-center justify-center gap-2"
                 type="button"
               >
-                🍽️ Make Reservation
+                🍽️ OpenTable and Resy
               </button>
 
               <button

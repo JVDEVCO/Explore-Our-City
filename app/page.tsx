@@ -29,9 +29,6 @@ interface Restaurant {
 }
 
 function SearchContent() {
-  const searchParams = useSearchParams()
-  const router = useRouter()
-
   // State management
   const [selectedCity, setSelectedCity] = useState<string>('')
   const [selectedAreaType, setSelectedAreaType] = useState<string>('')
@@ -228,17 +225,12 @@ function SearchContent() {
       <div className="max-w-4xl mx-auto px-4 space-y-6">
         {/* City Selection */}
         <div className="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-red-400">📍</span>
-            <h3 className="text-white text-lg font-semibold">Select City</h3>
-            <span className="text-gray-400">→</span>
-          </div>
           <select
             value={selectedCity}
             onChange={(e) => handleCitySelection(e.target.value)}
             className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none"
           >
-            <option value="">Choose your city...</option>
+            <option value="">📍 Select City →</option>
             {cities.map((city) => (
               <option key={city.id} value={city.id}>
                 {city.name}
@@ -250,10 +242,6 @@ function SearchContent() {
         {/* Area Type Selection */}
         <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 transition-opacity duration-300 ${!selectedCity ? 'opacity-50' : 'opacity-100'
           }`}>
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-yellow-400">🎯</span>
-            <h3 className="text-white text-lg font-semibold">Area Focus</h3>
-          </div>
           <div className="grid grid-cols-2 gap-4">
             <button
               disabled={!selectedCity}
@@ -281,17 +269,13 @@ function SearchContent() {
         {/* Neighborhood Selection */}
         <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 transition-opacity duration-300 ${!selectedAreaType ? 'opacity-50' : 'opacity-100'
           }`}>
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-green-400">🏘️</span>
-            <h3 className="text-white text-lg font-semibold">Neighborhood</h3>
-          </div>
           <select
             value={selectedNeighborhood}
             onChange={(e) => handleNeighborhoodSelection(e.target.value)}
             disabled={!selectedAreaType}
             className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <option value="">Choose neighborhood...</option>
+            <option value="">🏘️ Choose neighborhood...</option>
             {selectedCity && neighborhoods[selectedCity]?.map((neighborhood) => (
               <option key={neighborhood} value={neighborhood}>
                 {neighborhood}
@@ -303,10 +287,6 @@ function SearchContent() {
         {/* Category Selection */}
         <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 transition-opacity duration-300 ${!selectedNeighborhood ? 'opacity-50' : 'opacity-100'
           }`}>
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-purple-400">🎭</span>
-            <h3 className="text-white text-lg font-semibold">Category</h3>
-          </div>
           <div className="grid grid-cols-5 gap-3">
             {categories.map((category) => (
               <button
@@ -324,44 +304,34 @@ function SearchContent() {
           </div>
         </div>
 
-        {/* Budget Selection */}
+        {/* Budget Selection - Now as dropdown */}
         <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 transition-opacity duration-300 ${!selectedCategory ? 'opacity-50' : 'opacity-100'
           }`}>
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-green-400">💰</span>
-            <h3 className="text-white text-lg font-semibold">Budget Level</h3>
-          </div>
-          <div className="space-y-3">
+          <select
+            value={selectedBudget}
+            onChange={(e) => handleBudgetSelection(e.target.value)}
+            disabled={!selectedCategory}
+            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <option value="">💰 Budget Level</option>
             {budgetLevels.map((budget) => (
-              <button
-                key={budget.value}
-                disabled={!selectedCategory}
-                onClick={() => handleBudgetSelection(budget.value)}
-                className={`w-full p-3 rounded-lg text-left transition-colors ${selectedBudget === budget.value
-                    ? 'bg-yellow-500 text-black'
-                    : 'bg-gray-700 text-white hover:bg-gray-600'
-                  } ${!selectedCategory ? 'cursor-not-allowed opacity-50' : ''}`}
-              >
-                <span className="font-bold">{budget.symbol}</span> - {budget.label}
-              </button>
+              <option key={budget.value} value={budget.value}>
+                {budget.symbol} - {budget.label}
+              </option>
             ))}
-          </div>
+          </select>
         </div>
 
         {/* Cuisine Selection */}
         <div className={`bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 transition-opacity duration-300 ${!selectedBudget ? 'opacity-50' : 'opacity-100'
           }`}>
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-orange-400">🍽️</span>
-            <h3 className="text-white text-lg font-semibold">Cuisine Type</h3>
-          </div>
           <select
             value={selectedCuisine}
             onChange={(e) => handleCuisineSelection(e.target.value)}
             disabled={!selectedBudget}
             className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <option value="">Choose your cuisine type...</option>
+            <option value="">🍽️ Choose your cuisine type...</option>
             {cuisineTypes.map((cuisine) => (
               <option key={cuisine} value={cuisine}>
                 {cuisine}

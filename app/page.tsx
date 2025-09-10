@@ -212,10 +212,10 @@ function SearchContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cyan-400 via-teal-400 to-emerald-400">
+    <div className="min-h-screen bg-gradient-to-br from-[#3B2F8F] via-[#4A3A9F] to-[#5A4AAF]">
       {/* Header */}
       <div className="text-center py-4 px-4">
-        <h1 className="text-5xl font-bold text-yellow-400 mb-2">
+        <h1 className="text-5xl font-bold text-[#FFA500] mb-2">
           Explore Our City
         </h1>
         <p className="text-xl text-white mb-1">
@@ -231,11 +231,11 @@ function SearchContent() {
 
       <div className="max-w-4xl mx-auto px-4 space-y-3">
         {/* City Selection */}
-        <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-3">
+        <div className="bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700">
           <select
             value={selectedCity}
             onChange={(e) => handleCitySelection(e.target.value)}
-            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-yellow-400 focus:border-yellow-300 focus:outline-none"
+            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-[#FFA500] focus:outline-none"
           >
             <option value="">📍 Select City →</option>
             {cities.map((city) => (
@@ -247,15 +247,15 @@ function SearchContent() {
         </div>
 
         {/* Area Type Selection */}
-        <div className={`bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-3 transition-opacity duration-300 ${!selectedCity ? 'opacity-50' : 'opacity-100'
+        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${!selectedCity ? 'opacity-50' : 'opacity-100'
           }`}>
           <div className="grid grid-cols-2 gap-4">
             <button
               disabled={!selectedCity}
               onClick={() => handleAreaTypeSelection('specific')}
-              className={`p-3 h-12 rounded-lg transition-colors flex items-center justify-center ${selectedAreaType === 'specific'
-                  ? 'bg-pink-500 text-white'
-                  : 'bg-gray-700 text-white hover:bg-gray-600'
+              className={`p-3 h-12 rounded-lg transition-colors flex items-center justify-center border ${selectedAreaType === 'specific'
+                  ? 'bg-[#FFA500] text-black border-[#FFA500]'
+                  : 'bg-gray-700 text-white hover:bg-gray-600 border-gray-600'
                 } ${!selectedCity ? 'cursor-not-allowed opacity-50' : ''}`}
             >
               📍 Specific Area
@@ -263,9 +263,9 @@ function SearchContent() {
             <button
               disabled={!selectedCity}
               onClick={() => handleAreaTypeSelection('explore-all')}
-              className={`p-3 h-12 rounded-lg transition-colors flex items-center justify-center ${selectedAreaType === 'explore-all'
-                  ? 'bg-pink-500 text-white'
-                  : 'bg-gray-700 text-white hover:bg-gray-600'
+              className={`p-3 h-12 rounded-lg transition-colors flex items-center justify-center border ${selectedAreaType === 'explore-all'
+                  ? 'bg-[#FFA500] text-black border-[#FFA500]'
+                  : 'bg-gray-700 text-white hover:bg-gray-600 border-gray-600'
                 } ${!selectedCity ? 'cursor-not-allowed opacity-50' : ''}`}
             >
               🔍 Explore All
@@ -274,13 +274,13 @@ function SearchContent() {
         </div>
 
         {/* Neighborhood Selection */}
-        <div className={`bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-3 transition-opacity duration-300 ${!selectedAreaType ? 'opacity-50' : 'opacity-100'
+        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${!selectedAreaType ? 'opacity-50' : 'opacity-100'
           }`}>
           <select
             value={selectedNeighborhood}
             onChange={(e) => handleNeighborhoodSelection(e.target.value)}
             disabled={!selectedAreaType}
-            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-yellow-400 focus:border-yellow-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-[#FFA500] focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <option value="">🏘️ Choose neighborhood...</option>
             {selectedCity && neighborhoods[selectedCity]?.map((neighborhood) => (
@@ -292,13 +292,13 @@ function SearchContent() {
         </div>
 
         {/* Category Selection - Now as dropdown */}
-        <div className={`bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-3 transition-opacity duration-300 ${!selectedNeighborhood ? 'opacity-50' : 'opacity-100'
+        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${!selectedNeighborhood ? 'opacity-50' : 'opacity-100'
           }`}>
           <select
             value={selectedCategory}
             onChange={(e) => handleCategorySelection(e.target.value)}
             disabled={!selectedNeighborhood}
-            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-yellow-400 focus:border-yellow-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-[#FFA500] focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <option value="">🎭 Dining. Entertainment. Adventure. Culture.</option>
             {categories.map((category) => (
@@ -310,13 +310,13 @@ function SearchContent() {
         </div>
 
         {/* Budget Selection - Now as dropdown */}
-        <div className={`bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-3 transition-opacity duration-300 ${!selectedCategory ? 'opacity-50' : 'opacity-100'
+        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${!selectedCategory ? 'opacity-50' : 'opacity-100'
           }`}>
           <select
             value={selectedBudget}
             onChange={(e) => handleBudgetSelection(e.target.value)}
             disabled={!selectedCategory}
-            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-yellow-400 focus:border-yellow-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-[#FFA500] focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <option value="">💰 Budget Level</option>
             {budgetLevels.map((budget) => (
@@ -328,13 +328,13 @@ function SearchContent() {
         </div>
 
         {/* Cuisine Selection */}
-        <div className={`bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-3 transition-opacity duration-300 ${!selectedBudget ? 'opacity-50' : 'opacity-100'
+        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${!selectedBudget ? 'opacity-50' : 'opacity-100'
           }`}>
           <select
             value={selectedCuisine}
             onChange={(e) => handleCuisineSelection(e.target.value)}
             disabled={!selectedBudget}
-            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-yellow-400 focus:border-yellow-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-[#FFA500] focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <option value="">🍽️ Choose your cuisine type...</option>
             {cuisineTypes.map((cuisine) => (
@@ -346,14 +346,14 @@ function SearchContent() {
         </div>
 
         {/* Search Bar */}
-        <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-3">
+        <div className="bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700">
           <div className="relative">
             <input
               type="text"
               placeholder="Search restaurants, venues, or experiences..."
-              className="w-full p-3 pr-16 bg-gray-700 text-white rounded-lg border border-yellow-400 focus:border-yellow-300 focus:outline-none"
+              className="w-full p-3 pr-16 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-[#FFA500] focus:outline-none"
             />
-            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 text-black p-2 rounded-lg transition-colors">
+            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#FFA500] hover:bg-[#FFB520] text-black p-2 rounded-lg transition-colors">
               🔍
             </button>
           </div>
@@ -362,7 +362,7 @@ function SearchContent() {
         {/* Loading State */}
         {loading && (
           <div className="text-center py-8">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-400 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FFA500] mx-auto"></div>
             <p className="text-white mt-4">Finding perfect matches...</p>
           </div>
         )}
@@ -409,7 +409,7 @@ function SearchContent() {
       {/* CTA Modal */}
       {showModal && selectedRestaurant && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-800 rounded-lg max-w-md w-full p-6">
+          <div className="bg-gradient-to-br from-[#3B2F8F] to-[#5A4AAF] rounded-lg max-w-md w-full p-6 border-2 border-[#FFA500]/30">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-white text-xl font-semibold">
                 {selectedRestaurant.name}
@@ -433,7 +433,7 @@ function SearchContent() {
 
               <button
                 onClick={() => handleReservation(selectedRestaurant)}
-                className="w-full p-4 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors flex items-center justify-center gap-2"
+                className="w-full p-4 bg-[#FFA500] hover:bg-[#FFB520] text-black rounded-lg transition-colors flex items-center justify-center gap-2"
                 type="button"
               >
                 🍽️ Reserve Table
@@ -457,7 +457,7 @@ function SearchContent() {
 
               <button
                 onClick={() => handleDirections(selectedRestaurant)}
-                className="w-full p-4 bg-yellow-600 hover:bg-yellow-700 rounded-lg transition-colors flex items-center justify-center gap-2"
+                className="w-full p-4 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors flex items-center justify-center gap-2"
                 type="button"
               >
                 🗺️ Get Directions
@@ -473,9 +473,9 @@ function SearchContent() {
 export default function Home() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-cyan-400 via-teal-400 to-emerald-400 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#3B2F8F] via-[#4A3A9F] to-[#5A4AAF] flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-400 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FFA500] mx-auto mb-4"></div>
           <p className="text-white">Loading Explore Our City...</p>
         </div>
       </div>

@@ -242,7 +242,7 @@ function RestaurantsContent() {
 
                     {/* Search criteria display */}
                     <div className="mt-4 text-lg space-y-1">
-                        {search && <p className="text-gray-200">Search: <span className="text-white font-medium">"{search}"</span></p>}
+                        {search && <p className="text-gray-200">Search: <span className="text-white font-medium">&quot;{search}&quot;</span></p>}
                         {cuisine && <p className="text-gray-200">Cuisine: <span className="text-white font-medium">{cuisine}</span></p>}
                         {neighborhood && neighborhood !== 'all' && <p className="text-gray-200">Area: <span className="text-white font-medium">{neighborhood}</span></p>}
                         {budget && <p className="text-gray-200">Budget: <span className="text-white font-medium">{budgetMap[budget as keyof typeof budgetMap]} - {getBudgetDisplayText(budget)}</span></p>}

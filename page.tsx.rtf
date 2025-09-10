@@ -239,11 +239,11 @@ function SearchContent() \{\
 \
       <div className="max-w-4xl mx-auto px-4 space-y-3">\
         \{/* City Selection */\}\
-        <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-3">\
+        <div className="bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700">\
           <select\
             value=\{selectedCity\}\
             onChange=\{(e) => handleCitySelection(e.target.value)\}\
-            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-yellow-400 focus:border-yellow-300 focus:outline-none"\
+            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-yellow-400 focus:outline-none"\
           >\
             <option value="">
 \f1 \uc0\u55357 \u56525 
@@ -259,17 +259,17 @@ function SearchContent() \{\
         </div>\
 \
         \{/* Area Type Selection */\}\
-        <div className=\{`bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-3 transition-opacity duration-300 $\{\
+        <div className=\{`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 $\{\
           !selectedCity ? 'opacity-50' : 'opacity-100'\
         \}`\}>\
           <div className="grid grid-cols-2 gap-4">\
             <button\
               disabled=\{!selectedCity\}\
               onClick=\{() => handleAreaTypeSelection('specific')\}\
-              className=\{`p-3 h-12 rounded-lg transition-colors flex items-center justify-center $\{\
+              className=\{`p-3 h-12 rounded-lg transition-colors flex items-center justify-center border $\{\
                 selectedAreaType === 'specific'\
-                  ? 'bg-pink-500 text-white'\
-                  : 'bg-gray-700 text-white hover:bg-gray-600'\
+                  ? 'bg-yellow-500 text-black border-yellow-400'\
+                  : 'bg-gray-700 text-white hover:bg-gray-600 border-gray-600'\
               \} $\{!selectedCity ? 'cursor-not-allowed opacity-50' : ''\}`\}\
             >\
               
@@ -279,10 +279,10 @@ function SearchContent() \{\
             <button\
               disabled=\{!selectedCity\}\
               onClick=\{() => handleAreaTypeSelection('explore-all')\}\
-              className=\{`p-3 h-12 rounded-lg transition-colors flex items-center justify-center $\{\
+              className=\{`p-3 h-12 rounded-lg transition-colors flex items-center justify-center border $\{\
                 selectedAreaType === 'explore-all'\
-                  ? 'bg-pink-500 text-white'\
-                  : 'bg-gray-700 text-white hover:bg-gray-600'\
+                  ? 'bg-yellow-500 text-black border-yellow-400'\
+                  : 'bg-gray-700 text-white hover:bg-gray-600 border-gray-600'\
               \} $\{!selectedCity ? 'cursor-not-allowed opacity-50' : ''\}`\}\
             >\
               
@@ -293,14 +293,14 @@ function SearchContent() \{\
         </div>\
 \
         \{/* Neighborhood Selection */\}\
-        <div className=\{`bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-3 transition-opacity duration-300 $\{\
+        <div className=\{`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 $\{\
           !selectedAreaType ? 'opacity-50' : 'opacity-100'\
         \}`\}>\
           <select\
             value=\{selectedNeighborhood\}\
             onChange=\{(e) => handleNeighborhoodSelection(e.target.value)\}\
             disabled=\{!selectedAreaType\}\
-            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-yellow-400 focus:border-yellow-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"\
+            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-yellow-400 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"\
           >\
             <option value="">
 \f1 \uc0\u55356 \u57304 \u65039 
@@ -314,14 +314,14 @@ function SearchContent() \{\
         </div>\
 \
         \{/* Category Selection - Now as dropdown */\}\
-        <div className=\{`bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-3 transition-opacity duration-300 $\{\
+        <div className=\{`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 $\{\
           !selectedNeighborhood ? 'opacity-50' : 'opacity-100'\
         \}`\}>\
           <select\
             value=\{selectedCategory\}\
             onChange=\{(e) => handleCategorySelection(e.target.value)\}\
             disabled=\{!selectedNeighborhood\}\
-            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-yellow-400 focus:border-yellow-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"\
+            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-yellow-400 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"\
           >\
             <option value="">
 \f1 \uc0\u55356 \u57261 
@@ -335,14 +335,14 @@ function SearchContent() \{\
         </div>\
 \
         \{/* Budget Selection - Now as dropdown */\}\
-        <div className=\{`bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-3 transition-opacity duration-300 $\{\
+        <div className=\{`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 $\{\
           !selectedCategory ? 'opacity-50' : 'opacity-100'\
         \}`\}>\
           <select\
             value=\{selectedBudget\}\
             onChange=\{(e) => handleBudgetSelection(e.target.value)\}\
             disabled=\{!selectedCategory\}\
-            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-yellow-400 focus:border-yellow-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"\
+            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-yellow-400 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"\
           >\
             <option value="">
 \f1 \uc0\u55357 \u56496 
@@ -356,14 +356,14 @@ function SearchContent() \{\
         </div>\
 \
         \{/* Cuisine Selection */\}\
-        <div className=\{`bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-3 transition-opacity duration-300 $\{\
+        <div className=\{`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 $\{\
           !selectedBudget ? 'opacity-50' : 'opacity-100'\
         \}`\}>\
           <select\
             value=\{selectedCuisine\}\
             onChange=\{(e) => handleCuisineSelection(e.target.value)\}\
             disabled=\{!selectedBudget\}\
-            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-yellow-400 focus:border-yellow-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"\
+            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-yellow-400 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"\
           >\
             <option value="">
 \f1 \uc0\u55356 \u57213 \u65039 
@@ -377,12 +377,12 @@ function SearchContent() \{\
         </div>\
 \
         \{/* Search Bar */\}\
-        <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-3">\
+        <div className="bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700">\
           <div className="relative">\
             <input\
               type="text"\
               placeholder="Search restaurants, venues, or experiences..."\
-              className="w-full p-3 pr-16 bg-gray-700 text-white rounded-lg border border-yellow-400 focus:border-yellow-300 focus:outline-none"\
+              className="w-full p-3 pr-16 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-yellow-400 focus:outline-none"\
             />\
             <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 text-black p-2 rounded-lg transition-colors">\
               

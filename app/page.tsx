@@ -186,6 +186,13 @@ function SearchContent() {
     }
   }
 
+  const handleLyft = (restaurant: Restaurant) => {
+    if (restaurant.address) {
+      const encodedAddress = encodeURIComponent(restaurant.address)
+      window.open(`https://lyft.com/ride?id=lyft&pickup=my_location&destination[address]=${encodedAddress}`, '_blank')
+    }
+  }
+
   const handleReservation = (restaurant: Restaurant) => {
     if (restaurant.website) {
       window.open(restaurant.website, '_blank')

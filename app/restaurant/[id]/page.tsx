@@ -17,6 +17,7 @@ interface Restaurant {
   description?: string;
   hours?: string;
   rating?: number;
+  premium_access_fee?: number;
 }
 
 export default function RestaurantDetailPage() {
@@ -44,7 +45,8 @@ export default function RestaurantDetailPage() {
           image_url: '/api/placeholder/800/400',
           description: 'Iconic Miami Beach seafood restaurant serving stone crab since 1913. A must-visit destination for locals and tourists alike.',
           hours: '11:30 AM - 10:00 PM',
-          rating: 4.6
+          rating: 4.6,
+          premium_access_fee: 250
         }
 
         setRestaurant(mockRestaurant)
@@ -88,14 +90,8 @@ export default function RestaurantDetailPage() {
   }
 
   const handleReservation = () => {
-    if (restaurant?.website) {
-      setTimeout(() => {
-        setShowPremiumAccess(true)
-      }, 2000)
-      window.open(restaurant.website, '_blank')
-    } else if (restaurant?.phone) {
-      window.open(`tel:${restaurant.phone}`, '_self')
-    }
+    // Show Premium Booking options instead of immediately opening external site
+    setShowPremiumAccess(true)
   }
 
   const handlePremiumAccess = () => {
@@ -156,7 +152,7 @@ export default function RestaurantDetailPage() {
                 onClick={handleBack}
                 className="bg-[#FFA500] text-black px-3 py-1 rounded-full text-sm font-medium hover:bg-[#FFB520] transition-colors"
               >
-                📱 Continue Shopping
+                📱 Back to Other Options
               </button>
             </div>
           </div>
@@ -288,29 +284,53 @@ export default function RestaurantDetailPage() {
                   </button>
                 )}
 
-                <button
-                  onClick={handleReservation}
-                  className="w-full p-4 bg-[#FFA500] hover:bg-[#FFB520] text-black rounded-lg transition-colors flex items-center justify-center gap-2"
-                >
-                  🍽️ Make Reservation
-                </button>
-
-                {showPremiumAccess && (
-                  <div className="border-t border-white/20 pt-4 mt-4">
-                    <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white p-4 rounded-lg mb-3">
-                      <h4 className="font-semibold mb-2">Premium Access Available</h4>
-                      <p className="text-sm">Standard reservations are fully booked. Secure your table with Premium Access.</p>
+                {showPremiumAccess ? (
+                  // Show reservation options with Premium Booking
+                  <div className="space-y-3">
+                    <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white p-4 rounded-lg">
+                      <h4 className="font-semibold mb-2">⚡ Choose Your Booking Method</h4>
+                      <p className="text-sm mb-3">Standard reservations may be limited during peak times. Guarantee your table with Premium Access.</p>
                     </div>
+                    
+                    {/* Standard Reservation */}
                     <button
-                      onClick={handlePremiumAccess}
-                      className="w-full p-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg transition-colors flex items-center justify-center gap-2 font-semibold"
+                      onClick={() => window.open(restaurant.website, '_blank')}
+                      className="w-full p-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center justify-center gap-2"
                     >
-                      ⭐ Premium Access - $150
+                      🍽️ Standard Reservation (Free)
                     </button>
-                    <p className="text-xs text-gray-300 mt-2 text-center">
-                      *Fee is non-refundable and does not apply to your bill
-                    </p>
+                    
+                    {/* Premium Booking - only show if fee is set */}
+                    {restaurant.premium_access_fee && restaurant.premium_access_fee > 0 && (
+                      <button
+                        onClick={handlePremiumAccess}
+                        className="w-full p-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg transition-colors flex items-center justify-center gap-2 font-semibold"
+                      >
+                        ⭐ Premium Access - ${restaurant.premium_access_fee}
+                      </button>
+                    )}
+                    
+                    <div className="text-xs text-gray-300 space-y-1">
+                      <p>• Premium Access: Guaranteed seating + priority service</p>
+                      <p>• Fee is non-refundable and separate from dining bill</p>
+                    </div>
+                    
+                    {/* Back option */}
+                    <button
+                      onClick={() => setShowPremiumAccess(false)}
+                      className="w-full p-2 bg-white/20 text-white rounded-lg hover:bg-white/30 transition-colors text-sm"
+                    >
+                      ← Back to Restaurant Details
+                    </button>
                   </div>
+                ) : (
+                  // Initial reservation button
+                  <button
+                    onClick={handleReservation}
+                    className="w-full p-4 bg-[#FFA500] hover:bg-[#FFB520] text-black rounded-lg transition-colors flex items-center justify-center gap-2"
+                  >
+                    🍽️ Make Reservation
+                  </button>
                 )}
 
                 <div className="grid grid-cols-2 gap-2">
@@ -350,6 +370,12 @@ export default function RestaurantDetailPage() {
                     <span className="font-medium text-[#FFA500]">Location:</span>
                     <span className="ml-2">{restaurant.neighborhood}</span>
                   </div>
+                  {restaurant.premium_access_fee && restaurant.premium_access_fee > 0 && (
+                    <div>
+                      <span className="font-medium text-[#FFA500]">Premium Access:</span>
+                      <span className="ml-2">${restaurant.premium_access_fee}</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -375,7 +401,7 @@ export default function RestaurantDetailPage() {
               <div className="bg-yellow-600/20 border border-yellow-500/30 p-4 rounded-lg">
                 <h4 className="font-semibold text-yellow-400 mb-2">⚠️ Important Terms</h4>
                 <ul className="text-sm space-y-1">
-                  <li>• Fee: $150 (non-refundable)</li>
+                  <li>• Fee: ${restaurant.premium_access_fee} (non-refundable)</li>
                   <li>• Does not apply to your dining bill</li>
                   <li>• Reservation access fee only</li>
                   <li>• Subject to restaurant availability</li>
@@ -393,7 +419,7 @@ export default function RestaurantDetailPage() {
                   onClick={confirmPremiumAccess}
                   className="flex-1 p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-colors font-semibold"
                 >
-                  Confirm $150
+                  Confirm ${restaurant.premium_access_fee}
                 </button>
               </div>
             </div>

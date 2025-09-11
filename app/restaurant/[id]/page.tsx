@@ -125,7 +125,7 @@ export default function RestaurantDetailPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#3B2F8F] via-[#4A3A9F] to-[#5A4AAF]">
-      <div className="bg-white/10 backdrop-blur-sm border-b border-white/20">
+      <div className="bg-white/10 backdrop-blur-sm border-b border-white/20 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-4 mb-4">
             <button
@@ -135,6 +135,11 @@ export default function RestaurantDetailPage() {
               ← Back to Results
             </button>
             <h1 className="text-2xl font-bold text-[#FFA500]">{restaurant.name}</h1>
+            <div className="ml-auto">
+              <span className="bg-[#FFA500] text-black px-3 py-1 rounded-full text-sm font-medium">
+                📱 Explore Our City
+              </span>
+            </div>
           </div>
           
           <div className="flex flex-wrap gap-4 text-white text-sm">

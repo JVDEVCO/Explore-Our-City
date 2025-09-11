@@ -1,6 +1,11 @@
 {
   "editor.formatOnSave": false,
+  "editor.formatOnPaste": false,
+  "editor.formatOnType": false,
   "editor.codeActionsOnSave": {},
   "typescript.preferences.quoteStyle": "single",
-  "eslint.enable": false
+  "eslint.enable": false,
+  "prettier.enable": false,
+  "typescript.format.enable": false,
+  "javascript.format.enable": false
 }

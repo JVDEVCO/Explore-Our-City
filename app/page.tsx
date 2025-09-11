@@ -28,7 +28,6 @@ interface Restaurant {
 }
 
 function SearchContent() {
-  // State management
   const [selectedCity, setSelectedCity] = useState<string>('')
   const [selectedAreaType, setSelectedAreaType] = useState<string>('')
   const [selectedNeighborhood, setSelectedNeighborhood] = useState<string>('')
@@ -36,11 +35,8 @@ function SearchContent() {
   const [selectedBudget, setSelectedBudget] = useState<string>('')
   const [selectedCuisine, setSelectedCuisine] = useState<string>('')
   const [restaurants, setRestaurants] = useState<Restaurant[]>([])
-  const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null)
-  const [showModal, setShowModal] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
-  // Data arrays
   const cities: City[] = [
     { id: 'miami-beaches', name: 'Miami & Beaches' },
     { id: 'fort-lauderdale', name: 'Fort Lauderdale' },
@@ -69,7 +65,7 @@ function SearchContent() {
     'American',
     'Argentinian',
     'BBQ',
-    'Brazilian',
+    'Brazilian', 
     'British',
     'Burgers',
     'Caribbean',
@@ -103,7 +99,6 @@ function SearchContent() {
     'Vietnamese'
   ]
 
-  // Handler functions
   const handleCitySelection = (city: string) => {
     setSelectedCity(city)
     setSelectedAreaType('')
@@ -144,7 +139,7 @@ function SearchContent() {
   const handleCuisineSelection = async (cuisine: string) => {
     setSelectedCuisine(cuisine)
     setLoading(true)
-
+    
     try {
       const params = new URLSearchParams({
         city: selectedCity,
@@ -152,7 +147,7 @@ function SearchContent() {
         budget: selectedBudget,
         cuisine: cuisine
       })
-
+      
       const response = await fetch(`/api/restaurants?${params}`)
       if (response.ok) {
         const data = await response.json()
@@ -165,55 +160,12 @@ function SearchContent() {
     }
   }
 
-  // CTA Handler functions
-  const handleCall = (restaurant: Restaurant) => {
-    if (restaurant.phone) {
-      window.open(`tel:${restaurant.phone}`, '_self')
-    }
-  }
-
-  const handleDirections = (restaurant: Restaurant) => {
-    if (restaurant.address) {
-      const encodedAddress = encodeURIComponent(restaurant.address)
-      window.open(`https://maps.google.com/?q=${encodedAddress}`, '_blank')
-    }
-  }
-
-  const handleUber = (restaurant: Restaurant) => {
-    if (restaurant.address) {
-      const encodedAddress = encodeURIComponent(restaurant.address)
-      window.open(`https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=${encodedAddress}`, '_blank')
-    }
-  }
-
-  const handleLyft = (restaurant: Restaurant) => {
-    if (restaurant.address) {
-      const encodedAddress = encodeURIComponent(restaurant.address)
-      window.open(`https://lyft.com/ride?id=lyft&pickup=my_location&destination[address]=${encodedAddress}`, '_blank')
-    }
-  }
-
-  const handleReservation = (restaurant: Restaurant) => {
-    if (restaurant.website) {
-      window.open(restaurant.website, '_blank')
-    } else if (restaurant.phone) {
-      window.open(`tel:${restaurant.phone}`, '_self')
-    }
-  }
-
-  const openModal = (restaurant: Restaurant) => {
-    setSelectedRestaurant(restaurant)
-    setShowModal(true)
-  }
-
-  const closeModal = () => {
-    setShowModal(false)
-    setSelectedRestaurant(null)
+  const viewRestaurant = (restaurant: Restaurant) => {
+    window.location.href = `/restaurant/${restaurant.id}`
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#3B2F8F] via-[#4A3A9F] to-[#5A4AAF]">
-      {/* Header */}
       <div className="text-center py-4 px-4">
         <h1 className="text-5xl font-bold text-[#FFA500] mb-2">
           Explore Our City
@@ -230,7 +182,6 @@ function SearchContent() {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 space-y-3">
-        {/* City Selection */}
         <div className="bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700">
           <select
             value={selectedCity}
@@ -246,36 +197,38 @@ function SearchContent() {
           </select>
         </div>
 
-        {/* Area Type Selection */}
-        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${!selectedCity ? 'opacity-50' : 'opacity-100'
-          }`}>
+        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${
+          !selectedCity ? 'opacity-50' : 'opacity-100'
+        }`}>
           <div className="grid grid-cols-2 gap-4">
             <button
               disabled={!selectedCity}
               onClick={() => handleAreaTypeSelection('specific')}
-              className={`p-3 h-12 rounded-lg transition-colors flex items-center justify-center border ${selectedAreaType === 'specific'
+              className={`p-3 h-12 rounded-lg transition-colors flex items-center justify-center border ${
+                selectedAreaType === 'specific'
                   ? 'bg-[#FFA500] text-black border-[#FFA500]'
                   : 'bg-gray-700 text-white hover:bg-gray-600 border-gray-600'
-                } ${!selectedCity ? 'cursor-not-allowed opacity-50' : ''}`}
+              } ${!selectedCity ? 'cursor-not-allowed opacity-50' : ''}`}
             >
               📍 Specific Area
             </button>
             <button
               disabled={!selectedCity}
               onClick={() => handleAreaTypeSelection('explore-all')}
-              className={`p-3 h-12 rounded-lg transition-colors flex items-center justify-center border ${selectedAreaType === 'explore-all'
+              className={`p-3 h-12 rounded-lg transition-colors flex items-center justify-center border ${
+                selectedAreaType === 'explore-all'
                   ? 'bg-[#FFA500] text-black border-[#FFA500]'
                   : 'bg-gray-700 text-white hover:bg-gray-600 border-gray-600'
-                } ${!selectedCity ? 'cursor-not-allowed opacity-50' : ''}`}
+              } ${!selectedCity ? 'cursor-not-allowed opacity-50' : ''}`}
             >
               🔍 Explore All
             </button>
           </div>
         </div>
 
-        {/* Neighborhood Selection */}
-        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${!selectedAreaType ? 'opacity-50' : 'opacity-100'
-          }`}>
+        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${
+          !selectedAreaType ? 'opacity-50' : 'opacity-100'
+        }`}>
           <select
             value={selectedNeighborhood}
             onChange={(e) => handleNeighborhoodSelection(e.target.value)}
@@ -291,9 +244,9 @@ function SearchContent() {
           </select>
         </div>
 
-        {/* Category Selection - Now as dropdown */}
-        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${!selectedNeighborhood ? 'opacity-50' : 'opacity-100'
-          }`}>
+        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${
+          !selectedNeighborhood ? 'opacity-50' : 'opacity-100'
+        }`}>
           <select
             value={selectedCategory}
             onChange={(e) => handleCategorySelection(e.target.value)}
@@ -309,9 +262,9 @@ function SearchContent() {
           </select>
         </div>
 
-        {/* Budget Selection - Now as dropdown */}
-        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${!selectedCategory ? 'opacity-50' : 'opacity-100'
-          }`}>
+        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${
+          !selectedCategory ? 'opacity-50' : 'opacity-100'
+        }`}>
           <select
             value={selectedBudget}
             onChange={(e) => handleBudgetSelection(e.target.value)}
@@ -327,9 +280,9 @@ function SearchContent() {
           </select>
         </div>
 
-        {/* Cuisine Selection */}
-        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${!selectedBudget ? 'opacity-50' : 'opacity-100'
-          }`}>
+        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${
+          !selectedBudget ? 'opacity-50' : 'opacity-100'
+        }`}>
           <select
             value={selectedCuisine}
             onChange={(e) => handleCuisineSelection(e.target.value)}
@@ -345,7 +298,6 @@ function SearchContent() {
           </select>
         </div>
 
-        {/* Search Bar */}
         <div className="bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700">
           <div className="relative">
             <input
@@ -359,7 +311,6 @@ function SearchContent() {
           </div>
         </div>
 
-        {/* Loading State */}
         {loading && (
           <div className="text-center py-8">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FFA500] mx-auto"></div>
@@ -367,7 +318,6 @@ function SearchContent() {
           </div>
         )}
 
-        {/* Restaurant Results */}
         {restaurants.length > 0 && (
           <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-6">
             <h3 className="text-white text-xl font-semibold mb-4">
@@ -378,7 +328,7 @@ function SearchContent() {
                 <div
                   key={restaurant.id}
                   className="bg-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition-colors"
-                  onClick={() => openModal(restaurant)}
+                  onClick={() => viewRestaurant(restaurant)}
                 >
                   {restaurant.image_url && (
                     <div className="relative h-40 mb-3 rounded-lg overflow-hidden">
@@ -405,67 +355,6 @@ function SearchContent() {
           </div>
         )}
       </div>
-
-      {/* CTA Modal */}
-      {showModal && selectedRestaurant && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-gradient-to-br from-[#3B2F8F] to-[#5A4AAF] rounded-lg max-w-md w-full p-6 border-2 border-[#FFA500]/30">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-white text-xl font-semibold">
-                {selectedRestaurant.name}
-              </h3>
-              <button
-                onClick={closeModal}
-                className="text-gray-400 hover:text-white text-2xl"
-              >
-                ×
-              </button>
-            </div>
-
-            <div className="space-y-3">
-              <button
-                onClick={() => handleCall(selectedRestaurant)}
-                className="w-full p-4 bg-green-600 hover:bg-green-700 rounded-lg transition-colors flex items-center justify-center gap-2"
-                type="button"
-              >
-                📞 Call Restaurant
-              </button>
-
-              <button
-                onClick={() => handleReservation(selectedRestaurant)}
-                className="w-full p-4 bg-[#FFA500] hover:bg-[#FFB520] text-black rounded-lg transition-colors flex items-center justify-center gap-2"
-                type="button"
-              >
-                🍽️ Reserve Table
-              </button>
-
-              <button
-                onClick={() => handleUber(selectedRestaurant)}
-                className="w-full p-4 bg-black hover:bg-gray-900 rounded-lg transition-colors flex items-center justify-center gap-2"
-                type="button"
-              >
-                🚗 Get Uber
-              </button>
-
-              <button
-                onClick={() => handleLyft(selectedRestaurant)}
-                className="w-full p-4 bg-pink-600 hover:bg-pink-700 rounded-lg transition-colors flex items-center justify-center gap-2"
-                type="button"
-              >
-                🚖 Get Lyft
-              </button>
-
-              <button
-                onClick={() => handleDirections(selectedRestaurant)}
-                className="w-full p-4 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors flex items-center justify-center gap-2"
-                type="button"
-              >
-                🗺️ Get Directions
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

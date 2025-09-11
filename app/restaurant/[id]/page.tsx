@@ -191,12 +191,29 @@ export default function RestaurantDetailPage() {
 
               <div className="h-96 lg:h-[600px]">
                 {showWebsite && restaurant.website ? (
-                  <iframe
-                    src={restaurant.website}
-                    className="w-full h-full"
-                    title={`${restaurant.name} Website`}
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-                  />
+                  <div className="w-full h-full">
+                    <iframe
+                      src={restaurant.website}
+                      className="w-full h-full"
+                      title={`${restaurant.name} Website`}
+                      sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                      onError={() => {
+                        console.log('iframe failed to load')
+                      }}
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-white/10 backdrop-blur-sm" style={{display: 'none'}} id="iframe-fallback">
+                      <div className="text-center text-white p-6">
+                        <h3 className="text-xl font-semibold mb-4">Website Preview Not Available</h3>
+                        <p className="mb-4">This restaurant's website cannot be displayed here for security reasons.</p>
+                        <button
+                          onClick={() => window.open(restaurant.website, '_blank')}
+                          className="bg-[#FFA500] hover:bg-[#FFB520] text-black px-6 py-3 rounded-lg transition-colors"
+                        >
+                          🌐 Visit {restaurant.name} Website
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 ) : (
                   <div className="p-6 text-white">
                     <div className="space-y-4">
@@ -302,6 +319,51 @@ export default function RestaurantDetailPage() {
           </div>
         </div>
       </div>
+
+      {/* Premium Access Confirmation Modal */}
+      {showPremiumModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-gradient-to-br from-[#3B2F8F] to-[#5A4AAF] rounded-xl p-6 max-w-md w-full border-2 border-[#FFA500]/30">
+            <h2 className="text-2xl font-bold text-[#FFA500] mb-4">Premium Access Confirmation</h2>
+            
+            <div className="space-y-4 text-white">
+              <div className="bg-white/10 p-4 rounded-lg">
+                <h3 className="font-semibold mb-2">⭐ Premium Access Details</h3>
+                <ul className="text-sm space-y-1">
+                  <li>• Guaranteed table reservation</li>
+                  <li>• Skip standard waiting list</li>
+                  <li>• Premium service priority</li>
+                </ul>
+              </div>
+
+              <div className="bg-yellow-600/20 border border-yellow-500/30 p-4 rounded-lg">
+                <h4 className="font-semibold text-yellow-400 mb-2">⚠️ Important Terms</h4>
+                <ul className="text-sm space-y-1">
+                  <li>• Fee: $150 (non-refundable)</li>
+                  <li>• Does not apply to your dining bill</li>
+                  <li>• Reservation access fee only</li>
+                  <li>• Subject to restaurant availability</li>
+                </ul>
+              </div>
+
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowPremiumModal(false)}
+                  className="flex-1 p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={confirmPremiumAccess}
+                  className="flex-1 p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-colors font-semibold"
+                >
+                  Confirm $150
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

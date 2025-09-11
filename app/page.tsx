@@ -110,7 +110,11 @@ function SearchContent() {
 
   const handleAreaTypeSelection = (areaType: string) => {
     setSelectedAreaType(areaType)
-    setSelectedNeighborhood('')
+    if (areaType === 'explore-all') {
+      setSelectedNeighborhood('all')
+    } else {
+      setSelectedNeighborhood('')
+    }
     setSelectedBudget('')
     setSelectedCuisine('')
     setRestaurants([])
@@ -226,34 +230,33 @@ function SearchContent() {
           </div>
         </div>
 
-        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${
-          !selectedAreaType ? 'opacity-50' : 'opacity-100'
-        }`}>
-          <select
-            value={selectedNeighborhood}
-            onChange={(e) => handleNeighborhoodSelection(e.target.value)}
-            disabled={!selectedAreaType}
-            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-[#FFA500] focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <option value="">🏘️ Choose neighborhood...</option>
-            {selectedCity && neighborhoods[selectedCity]?.map((neighborhood) => (
-              <option key={neighborhood} value={neighborhood}>
-                {neighborhood}
-              </option>
-            ))}
-          </select>
-        </div>
+        {selectedAreaType === 'specific' && (
+          <div className="bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700">
+            <select
+              value={selectedNeighborhood}
+              onChange={(e) => handleNeighborhoodSelection(e.target.value)}
+              className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-[#FFA500] focus:outline-none"
+            >
+              <option value="">🏘️ Choose neighborhood...</option>
+              {selectedCity && neighborhoods[selectedCity]?.map((neighborhood) => (
+                <option key={neighborhood} value={neighborhood}>
+                  {neighborhood}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
         <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${
-          !selectedNeighborhood ? 'opacity-50' : 'opacity-100'
+          (selectedAreaType === 'specific' && !selectedNeighborhood) ? 'opacity-50' : 'opacity-100'
         }`}>
           <select
             value={selectedCategory}
             onChange={(e) => handleCategorySelection(e.target.value)}
-            disabled={!selectedNeighborhood}
+            disabled={selectedAreaType === 'specific' && !selectedNeighborhood}
             className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-[#FFA500] focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <option value="">🎭 Dining. Entertainment. Adventure. Culture.</option>
+            <option value="">🎭 Dining? Entertainment? Adventure? Culture?</option>
             {categories.map((category) => (
               <option key={category} value={category}>
                 {category.charAt(0).toUpperCase() + category.slice(1)}

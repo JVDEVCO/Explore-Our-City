@@ -1,6 +1,7 @@
 'use client'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 interface Restaurant {
   id: string;
@@ -24,13 +25,15 @@ export default function RestaurantDetailPage() {
   const [restaurant, setRestaurant] = useState<Restaurant | null>(null)
   const [loading, setLoading] = useState(true)
   const [showWebsite, setShowWebsite] = useState(true)
+  const [showPremiumAccess, setShowPremiumAccess] = useState(false)
+  const [showPremiumModal, setShowPremiumModal] = useState(false)
 
   useEffect(() => {
     const fetchRestaurant = async () => {
       try {
         const mockRestaurant: Restaurant = {
           id: params.id as string,
-          name: 'Joe\'s Stone Crab',
+          name: 'Joe&apos;s Stone Crab',
           cuisine_type: 'Seafood',
           budget_level: '$$$',
           neighborhood: 'South Beach',
@@ -86,10 +89,23 @@ export default function RestaurantDetailPage() {
 
   const handleReservation = () => {
     if (restaurant?.website) {
+      setTimeout(() => {
+        setShowPremiumAccess(true)
+      }, 2000)
       window.open(restaurant.website, '_blank')
     } else if (restaurant?.phone) {
       window.open(`tel:${restaurant.phone}`, '_self')
     }
+  }
+
+  const handlePremiumAccess = () => {
+    setShowPremiumModal(true)
+  }
+
+  const confirmPremiumAccess = () => {
+    alert('Premium Access reservation confirmed! You will receive confirmation details shortly.')
+    setShowPremiumModal(false)
+    setShowPremiumAccess(false)
   }
 
   const handleBack = () => {
@@ -136,9 +152,12 @@ export default function RestaurantDetailPage() {
             </button>
             <h1 className="text-2xl font-bold text-[#FFA500]">{restaurant.name}</h1>
             <div className="ml-auto">
-              <span className="bg-[#FFA500] text-black px-3 py-1 rounded-full text-sm font-medium">
-                📱 Explore Our City
-              </span>
+              <button
+                onClick={handleBack}
+                className="bg-[#FFA500] text-black px-3 py-1 rounded-full text-sm font-medium hover:bg-[#FFB520] transition-colors"
+              >
+                📱 Continue Shopping
+              </button>
             </div>
           </div>
           
@@ -191,25 +210,23 @@ export default function RestaurantDetailPage() {
 
               <div className="h-96 lg:h-[600px]">
                 {showWebsite && restaurant.website ? (
-                  <div className="w-full h-full">
+                  <div className="relative w-full h-full">
                     <iframe
                       src={restaurant.website}
                       className="w-full h-full"
                       title={`${restaurant.name} Website`}
                       sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-                      onError={() => {
-                        console.log('iframe failed to load')
-                      }}
                     />
-                    <div className="absolute inset-0 flex items-center justify-center bg-white/10 backdrop-blur-sm" style={{display: 'none'}} id="iframe-fallback">
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#3B2F8F] to-[#5A4AAF]">
                       <div className="text-center text-white p-6">
+                        <div className="text-6xl mb-4">🌐</div>
                         <h3 className="text-xl font-semibold mb-4">Website Preview Not Available</h3>
-                        <p className="mb-4">This restaurant's website cannot be displayed here for security reasons.</p>
+                        <p className="mb-6 text-gray-200">This restaurant&apos;s website cannot be displayed here for security reasons.</p>
                         <button
                           onClick={() => window.open(restaurant.website, '_blank')}
-                          className="bg-[#FFA500] hover:bg-[#FFB520] text-black px-6 py-3 rounded-lg transition-colors"
+                          className="bg-[#FFA500] hover:bg-[#FFB520] text-black px-6 py-3 rounded-lg transition-colors font-medium"
                         >
-                          🌐 Visit {restaurant.name} Website
+                          Visit {restaurant.name} Website
                         </button>
                       </div>
                     </div>
@@ -218,9 +235,11 @@ export default function RestaurantDetailPage() {
                   <div className="p-6 text-white">
                     <div className="space-y-4">
                       {restaurant.image_url && (
-                        <img
+                        <Image
                           src={restaurant.image_url}
                           alt={restaurant.name}
+                          width={800}
+                          height={300}
                           className="w-full h-48 object-cover rounded-lg"
                         />
                       )}
@@ -276,6 +295,24 @@ export default function RestaurantDetailPage() {
                   🍽️ Make Reservation
                 </button>
 
+                {showPremiumAccess && (
+                  <div className="border-t border-white/20 pt-4 mt-4">
+                    <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white p-4 rounded-lg mb-3">
+                      <h4 className="font-semibold mb-2">Premium Access Available</h4>
+                      <p className="text-sm">Standard reservations are fully booked. Secure your table with Premium Access.</p>
+                    </div>
+                    <button
+                      onClick={handlePremiumAccess}
+                      className="w-full p-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg transition-colors flex items-center justify-center gap-2 font-semibold"
+                    >
+                      ⭐ Premium Access - $150
+                    </button>
+                    <p className="text-xs text-gray-300 mt-2 text-center">
+                      *Fee is non-refundable and does not apply to your bill
+                    </p>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     onClick={handleUber}
@@ -320,7 +357,6 @@ export default function RestaurantDetailPage() {
         </div>
       </div>
 
-      {/* Premium Access Confirmation Modal */}
       {showPremiumModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-gradient-to-br from-[#3B2F8F] to-[#5A4AAF] rounded-xl p-6 max-w-md w-full border-2 border-[#FFA500]/30">

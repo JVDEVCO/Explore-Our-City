@@ -168,7 +168,7 @@ export default function RestaurantDetailPage() {
       <div className="min-h-screen bg-gradient-to-br from-[#3B2F8F] via-[#4A3A9F] to-[#5A4AAF] flex items-center justify-center">
         <div className="text-center text-white">
           <h1 className="text-2xl mb-4">Restaurant not found</h1>
-          <p className="mb-4 text-gray-300">The restaurant you're looking for doesn't exist or has been removed.</p>
+          <p className="mb-4 text-gray-300">The restaurant you&apos;re looking for doesn&apos;t exist or has been removed.</p>
           <button
             onClick={() => router.push('/')}
             className="px-6 py-3 bg-[#FFA500] text-black rounded-lg hover:bg-[#FFB520] transition-colors"

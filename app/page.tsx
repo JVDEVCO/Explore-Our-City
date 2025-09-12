@@ -39,7 +39,6 @@ function SearchContent() {
   const [selectedBudget, setSelectedBudget] = useState<string>('')
   const [selectedCuisine, setSelectedCuisine] = useState<string>('')
   const [restaurants, setRestaurants] = useState<Restaurant[]>([])
-  const [loading, setLoading] = useState<boolean>(false)
 
   const cities: City[] = [
     { id: 'miami-beaches', name: 'Miami & Beaches' },
@@ -363,13 +362,6 @@ function SearchContent() {
             </button>
           </div>
         </div>
-
-        {loading && (
-          <div className="text-center py-8">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FFA500] mx-auto"></div>
-            <p className="text-white mt-4">Finding perfect matches...</p>
-          </div>
-        )}
 
         {restaurants.length > 0 && (
           <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-6">

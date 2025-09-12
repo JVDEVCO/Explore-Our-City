@@ -194,26 +194,6 @@ function RestaurantsContent() {
         router.push(restaurantUrl)
     }
 
-    const handleCall = (phone?: string): void => {
-        if (phone) {
-            window.location.href = `tel:${phone.replace(/\D/g, '')}`
-        }
-    }
-
-    const handleUberLyft = (address: string, service: 'uber' | 'lyft'): void => {
-        const encodedAddress = encodeURIComponent(address)
-        if (service === 'uber') {
-            window.open(`https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=${encodedAddress}`, '_blank')
-        } else {
-            window.open(`https://lyft.com/ride?id=lyft&pickup=current_location&destination=${encodedAddress}`, '_blank')
-        }
-    }
-
-    const handleDirections = (address: string): void => {
-        const encodedAddress = encodeURIComponent(address)
-        window.open(`https://maps.google.com/maps?daddr=${encodedAddress}`, '_blank')
-    }
-
     // FIXED: Proper back navigation that preserves search state
     const handleBack = (): void => {
         // Build URL with current search parameters

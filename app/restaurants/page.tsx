@@ -53,10 +53,6 @@ function RestaurantsContent() {
     const [nearbyLoading, setNearbyLoading] = useState<boolean>(false)
     const [nearbyShown, setNearbyShown] = useState<boolean>(false)
 
-    // Modal state
-    const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null)
-    const [showActions, setShowActions] = useState<boolean>(false)
-
     // Get query parameters
     const neighborhood = searchParams.get('neighborhood') || ''
     const budget = searchParams.get('budget') || ''
@@ -88,7 +84,7 @@ function RestaurantsContent() {
                 if (city && city !== 'all') params.append('city', city)
                 if (search) params.append('search', search)
                 
-                // FIXED: Get more results initially (up to 50)
+                // Get more results initially (up to 50)
                 params.append('limit', '50')
                 params.append('searchType', 'primary')
 
@@ -104,7 +100,7 @@ function RestaurantsContent() {
                 console.log('Received primary restaurants:', data)
                 
                 setPrimaryRestaurants(data || [])
-                // FIXED: Check if we might have more results based on result count
+                // Check if we might have more results based on result count
                 setPrimaryHasMore(data && data.length >= 50) // If we got full batch, there might be more
 
             } catch (error) {
@@ -186,9 +182,16 @@ function RestaurantsContent() {
         }
     }
 
+    // FIXED: Navigate directly to restaurant detail page with search context preserved
     const handleRestaurantClick = (restaurant: Restaurant): void => {
-        setSelectedRestaurant(restaurant)
-        setShowActions(true)
+        const currentParams = new URLSearchParams()
+        searchParams.forEach((value, key) => {
+            currentParams.set(key, value)
+        })
+        
+        const restaurantUrl = `/restaurant/${restaurant.id}?${currentParams.toString()}`
+        console.log('Navigating directly to restaurant detail:', restaurantUrl)
+        router.push(restaurantUrl)
     }
 
     const handleCall = (phone?: string): void => {
@@ -204,13 +207,6 @@ function RestaurantsContent() {
         } else {
             window.open(`https://lyft.com/ride?id=lyft&pickup=current_location&destination=${encodedAddress}`, '_blank')
         }
-    }
-
-    const handleReservation = (restaurant: Restaurant): void => {
-        // FIXED: Navigate to restaurant detail page preserving current search context
-        const currentParams = new URLSearchParams(window.location.search)
-        const restaurantUrl = `/restaurant/${restaurant.id}?${currentParams.toString()}`
-        router.push(restaurantUrl)
     }
 
     const handleDirections = (address: string): void => {
@@ -378,7 +374,7 @@ function RestaurantsContent() {
                                     ))}
                                 </div>
                                 
-                                {/* FIXED: Load More Button logic for Same Neighborhood */}
+                                {/* Load More Button logic for Same Neighborhood */}
                                 {primaryRestaurants.length > 20 && !primaryShowAll && (
                                     <div className="text-center mb-6">
                                         <button
@@ -470,98 +466,6 @@ function RestaurantsContent() {
                             </div>
                         )}
                     </>
-                )}
-
-                {/* Action Modal */}
-                {showActions && selectedRestaurant && (
-                    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-                        <div className="bg-gradient-to-br from-[#3B2F8F] to-[#5A4AAF] rounded-xl p-6 max-w-md w-full border-2 border-[#FFA500]/30">
-                            <div className="flex justify-between items-center mb-4">
-                                <h2 className="text-2xl font-bold text-[#FFA500]">{selectedRestaurant.name}</h2>
-                                <button
-                                    onClick={() => setShowActions(false)}
-                                    className="text-gray-400 hover:text-white text-2xl"
-                                >
-                                    ×
-                                </button>
-                            </div>
-
-                            <div className="mb-4 text-sm text-gray-300">
-                                <p>{selectedRestaurant.cuisine_type} • {selectedRestaurant.budget_level}</p>
-                                <p>{selectedRestaurant.neighborhood}
-                                    {selectedRestaurant.distance_miles && (
-                                        <span className="text-[#FFA500]"> • {selectedRestaurant.distance_miles} mi away</span>
-                                    )}
-                                </p>
-                                {selectedRestaurant.address && selectedRestaurant.address !== 'Address not available' && (
-                                    <p>{selectedRestaurant.address}</p>
-                                )}
-                                {selectedRestaurant.rating && (
-                                    <p>⭐ {selectedRestaurant.rating} 
-                                        {selectedRestaurant.review_count && ` (${selectedRestaurant.review_count} reviews)`}
-                                    </p>
-                                )}
-                            </div>
-
-                            <div className="space-y-3">
-                                {/* Call Button */}
-                                {selectedRestaurant.phone && (
-                                    <button
-                                        onClick={() => handleCall(selectedRestaurant.phone)}
-                                        className="w-full p-4 bg-green-600 hover:bg-green-700 rounded-lg transition-colors flex items-center justify-center gap-2"
-                                        type="button"
-                                    >
-                                        📞 Call {selectedRestaurant.phone}
-                                    </button>
-                                )}
-
-                                {/* Reservation Button */}
-                                <button
-                                    onClick={() => handleReservation(selectedRestaurant)}
-                                    className="w-full p-4 bg-[#FFA500] hover:bg-[#FFB520] text-black rounded-lg transition-colors flex items-center justify-center gap-2"
-                                    type="button"
-                                >
-                                    🍽️ View Details & Reserve
-                                </button>
-
-                                {/* Ride Options */}
-                                <div className="grid grid-cols-2 gap-2">
-                                    <button
-                                        onClick={() => handleUberLyft(selectedRestaurant.address, 'uber')}
-                                        className="p-4 bg-black hover:bg-gray-900 rounded-lg transition-colors"
-                                        type="button"
-                                    >
-                                        🚗 Uber
-                                    </button>
-                                    <button
-                                        onClick={() => handleUberLyft(selectedRestaurant.address, 'lyft')}
-                                        className="p-4 bg-pink-600 hover:bg-pink-700 rounded-lg transition-colors"
-                                        type="button"
-                                    >
-                                        🚗 Lyft
-                                    </button>
-                                </div>
-
-                                {/* Directions Button */}
-                                <button
-                                    onClick={() => handleDirections(selectedRestaurant.address)}
-                                    className="w-full p-4 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors flex items-center justify-center gap-2"
-                                    type="button"
-                                >
-                                    🗺️ Get Directions
-                                </button>
-
-                                {/* Close Button */}
-                                <button
-                                    onClick={() => setShowActions(false)}
-                                    className="w-full p-4 bg-white/20 hover:bg-white/30 rounded-lg transition-colors"
-                                    type="button"
-                                >
-                                    Close
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                 )}
             </div>
         </div>

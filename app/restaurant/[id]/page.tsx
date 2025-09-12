@@ -20,13 +20,14 @@ interface Restaurant {
   review_count?: number;
   latitude?: number;
   longitude?: number;
-  premium_access_fee?: number;
   yelp_id?: string;
+  premium_access_fee?: number;
 }
 
 export default function RestaurantDetailPage() {
   const params = useParams()
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [restaurant, setRestaurant] = useState<Restaurant | null>(null)
   const [loading, setLoading] = useState(true)
   const [showWebsite, setShowWebsite] = useState(true)
@@ -38,7 +39,7 @@ export default function RestaurantDetailPage() {
       try {
         console.log('Fetching restaurant with ID:', params.id)
         
-        // FIXED: Call API specifically for this restaurant ID
+        // Call API specifically for this restaurant ID
         const response = await fetch(`/api/restaurants?restaurant_id=${params.id}&limit=1`)
         
         if (!response.ok) {
@@ -51,16 +52,13 @@ export default function RestaurantDetailPage() {
         if (data && data.length > 0) {
           const foundRestaurant = data[0]
           
-          // FIXED: Enhanced data with proper premium access calculation
+          // Enhanced restaurant with premium access pricing
           const enhancedRestaurant = {
             ...foundRestaurant,
-            description: foundRestaurant.description || `Experience authentic ${foundRestaurant.cuisine_type} cuisine in the heart of ${foundRestaurant.neighborhood}. This ${foundRestaurant.budget_level} establishment offers a memorable dining experience with excellent service and quality ingredients.`,
-            hours: foundRestaurant.hours || 'Hours vary - please call for current hours',
-            website: foundRestaurant.website || `https://www.google.com/search?q=${encodeURIComponent(foundRestaurant.name + ' ' + foundRestaurant.neighborhood + ' restaurant')}`,
-            // FIXED: Better premium access fee calculation
+            // Calculate premium access fee based on budget level
             premium_access_fee: foundRestaurant.budget_level === '$$$$' ? 200 : 
-                               foundRestaurant.budget_level === '$$$$$' ? 500 : 
-                               foundRestaurant.budget_level === '$$$' ? 100 : 0
+                               foundRestaurant.budget_level === '$$$$$' ? 250 : 
+                               foundRestaurant.budget_level === '$$$' ? 150 : 0
           }
           
           setRestaurant(enhancedRestaurant)
@@ -124,45 +122,34 @@ export default function RestaurantDetailPage() {
     setShowPremiumAccess(false)
   }
 
-  // FIXED: Proper back navigation that preserves search context
+  // FIXED: Proper back navigation that preserves ALL search context
+  const handleBackToRestaurantTiles = () => {
+    // Get all the search parameters that were passed to this detail page
+    const urlParams = new URLSearchParams()
+    
+    // Copy all current search parameters to preserve exact search context
+    searchParams.forEach((value, key) => {
+      urlParams.set(key, value)
+    })
+    
+    // Navigate back to the restaurants results page with all original filters preserved
+    const restaurantsUrl = `/restaurants?${urlParams.toString()}`
+    console.log('Navigating back to restaurant tiles:', restaurantsUrl)
+    router.push(restaurantsUrl)
+  }
+
+  // Alternative back navigation for left arrow - try browser back first if safe
   const handleBack = () => {
-    // Get the referring URL from browser history
     const referrer = document.referrer
     const currentDomain = window.location.origin
     
-    // If we came from a search results page on the same domain, go back to it
     if (referrer && referrer.startsWith(currentDomain) && referrer.includes('/restaurants')) {
-      window.history.back()
-    } else if (referrer && referrer.startsWith(currentDomain) && referrer !== window.location.href) {
-      // Go back to any page on our domain (but not the same page)
+      // We came from a restaurants page on our domain, safe to go back
       window.history.back()
     } else {
-      // Fallback: construct a restaurants page URL with basic parameters
-      const urlParams = new URLSearchParams()
-      if (restaurant?.cuisine_type) urlParams.set('cuisine', restaurant.cuisine_type)
-      if (restaurant?.neighborhood) urlParams.set('neighborhood', restaurant.neighborhood)
-      if (restaurant?.budget_level) {
-        // Convert budget level back to search parameter
-        const budgetMap: Record<string, string> = {
-          '$': 'budget',
-          '$$': 'mid-range',
-          '$$$': 'upscale', 
-          '$$$$': 'luxury',
-          '$$$$$': 'ultra-luxury'
-        }
-        const budgetParam = budgetMap[restaurant.budget_level]
-        if (budgetParam) urlParams.set('budget', budgetParam)
-      }
-      
-      const searchUrl = `/restaurants?${urlParams.toString()}`
-      router.push(searchUrl)
+      // Otherwise use the same logic as handleBackToRestaurantTiles
+      handleBackToRestaurantTiles()
     }
-  }
-
-  // FIXED: Smart back navigation for "Back to Other Options" 
-  const handleBackToOptions = () => {
-    // This should go back to the restaurant search results, not homepage
-    handleBack()
   }
 
   if (loading) {
@@ -181,7 +168,7 @@ export default function RestaurantDetailPage() {
       <div className="min-h-screen bg-gradient-to-br from-[#3B2F8F] via-[#4A3A9F] to-[#5A4AAF] flex items-center justify-center">
         <div className="text-center text-white">
           <h1 className="text-2xl mb-4">Restaurant not found</h1>
-          <p className="mb-4 text-gray-300">The restaurant you&apos;re looking for doesn&apos;t exist or has been removed.</p>
+          <p className="mb-4 text-gray-300">The restaurant you're looking for doesn't exist or has been removed.</p>
           <button
             onClick={() => router.push('/')}
             className="px-6 py-3 bg-[#FFA500] text-black rounded-lg hover:bg-[#FFB520] transition-colors"
@@ -195,6 +182,7 @@ export default function RestaurantDetailPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#3B2F8F] via-[#4A3A9F] to-[#5A4AAF]">
+      {/* FIXED: Header with proper navigation */}
       <div className="bg-white/10 backdrop-blur-sm border-b border-white/20 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-4 mb-4">
@@ -207,10 +195,10 @@ export default function RestaurantDetailPage() {
             <h1 className="text-2xl font-bold text-[#FFA500]">{restaurant.name}</h1>
             <div className="ml-auto">
               <button
-                onClick={handleBackToOptions}
+                onClick={handleBackToRestaurantTiles}
                 className="bg-[#FFA500] text-black px-3 py-1 rounded-full text-sm font-medium hover:bg-[#FFB520] transition-colors"
               >
-                📱 Back to Other Options
+                Back to Other Options
               </button>
             </div>
           </div>
@@ -238,6 +226,7 @@ export default function RestaurantDetailPage() {
       <div className="container mx-auto px-4 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
+          {/* Main Content */}
           <div className="lg:col-span-2">
             <div className="bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden border border-white/20">
               <div className="flex bg-white/20 border-b border-white/20">
@@ -365,14 +354,14 @@ export default function RestaurantDetailPage() {
 
                       {restaurant.latitude && restaurant.longitude && (
                         <div>
-                          <h4 className="text-lg font-semibold mb-3 text-[#FFA500]">Map</h4>
+                          <h4 className="text-lg font-semibold mb-3 text-[#FFA500]">Map Info</h4>
                           <div className="bg-white/10 p-4 rounded-lg text-center">
-                            <p className="text-gray-300 mb-2">Interactive map coming soon</p>
+                            <p className="text-gray-300 mb-2">Coordinates available for mapping</p>
                             <p className="text-sm text-gray-400">
-                              Coordinates: {restaurant.latitude.toFixed(4)}, {restaurant.longitude.toFixed(4)}
+                              {restaurant.latitude.toFixed(4)}, {restaurant.longitude.toFixed(4)}
                             </p>
                             <p className="text-xs text-gray-500 mt-1">
-                              Detected Neighborhood: {restaurant.neighborhood}
+                              Located in: {restaurant.neighborhood}
                             </p>
                           </div>
                         </div>
@@ -384,6 +373,7 @@ export default function RestaurantDetailPage() {
             </div>
           </div>
 
+          {/* Quick Actions Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 sticky top-6">
               <h3 className="text-white text-xl font-semibold mb-4 text-center">
@@ -501,9 +491,9 @@ export default function RestaurantDetailPage() {
             
             <div className="space-y-4 text-white">
               <div className="bg-white/10 p-4 rounded-lg">
-                <h3 className="font-semibold mb-2">⭐ Premium Access Details</h3>
+                <h3 className="font-semibold mb-2">⭐ Premium Access Features</h3>
                 <ul className="text-sm space-y-1">
-                  <li>• Guaranteed table reservation</li>
+                  <li>• ${restaurant.premium_access_fee} fee for guaranteed seating + priority service</li>
                   <li>• Skip standard waiting list</li>
                   <li>• Premium service priority</li>
                 </ul>

@@ -29,18 +29,18 @@ const NEARBY_NEIGHBORHOODS: Record<string, string[]> = {
 
 // TypeScript interface for restaurant data
 interface TransformedRestaurant {
-  id: any
-  name: any
-  cuisine_type: any
-  budget_level: any
-  neighborhood: any
-  address: any
-  phone: any
-  rating: any
-  review_count: any
-  latitude: any
-  longitude: any
-  yelp_id: any
+  id: number
+  name: string
+  cuisine_type: string
+  budget_level: string
+  neighborhood: string
+  address: string
+  phone: string | null
+  rating: number | null
+  review_count: number | null
+  latitude: number | null
+  longitude: number | null
+  yelp_id: string | null
   city: string
   image_url: string
   description: string

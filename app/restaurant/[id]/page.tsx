@@ -1,5 +1,5 @@
 'use client'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
@@ -17,7 +17,11 @@ interface Restaurant {
   description?: string;
   hours?: string;
   rating?: number;
+  review_count?: number;
+  latitude?: number;
+  longitude?: number;
   premium_access_fee?: number;
+  yelp_id?: string;
 }
 
 export default function RestaurantDetailPage() {
@@ -32,26 +36,43 @@ export default function RestaurantDetailPage() {
   useEffect(() => {
     const fetchRestaurant = async () => {
       try {
-        const mockRestaurant: Restaurant = {
-          id: params.id as string,
-          name: 'Joe&apos;s Stone Crab',
-          cuisine_type: 'Seafood',
-          budget_level: '$$$',
-          neighborhood: 'South Beach',
-          city: 'Miami Beach',
-          phone: '(305) 673-0365',
-          address: '11 Washington Ave, Miami Beach, FL 33139',
-          website: 'https://joesstonecrab.com',
-          image_url: '/api/placeholder/800/400',
-          description: 'Iconic Miami Beach seafood restaurant serving stone crab since 1913. A must-visit destination for locals and tourists alike.',
-          hours: '11:30 AM - 10:00 PM',
-          rating: 4.6,
-          premium_access_fee: 250
+        console.log('Fetching restaurant with ID:', params.id)
+        
+        // FIXED: Call API specifically for this restaurant ID
+        const response = await fetch(`/api/restaurants?restaurant_id=${params.id}&limit=1`)
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        
+        const data = await response.json()
+        console.log('Restaurant API response:', data)
+        
+        if (data && data.length > 0) {
+          const foundRestaurant = data[0]
+          
+          // FIXED: Enhanced data with proper premium access calculation
+          const enhancedRestaurant = {
+            ...foundRestaurant,
+            description: foundRestaurant.description || `Experience authentic ${foundRestaurant.cuisine_type} cuisine in the heart of ${foundRestaurant.neighborhood}. This ${foundRestaurant.budget_level} establishment offers a memorable dining experience with excellent service and quality ingredients.`,
+            hours: foundRestaurant.hours || 'Hours vary - please call for current hours',
+            website: foundRestaurant.website || `https://www.google.com/search?q=${encodeURIComponent(foundRestaurant.name + ' ' + foundRestaurant.neighborhood + ' restaurant')}`,
+            // FIXED: Better premium access fee calculation
+            premium_access_fee: foundRestaurant.budget_level === '$$$$' ? 200 : 
+                               foundRestaurant.budget_level === '$$$$$' ? 500 : 
+                               foundRestaurant.budget_level === '$$$' ? 100 : 0
+          }
+          
+          setRestaurant(enhancedRestaurant)
+          console.log('Found restaurant:', enhancedRestaurant)
+        } else {
+          console.error('Restaurant not found with ID:', params.id)
+          setRestaurant(null)
         }
 
-        setRestaurant(mockRestaurant)
       } catch (error) {
         console.error('Error fetching restaurant:', error)
+        setRestaurant(null)
       } finally {
         setLoading(false)
       }
@@ -90,7 +111,6 @@ export default function RestaurantDetailPage() {
   }
 
   const handleReservation = () => {
-    // Show Premium Booking options instead of immediately opening external site
     setShowPremiumAccess(true)
   }
 
@@ -104,8 +124,45 @@ export default function RestaurantDetailPage() {
     setShowPremiumAccess(false)
   }
 
+  // FIXED: Proper back navigation that preserves search context
   const handleBack = () => {
-    router.back()
+    // Get the referring URL from browser history
+    const referrer = document.referrer
+    const currentDomain = window.location.origin
+    
+    // If we came from a search results page on the same domain, go back to it
+    if (referrer && referrer.startsWith(currentDomain) && referrer.includes('/restaurants')) {
+      window.history.back()
+    } else if (referrer && referrer.startsWith(currentDomain) && referrer !== window.location.href) {
+      // Go back to any page on our domain (but not the same page)
+      window.history.back()
+    } else {
+      // Fallback: construct a restaurants page URL with basic parameters
+      const urlParams = new URLSearchParams()
+      if (restaurant?.cuisine_type) urlParams.set('cuisine', restaurant.cuisine_type)
+      if (restaurant?.neighborhood) urlParams.set('neighborhood', restaurant.neighborhood)
+      if (restaurant?.budget_level) {
+        // Convert budget level back to search parameter
+        const budgetMap: Record<string, string> = {
+          '$': 'budget',
+          '$$': 'mid-range',
+          '$$$': 'upscale', 
+          '$$$$': 'luxury',
+          '$$$$$': 'ultra-luxury'
+        }
+        const budgetParam = budgetMap[restaurant.budget_level]
+        if (budgetParam) urlParams.set('budget', budgetParam)
+      }
+      
+      const searchUrl = `/restaurants?${urlParams.toString()}`
+      router.push(searchUrl)
+    }
+  }
+
+  // FIXED: Smart back navigation for "Back to Other Options" 
+  const handleBackToOptions = () => {
+    // This should go back to the restaurant search results, not homepage
+    handleBack()
   }
 
   if (loading) {
@@ -124,11 +181,12 @@ export default function RestaurantDetailPage() {
       <div className="min-h-screen bg-gradient-to-br from-[#3B2F8F] via-[#4A3A9F] to-[#5A4AAF] flex items-center justify-center">
         <div className="text-center text-white">
           <h1 className="text-2xl mb-4">Restaurant not found</h1>
+          <p className="mb-4 text-gray-300">The restaurant you&apos;re looking for doesn&apos;t exist or has been removed.</p>
           <button
-            onClick={handleBack}
+            onClick={() => router.push('/')}
             className="px-6 py-3 bg-[#FFA500] text-black rounded-lg hover:bg-[#FFB520] transition-colors"
           >
-            Go Back
+            Back to Search
           </button>
         </div>
       </div>
@@ -149,7 +207,7 @@ export default function RestaurantDetailPage() {
             <h1 className="text-2xl font-bold text-[#FFA500]">{restaurant.name}</h1>
             <div className="ml-auto">
               <button
-                onClick={handleBack}
+                onClick={handleBackToOptions}
                 className="bg-[#FFA500] text-black px-3 py-1 rounded-full text-sm font-medium hover:bg-[#FFB520] transition-colors"
               >
                 📱 Back to Other Options
@@ -170,6 +228,7 @@ export default function RestaurantDetailPage() {
             {restaurant.rating && (
               <span className="bg-white/20 px-3 py-1 rounded-full">
                 ⭐ {restaurant.rating}
+                {restaurant.review_count && ` (${restaurant.review_count})`}
               </span>
             )}
           </div>
@@ -190,7 +249,7 @@ export default function RestaurantDetailPage() {
                       : 'text-white hover:bg-white/10'
                   }`}
                 >
-                  Restaurant Website
+                  Restaurant Info
                 </button>
                 <button
                   onClick={() => setShowWebsite(false)}
@@ -200,36 +259,14 @@ export default function RestaurantDetailPage() {
                       : 'text-white hover:bg-white/10'
                   }`}
                 >
-                  Details
+                  Location & Details
                 </button>
               </div>
 
               <div className="h-96 lg:h-[600px]">
-                {showWebsite && restaurant.website ? (
-                  <div className="relative w-full h-full">
-                    <iframe
-                      src={restaurant.website}
-                      className="w-full h-full"
-                      title={`${restaurant.name} Website`}
-                      sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#3B2F8F] to-[#5A4AAF]">
-                      <div className="text-center text-white p-6">
-                        <div className="text-6xl mb-4">🌐</div>
-                        <h3 className="text-xl font-semibold mb-4">Website Preview Not Available</h3>
-                        <p className="mb-6 text-gray-200">This restaurant&apos;s website cannot be displayed here for security reasons.</p>
-                        <button
-                          onClick={() => window.open(restaurant.website, '_blank')}
-                          className="bg-[#FFA500] hover:bg-[#FFB520] text-black px-6 py-3 rounded-lg transition-colors font-medium"
-                        >
-                          Visit {restaurant.name} Website
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="p-6 text-white">
-                    <div className="space-y-4">
+                {showWebsite ? (
+                  <div className="p-6 text-white overflow-y-auto h-full">
+                    <div className="space-y-6">
                       {restaurant.image_url && (
                         <Image
                           src={restaurant.image_url}
@@ -241,26 +278,105 @@ export default function RestaurantDetailPage() {
                       )}
                       
                       <div>
-                        <h3 className="text-xl font-semibold mb-2">About</h3>
-                        <p className="text-gray-200">
-                          {restaurant.description || 'A wonderful dining experience awaits you.'}
+                        <h3 className="text-2xl font-semibold mb-3 text-[#FFA500]">About {restaurant.name}</h3>
+                        <p className="text-gray-200 text-lg leading-relaxed">
+                          {restaurant.description}
                         </p>
                       </div>
 
-                      <div>
-                        <h3 className="text-xl font-semibold mb-2">Information</h3>
-                        <div className="space-y-2 text-gray-200">
-                          {restaurant.address && (
-                            <p><span className="font-medium">Address:</span> {restaurant.address}</p>
-                          )}
-                          {restaurant.phone && (
-                            <p><span className="font-medium">Phone:</span> {restaurant.phone}</p>
-                          )}
-                          {restaurant.hours && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <h4 className="text-lg font-semibold mb-3 text-[#FFA500]">Restaurant Info</h4>
+                          <div className="space-y-2 text-gray-200">
+                            <p><span className="font-medium">Cuisine:</span> {restaurant.cuisine_type}</p>
+                            <p><span className="font-medium">Price Level:</span> {restaurant.budget_level}</p>
+                            <p><span className="font-medium">Neighborhood:</span> {restaurant.neighborhood}</p>
+                            {restaurant.rating && (
+                              <p>
+                                <span className="font-medium">Rating:</span> ⭐ {restaurant.rating}
+                                {restaurant.review_count && ` (${restaurant.review_count} reviews)`}
+                              </p>
+                            )}
+                            {restaurant.yelp_id && (
+                              <p className="text-xs text-gray-400">Yelp ID: {restaurant.yelp_id}</p>
+                            )}
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <h4 className="text-lg font-semibold mb-3 text-[#FFA500]">Contact & Hours</h4>
+                          <div className="space-y-2 text-gray-200">
+                            {restaurant.phone && (
+                              <p><span className="font-medium">Phone:</span> {restaurant.phone}</p>
+                            )}
+                            {restaurant.address && restaurant.address !== 'Address not available' && (
+                              <p><span className="font-medium">Address:</span> {restaurant.address}</p>
+                            )}
                             <p><span className="font-medium">Hours:</span> {restaurant.hours}</p>
-                          )}
+                            {restaurant.website && (
+                              <p>
+                                <span className="font-medium">Website:</span> 
+                                <a 
+                                  href={restaurant.website} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="text-[#FFA500] hover:text-[#FFB520] ml-1"
+                                >
+                                  Visit Website
+                                </a>
+                              </p>
+                            )}
+                          </div>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="p-6 text-white overflow-y-auto h-full">
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="text-xl font-semibold mb-3 text-[#FFA500]">Location</h3>
+                        {restaurant.address && restaurant.address !== 'Address not available' ? (
+                          <p className="text-gray-200 text-lg mb-4">{restaurant.address}</p>
+                        ) : (
+                          <p className="text-gray-400 text-lg mb-4">Address not available - please call restaurant</p>
+                        )}
+                        
+                        <div className="bg-white/10 p-4 rounded-lg">
+                          <p className="text-sm text-gray-300 mb-2">
+                            Click below to get directions or book a ride
+                          </p>
+                          <div className="grid grid-cols-2 gap-2">
+                            <button
+                              onClick={handleDirections}
+                              className="p-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors text-sm"
+                            >
+                              🗺️ Directions
+                            </button>
+                            <button
+                              onClick={handleUber}
+                              className="p-3 bg-black hover:bg-gray-900 rounded-lg transition-colors text-sm"
+                            >
+                              🚗 Uber
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {restaurant.latitude && restaurant.longitude && (
+                        <div>
+                          <h4 className="text-lg font-semibold mb-3 text-[#FFA500]">Map</h4>
+                          <div className="bg-white/10 p-4 rounded-lg text-center">
+                            <p className="text-gray-300 mb-2">Interactive map coming soon</p>
+                            <p className="text-sm text-gray-400">
+                              Coordinates: {restaurant.latitude.toFixed(4)}, {restaurant.longitude.toFixed(4)}
+                            </p>
+                            <p className="text-xs text-gray-500 mt-1">
+                              Detected Neighborhood: {restaurant.neighborhood}
+                            </p>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
@@ -285,22 +401,19 @@ export default function RestaurantDetailPage() {
                 )}
 
                 {showPremiumAccess ? (
-                  // Show reservation options with Premium Booking
                   <div className="space-y-3">
                     <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white p-4 rounded-lg">
                       <h4 className="font-semibold mb-2">⚡ Choose Your Booking Method</h4>
                       <p className="text-sm mb-3">Standard reservations may be limited during peak times. Guarantee your table with Premium Access.</p>
                     </div>
                     
-                    {/* Standard Reservation */}
                     <button
-                      onClick={() => window.open(restaurant.website, '_blank')}
+                      onClick={() => restaurant.website && window.open(restaurant.website, '_blank')}
                       className="w-full p-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center justify-center gap-2"
                     >
                       🍽️ Standard Reservation (Free)
                     </button>
                     
-                    {/* Premium Booking - only show if fee is set */}
                     {restaurant.premium_access_fee && restaurant.premium_access_fee > 0 && (
                       <button
                         onClick={handlePremiumAccess}
@@ -315,7 +428,6 @@ export default function RestaurantDetailPage() {
                       <p>• Fee is non-refundable and separate from dining bill</p>
                     </div>
                     
-                    {/* Back option */}
                     <button
                       onClick={() => setShowPremiumAccess(false)}
                       className="w-full p-2 bg-white/20 text-white rounded-lg hover:bg-white/30 transition-colors text-sm"
@@ -324,7 +436,6 @@ export default function RestaurantDetailPage() {
                     </button>
                   </div>
                 ) : (
-                  // Initial reservation button
                   <button
                     onClick={handleReservation}
                     className="w-full p-4 bg-[#FFA500] hover:bg-[#FFB520] text-black rounded-lg transition-colors flex items-center justify-center gap-2"

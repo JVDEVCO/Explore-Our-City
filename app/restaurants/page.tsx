@@ -4,20 +4,25 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import { useEffect, useState, useMemo } from 'react'
 import Image from 'next/image'
 
-// Type definitions
+// Type definitions - Updated to match API response
 interface Restaurant {
     id: number
     name: string
-    cuisine: string
+    cuisine_type: string
     neighborhood: string
     rating: number
-    price_level: string
+    budget_level: string
     address: string
     phone?: string
     image_url?: string
     description?: string
     hours?: string
-    reservation_link?: string
+    review_count?: number
+    latitude?: number
+    longitude?: number
+    distance_miles?: number
+    distance_from_target?: string
+    yelp_id?: string
 }
 
 // Loading component
@@ -37,9 +42,18 @@ function RestaurantsContent() {
     const searchParams = useSearchParams()
     const router = useRouter()
 
-    // State
-    const [restaurants, setRestaurants] = useState<Restaurant[]>([])
-    const [loading, setLoading] = useState<boolean>(true)
+    // State for primary neighborhood results
+    const [primaryRestaurants, setPrimaryRestaurants] = useState<Restaurant[]>([])
+    const [primaryLoading, setPrimaryLoading] = useState<boolean>(true)
+    const [primaryHasMore, setPrimaryHasMore] = useState<boolean>(false)
+    const [primaryShowAll, setPrimaryShowAll] = useState<boolean>(false)
+
+    // State for nearby results
+    const [nearbyRestaurants, setNearbyRestaurants] = useState<Restaurant[]>([])
+    const [nearbyLoading, setNearbyLoading] = useState<boolean>(false)
+    const [nearbyShown, setNearbyShown] = useState<boolean>(false)
+
+    // Modal state
     const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null)
     const [showActions, setShowActions] = useState<boolean>(false)
 
@@ -51,7 +65,7 @@ function RestaurantsContent() {
     const search = searchParams.get('search') || ''
     const city = searchParams.get('city') || 'Miami & Beaches'
 
-    // Budget mapping - use useMemo to avoid recreating on every render
+    // Budget mapping
     const budgetMap = useMemo(() => ({
         'budget': '$',
         'mid-range': '$$',
@@ -60,119 +74,117 @@ function RestaurantsContent() {
         'ultra-luxury': '$$$$$'
     }), [])
 
+    // Load primary neighborhood results
     useEffect(() => {
-        const fetchRestaurants = async (): Promise<void> => {
-            setLoading(true)
+        const fetchPrimaryRestaurants = async (): Promise<void> => {
+            setPrimaryLoading(true)
 
             try {
-                // TODO: Replace with actual Supabase query
-                // const { data, error } = await supabase
-                //   .from('restaurants')
-                //   .select('*')
-                //   .eq('cuisine', cuisine)
-                //   .eq('price_level', budgetMap[budget])
-                //   .eq('neighborhood', neighborhood === 'all' ? undefined : neighborhood)
-                //   .ilike('name', search ? `%${search}%` : undefined)
+                const params = new URLSearchParams()
+                
+                if (cuisine && cuisine !== 'all') params.append('cuisine', cuisine)
+                if (neighborhood && neighborhood !== 'all') params.append('neighborhood', neighborhood)
+                if (budget && budget !== 'all') params.append('budget', budget)
+                if (city && city !== 'all') params.append('city', city)
+                if (search) params.append('search', search)
+                
+                // FIXED: Get more results initially (up to 50)
+                params.append('limit', '50')
+                params.append('searchType', 'primary')
 
-                // Mock data for testing - remove when Supabase is connected
-                const mockData: Restaurant[] = [
-                    {
-                        id: 1,
-                        name: 'Joe\'s Stone Crab',
-                        cuisine: cuisine || 'Seafood',
-                        neighborhood: neighborhood || 'South Beach',
-                        rating: 4.6,
-                        price_level: budgetMap[budget as keyof typeof budgetMap] || '$$$',
-                        address: '11 Washington Ave, Miami Beach, FL 33139',
-                        phone: '(305) 673-0365',
-                        image_url: '/api/placeholder/400/300',
-                        description: 'Iconic Miami Beach seafood restaurant since 1913',
-                        hours: '11:30 AM - 10:00 PM',
-                        reservation_link: 'https://joesstonecrab.com/reservations'
-                    },
-                    {
-                        id: 2,
-                        name: 'Carbone Miami',
-                        cuisine: cuisine || 'Italian',
-                        neighborhood: neighborhood || 'South Beach',
-                        rating: 4.7,
-                        price_level: budgetMap[budget as keyof typeof budgetMap] || '$$$$',
-                        address: '49 Collins Ave, Miami Beach, FL 33139',
-                        phone: '(305) 938-1000',
-                        image_url: '/api/placeholder/400/300',
-                        description: 'Upscale Italian-American dining experience',
-                        hours: '5:30 PM - 11:00 PM',
-                        reservation_link: 'https://resy.com/cities/mia/carbone-miami'
-                    },
-                    {
-                        id: 3,
-                        name: 'Yardbird Southern Table',
-                        cuisine: cuisine || 'Southern',
-                        neighborhood: neighborhood || 'South Beach',
-                        rating: 4.5,
-                        price_level: budgetMap[budget as keyof typeof budgetMap] || '$$',
-                        address: '1600 Lenox Ave, Miami Beach, FL 33139',
-                        phone: '(305) 538-5220',
-                        image_url: '/api/placeholder/400/300',
-                        description: 'Southern comfort food with a modern twist',
-                        hours: '11:00 AM - 11:00 PM',
-                        reservation_link: 'https://resy.com/cities/mia/yardbird-southern-table-bar'
-                    },
-                    {
-                        id: 4,
-                        name: 'Zuma Miami',
-                        cuisine: cuisine || 'Japanese',
-                        neighborhood: neighborhood || 'Downtown Miami',
-                        rating: 4.8,
-                        price_level: budgetMap[budget as keyof typeof budgetMap] || '$$$$',
-                        address: '270 Biscayne Blvd Way, Miami, FL 33131',
-                        phone: '(305) 577-0277',
-                        image_url: '/api/placeholder/400/300',
-                        description: 'Contemporary Japanese robatayaki cuisine',
-                        hours: '6:00 PM - 12:00 AM',
-                        reservation_link: 'https://resy.com/cities/mia/zuma-miami'
-                    },
-                    {
-                        id: 5,
-                        name: 'Stubborn Seed',
-                        cuisine: cuisine || 'American',
-                        neighborhood: neighborhood || 'South Beach',
-                        rating: 4.4,
-                        price_level: budgetMap[budget as keyof typeof budgetMap] || '$$$',
-                        address: '101 Washington Ave, Miami Beach, FL 33139',
-                        phone: '(305) 203-7181',
-                        image_url: '/api/placeholder/400/300',
-                        description: 'Modern American cuisine with creative flair',
-                        hours: '5:30 PM - 11:00 PM',
-                        reservation_link: 'https://resy.com/cities/mia/stubborn-seed'
-                    },
-                    {
-                        id: 6,
-                        name: 'Versailles Restaurant',
-                        cuisine: cuisine || 'Cuban',
-                        neighborhood: neighborhood || 'Little Havana',
-                        rating: 4.3,
-                        price_level: budgetMap[budget as keyof typeof budgetMap] || '$',
-                        address: '3555 SW 8th St, Miami, FL 33135',
-                        phone: '(305) 444-0240',
-                        image_url: '/api/placeholder/400/300',
-                        description: 'Authentic Cuban cuisine and culture',
-                        hours: '8:00 AM - 2:00 AM',
-                        reservation_link: 'https://versaillesrestaurant.com'
-                    }
-                ]
+                console.log('Fetching primary restaurants with params:', Object.fromEntries(params))
 
-                setRestaurants(mockData)
+                const response = await fetch(`/api/restaurants?${params}`)
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`)
+                }
+                
+                const data = await response.json()
+                console.log('Received primary restaurants:', data)
+                
+                setPrimaryRestaurants(data || [])
+                // FIXED: Check if we might have more results based on result count
+                setPrimaryHasMore(data && data.length >= 50) // If we got full batch, there might be more
+
             } catch (error) {
-                console.error('Error fetching restaurants:', error)
-                setRestaurants([])
+                console.error('Error fetching primary restaurants:', error)
+                setPrimaryRestaurants([])
             } finally {
-                setLoading(false)
+                setPrimaryLoading(false)
             }
         }
 
-        void fetchRestaurants()
-    }, [neighborhood, budget, cuisine, category, search, city, budgetMap])
+        void fetchPrimaryRestaurants()
+    }, [neighborhood, budget, cuisine, category, search, city])
+
+    // Load more restaurants from the same neighborhood
+    const handleLoadMorePrimary = async (): Promise<void> => {
+        try {
+            const params = new URLSearchParams()
+            
+            if (cuisine && cuisine !== 'all') params.append('cuisine', cuisine)
+            if (neighborhood && neighborhood !== 'all') params.append('neighborhood', neighborhood)
+            if (budget && budget !== 'all') params.append('budget', budget)
+            if (city && city !== 'all') params.append('city', city)
+            if (search) params.append('search', search)
+            
+            // Get next batch starting from current count
+            params.append('limit', '25')
+            params.append('offset', primaryRestaurants.length.toString())
+            params.append('searchType', 'primary')
+
+            const response = await fetch(`/api/restaurants?${params}`)
+            
+            if (response.ok) {
+                const moreData = await response.json()
+                setPrimaryRestaurants(prev => [...prev, ...moreData])
+                setPrimaryShowAll(true)
+                setPrimaryHasMore(moreData.length >= 25) // Check if there might be more
+            }
+        } catch (error) {
+            console.error('Error loading more primary restaurants:', error)
+        }
+    }
+
+    // Load nearby neighborhood results
+    const handleShowNearby = async (): Promise<void> => {
+        if (nearbyShown) {
+            setNearbyShown(false)
+            return
+        }
+
+        setNearbyLoading(true)
+
+        try {
+            const params = new URLSearchParams()
+            
+            if (cuisine && cuisine !== 'all') params.append('cuisine', cuisine)
+            if (neighborhood && neighborhood !== 'all') params.append('neighborhood', neighborhood)
+            if (budget && budget !== 'all') params.append('budget', budget)
+            if (city && city !== 'all') params.append('city', city)
+            if (search) params.append('search', search)
+            
+            // Get nearby restaurants
+            params.append('limit', '30')
+            params.append('searchType', 'nearby')
+
+            console.log('Fetching nearby restaurants with params:', Object.fromEntries(params))
+
+            const response = await fetch(`/api/restaurants?${params}`)
+            
+            if (response.ok) {
+                const nearbyData = await response.json()
+                console.log('Received nearby restaurants:', nearbyData)
+                setNearbyRestaurants(nearbyData || [])
+                setNearbyShown(true)
+            }
+        } catch (error) {
+            console.error('Error loading nearby restaurants:', error)
+        } finally {
+            setNearbyLoading(false)
+        }
+    }
 
     const handleRestaurantClick = (restaurant: Restaurant): void => {
         setSelectedRestaurant(restaurant)
@@ -194,10 +206,11 @@ function RestaurantsContent() {
         }
     }
 
-    const handleReservation = (link?: string): void => {
-        if (link) {
-            window.open(link, '_blank')
-        }
+    const handleReservation = (restaurant: Restaurant): void => {
+        // FIXED: Navigate to restaurant detail page preserving current search context
+        const currentParams = new URLSearchParams(window.location.search)
+        const restaurantUrl = `/restaurant/${restaurant.id}?${currentParams.toString()}`
+        router.push(restaurantUrl)
     }
 
     const handleDirections = (address: string): void => {
@@ -205,8 +218,19 @@ function RestaurantsContent() {
         window.open(`https://maps.google.com/maps?daddr=${encodedAddress}`, '_blank')
     }
 
+    // FIXED: Proper back navigation that preserves search state
     const handleBack = (): void => {
-        router.push('/')
+        // Build URL with current search parameters
+        const params = new URLSearchParams()
+        if (city) params.set('city', city)
+        if (neighborhood) params.set('neighborhood', neighborhood)
+        if (budget) params.set('budget', budget)
+        if (cuisine) params.set('cuisine', cuisine)
+        if (category) params.set('category', category)
+        if (search) params.set('search', search)
+        
+        const homeUrl = `/?${params.toString()}`
+        router.push(homeUrl)
     }
 
     // Get budget display text
@@ -221,9 +245,68 @@ function RestaurantsContent() {
         return budgetTexts[budgetKey as keyof typeof budgetTexts] || budgetKey
     }
 
-    if (loading) {
+    // Restaurant card component
+    const RestaurantCard = ({ restaurant, showDistance = false }: { restaurant: Restaurant, showDistance?: boolean }) => (
+        <div
+            onClick={() => handleRestaurantClick(restaurant)}
+            className="bg-white/10 backdrop-blur rounded-lg overflow-hidden cursor-pointer hover:bg-white/20 transition-all transform hover:scale-105 border border-white/10 hover:border-[#FFA500]/30"
+            role="button"
+            tabIndex={0}
+            onKeyPress={(e) => {
+                if (e.key === 'Enter') handleRestaurantClick(restaurant)
+            }}
+        >
+            <Image
+                src={restaurant.image_url || '/api/placeholder/400/300'}
+                alt={restaurant.name}
+                width={400}
+                height={300}
+                className="w-full h-48 object-cover"
+            />
+            <div className="p-4">
+                <h3 className="font-bold text-xl mb-2 text-white">{restaurant.name}</h3>
+                <p className="text-sm mb-2 text-gray-300">
+                    {restaurant.cuisine_type} • {restaurant.budget_level}
+                </p>
+                <p className="text-sm mb-2 text-gray-300">
+                    {restaurant.neighborhood}
+                    {showDistance && restaurant.distance_miles && (
+                        <span className="text-[#FFA500] ml-2">
+                            • {restaurant.distance_miles} mi
+                        </span>
+                    )}
+                </p>
+                <div className="flex items-center justify-between mb-2">
+                    {restaurant.rating && (
+                        <span className="text-[#FFA500] font-medium">
+                            ⭐ {restaurant.rating}
+                            {restaurant.review_count && (
+                                <span className="text-gray-400 text-xs ml-1">
+                                    ({restaurant.review_count})
+                                </span>
+                            )}
+                        </span>
+                    )}
+                    <span className="text-sm text-gray-400">{restaurant.hours}</span>
+                </div>
+                {restaurant.address && restaurant.address !== 'Address not available' && (
+                    <p className="text-sm text-gray-400 mb-2">{restaurant.address}</p>
+                )}
+                {restaurant.description && (
+                    <p className="text-sm mt-2 text-gray-300 line-clamp-2">{restaurant.description}</p>
+                )}
+                {restaurant.yelp_id && (
+                    <p className="text-xs text-gray-500 mt-1">ID: {restaurant.yelp_id}</p>
+                )}
+            </div>
+        </div>
+    )
+
+    if (primaryLoading) {
         return <LoadingSpinner />
     }
+
+    const totalResults = primaryRestaurants.length + nearbyRestaurants.length
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-[#3B2F8F] via-[#4A3A9F] to-[#5A4AAF] text-white">
@@ -250,12 +333,14 @@ function RestaurantsContent() {
                     </div>
                 </div>
 
-                {/* Restaurant Grid */}
-                {restaurants.length === 0 ? (
+                {/* Results Sections */}
+                {primaryRestaurants.length === 0 && nearbyRestaurants.length === 0 ? (
                     <div className="text-center py-12">
                         <div className="bg-white/10 backdrop-blur rounded-lg p-8 max-w-md mx-auto">
                             <h2 className="text-2xl mb-4 text-[#FFA500]">No restaurants found</h2>
-                            <p className="text-lg text-gray-200">Try adjusting your search criteria</p>
+                            <p className="text-lg text-gray-200 mb-4">
+                                Try adjusting your search criteria or exploring different neighborhoods
+                            </p>
                             <button
                                 onClick={handleBack}
                                 className="mt-4 px-6 py-3 bg-[#FFA500] text-black rounded-lg hover:bg-[#FFB520] transition-colors"
@@ -267,46 +352,123 @@ function RestaurantsContent() {
                     </div>
                 ) : (
                     <>
-                        <div className="mb-6">
+                        {/* Summary */}
+                        <div className="mb-8">
                             <p className="text-xl text-gray-200">
-                                Found <span className="text-[#FFA500] font-semibold">{restaurants.length}</span> restaurants
+                                Found <span className="text-[#FFA500] font-semibold">{totalResults}</span> restaurants
+                                {neighborhood && neighborhood !== 'all' && (
+                                    <span> for {neighborhood}</span>
+                                )}
                             </p>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {restaurants.map(restaurant => (
-                                <div
-                                    key={restaurant.id}
-                                    onClick={() => handleRestaurantClick(restaurant)}
-                                    className="bg-white/10 backdrop-blur rounded-lg overflow-hidden cursor-pointer hover:bg-white/20 transition-all transform hover:scale-105 border border-white/10 hover:border-[#FFA500]/30"
-                                    role="button"
-                                    tabIndex={0}
-                                    onKeyPress={(e) => {
-                                        if (e.key === 'Enter') handleRestaurantClick(restaurant)
-                                    }}
-                                >
-                                    <Image
-                                        src={restaurant.image_url || '/api/placeholder/400/300'}
-                                        alt={restaurant.name}
-                                        width={400}
-                                        height={300}
-                                        className="w-full h-48 object-cover"
-                                    />
-                                    <div className="p-4">
-                                        <h3 className="font-bold text-xl mb-2 text-white">{restaurant.name}</h3>
-                                        <p className="text-sm mb-2 text-gray-300">{restaurant.cuisine} • {restaurant.price_level}</p>
-                                        <p className="text-sm mb-2 text-gray-300">{restaurant.neighborhood}</p>
-                                        <div className="flex items-center justify-between mb-2">
-                                            <span className="text-[#FFA500] font-medium">⭐ {restaurant.rating}</span>
-                                            <span className="text-sm text-gray-400">{restaurant.hours}</span>
-                                        </div>
-                                        <p className="text-sm text-gray-400 mb-2">{restaurant.address}</p>
-                                        {restaurant.description && (
-                                            <p className="text-sm mt-2 text-gray-300 line-clamp-2">{restaurant.description}</p>
-                                        )}
-                                    </div>
+
+                        {/* Primary Neighborhood Results */}
+                        {primaryRestaurants.length > 0 && (
+                            <div className="mb-8">
+                                <div className="flex items-center justify-between mb-6">
+                                    <h2 className="text-2xl font-bold text-white">
+                                        {cuisine} in {neighborhood}
+                                        <span className="text-[#FFA500] ml-2">({primaryRestaurants.length})</span>
+                                    </h2>
                                 </div>
-                            ))}
-                        </div>
+                                
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                                    {primaryRestaurants.slice(0, primaryShowAll ? undefined : 20).map(restaurant => (
+                                        <RestaurantCard key={`primary-${restaurant.id}-${restaurant.yelp_id}`} restaurant={restaurant} />
+                                    ))}
+                                </div>
+                                
+                                {/* FIXED: Load More Button logic for Same Neighborhood */}
+                                {primaryRestaurants.length > 20 && !primaryShowAll && (
+                                    <div className="text-center mb-6">
+                                        <button
+                                            onClick={handleLoadMorePrimary}
+                                            className="px-8 py-3 bg-[#FFA500] text-black rounded-lg hover:bg-[#FFB520] transition-colors font-medium"
+                                            type="button"
+                                        >
+                                            See More {cuisine} in {neighborhood} ({primaryRestaurants.length - 20} more)
+                                        </button>
+                                    </div>
+                                )}
+
+                                {primaryHasMore && primaryShowAll && (
+                                    <div className="text-center mb-6">
+                                        <button
+                                            onClick={handleLoadMorePrimary}
+                                            className="px-8 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                                            type="button"
+                                        >
+                                            Load More from {neighborhood}
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {/* Nearby Areas Section */}
+                        {neighborhood && neighborhood !== 'all' && (
+                            <div className="mb-8">
+                                <div className="flex items-center justify-between mb-6">
+                                    <h2 className="text-2xl font-bold text-white">
+                                        {cuisine} Near {neighborhood}
+                                        {nearbyRestaurants.length > 0 && (
+                                            <span className="text-[#FFA500] ml-2">({nearbyRestaurants.length})</span>
+                                        )}
+                                    </h2>
+                                </div>
+
+                                {!nearbyShown ? (
+                                    <div className="text-center">
+                                        <div className="bg-white/10 backdrop-blur rounded-lg p-6 mb-4">
+                                            <p className="text-gray-200 mb-4">
+                                                Explore {cuisine} options in neighboring areas
+                                            </p>
+                                            <button
+                                                onClick={handleShowNearby}
+                                                disabled={nearbyLoading}
+                                                className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:opacity-50"
+                                                type="button"
+                                            >
+                                                {nearbyLoading ? 'Finding nearby restaurants...' : `Explore ${cuisine} in Nearby Areas`}
+                                            </button>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <>
+                                        {nearbyRestaurants.length > 0 ? (
+                                            <>
+                                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                                                    {nearbyRestaurants.map(restaurant => (
+                                                        <RestaurantCard key={`nearby-${restaurant.id}-${restaurant.yelp_id}`} restaurant={restaurant} showDistance={true} />
+                                                    ))}
+                                                </div>
+                                                
+                                                <div className="text-center">
+                                                    <button
+                                                        onClick={() => setNearbyShown(false)}
+                                                        className="px-6 py-2 bg-white/20 text-white rounded-lg hover:bg-white/30 transition-colors"
+                                                        type="button"
+                                                    >
+                                                        Hide Nearby Areas
+                                                    </button>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <div className="text-center bg-white/10 backdrop-blur rounded-lg p-6">
+                                                <p className="text-gray-300">No {cuisine} restaurants found in nearby areas</p>
+                                                <button
+                                                    onClick={() => setNearbyShown(false)}
+                                                    className="mt-3 px-6 py-2 bg-white/20 text-white rounded-lg hover:bg-white/30 transition-colors"
+                                                    type="button"
+                                                >
+                                                    Close
+                                                </button>
+                                            </div>
+                                        )}
+                                    </>
+                                )}
+                            </div>
+                        )}
                     </>
                 )}
 
@@ -325,9 +487,20 @@ function RestaurantsContent() {
                             </div>
 
                             <div className="mb-4 text-sm text-gray-300">
-                                <p>{selectedRestaurant.cuisine} • {selectedRestaurant.price_level}</p>
-                                <p>{selectedRestaurant.address}</p>
-                                {selectedRestaurant.hours && <p>Hours: {selectedRestaurant.hours}</p>}
+                                <p>{selectedRestaurant.cuisine_type} • {selectedRestaurant.budget_level}</p>
+                                <p>{selectedRestaurant.neighborhood}
+                                    {selectedRestaurant.distance_miles && (
+                                        <span className="text-[#FFA500]"> • {selectedRestaurant.distance_miles} mi away</span>
+                                    )}
+                                </p>
+                                {selectedRestaurant.address && selectedRestaurant.address !== 'Address not available' && (
+                                    <p>{selectedRestaurant.address}</p>
+                                )}
+                                {selectedRestaurant.rating && (
+                                    <p>⭐ {selectedRestaurant.rating} 
+                                        {selectedRestaurant.review_count && ` (${selectedRestaurant.review_count} reviews)`}
+                                    </p>
+                                )}
                             </div>
 
                             <div className="space-y-3">
@@ -343,15 +516,13 @@ function RestaurantsContent() {
                                 )}
 
                                 {/* Reservation Button */}
-                                {selectedRestaurant.reservation_link && (
-                                    <button
-                                        onClick={() => handleReservation(selectedRestaurant.reservation_link)}
-                                        className="w-full p-4 bg-[#FFA500] hover:bg-[#FFB520] text-black rounded-lg transition-colors flex items-center justify-center gap-2"
-                                        type="button"
-                                    >
-                                        🍽️ Make Reservation
-                                    </button>
-                                )}
+                                <button
+                                    onClick={() => handleReservation(selectedRestaurant)}
+                                    className="w-full p-4 bg-[#FFA500] hover:bg-[#FFB520] text-black rounded-lg transition-colors flex items-center justify-center gap-2"
+                                    type="button"
+                                >
+                                    🍽️ View Details & Reserve
+                                </button>
 
                                 {/* Ride Options */}
                                 <div className="grid grid-cols-2 gap-2">

@@ -27,6 +27,29 @@ const NEARBY_NEIGHBORHOODS: Record<string, string[]> = {
   'North Bay Village': ['Mid-Beach', 'Bay Harbor Islands', 'North Beach']
 }
 
+// TypeScript interface for restaurant data
+interface TransformedRestaurant {
+  id: any
+  name: any
+  cuisine_type: any
+  budget_level: any
+  neighborhood: any
+  address: any
+  phone: any
+  rating: any
+  review_count: any
+  latitude: any
+  longitude: any
+  yelp_id: any
+  city: string
+  image_url: string
+  description: string
+  hours: string
+  website: string
+  distance_miles?: number
+  distance_from_target?: string
+}
+
 // Calculate simple distance between two lat/lng points (Haversine formula)
 function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
   const R = 3959 // Earth's radius in miles
@@ -131,7 +154,7 @@ export async function GET(request: NextRequest) {
           ? detectActualNeighborhood(data.latitude, data.longitude)
           : data.neighborhood
 
-        const transformedRestaurant = {
+        const transformedRestaurant: TransformedRestaurant = {
           id: data.id,
           name: data.name,
           cuisine_type: data.primary_cuisine,
@@ -217,7 +240,7 @@ export async function GET(request: NextRequest) {
 
     // Client-side duplicate filtering and data transformation
     const seenRestaurants = new Set<string>()
-    const transformedData = data?.filter(restaurant => {
+    const transformedData: TransformedRestaurant[] = data?.filter(restaurant => {
       // Create a unique key for duplicate detection
       const uniqueKey = `${restaurant.name.toLowerCase().trim()}-${restaurant.neighborhood}`
       
@@ -234,7 +257,7 @@ export async function GET(request: NextRequest) {
         ? detectActualNeighborhood(restaurant.latitude, restaurant.longitude)
         : restaurant.neighborhood
 
-      const baseData = {
+      const baseData: TransformedRestaurant = {
         id: restaurant.id,
         name: restaurant.name,
         cuisine_type: restaurant.primary_cuisine,
@@ -264,21 +287,18 @@ export async function GET(request: NextRequest) {
             restaurant.latitude, 
             restaurant.longitude
           )
-          return {
-            ...baseData,
-            distance_miles: Math.round(distance * 10) / 10,
-            distance_from_target: neighborhood
-          }
+          baseData.distance_miles = Math.round(distance * 10) / 10
+          baseData.distance_from_target = neighborhood
         }
       }
 
       return baseData
     }) || []
 
-    // Sort nearby results by distance if applicable
+    // FIXED: Sort nearby results by distance using optional chaining
     if (searchType === 'nearby') {
       transformedData.sort((a, b) => {
-        if (a.distance_miles && b.distance_miles) {
+        if (a.distance_miles != null && b.distance_miles != null) {
           return a.distance_miles - b.distance_miles
         }
         return 0

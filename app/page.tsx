@@ -18,16 +18,40 @@ interface BudgetLevel {
 interface Restaurant {
   id: string;
   name: string;
-  cuisine_type: string; // This matches what API returns
-  budget_level: string; // This matches what API returns
+  primary_cuisine: string;
+  budget_category: string;
   neighborhood: string;
-  city: string;
   phone?: string;
   address?: string;
   website?: string;
   image_url?: string;
-  rating?: number;
-  review_count?: number;
+  yelp_rating?: number;
+  yelp_review_count?: number;
+  price_range?: string;
+}
+
+interface Activity {
+  id: string;
+  name: string;
+  primary_category: string;
+  activity_type: string;
+  neighborhood: string;
+  price_tier?: string;
+  price_range?: string;
+  phone?: string;
+  address?: string;
+  website?: string;
+  image_url?: string;
+  description?: string;
+  tags?: string[];
+}
+
+interface SearchResults {
+  restaurants: Restaurant[];
+  activities: Activity[];
+  total: number;
+  expandedFrom: string;
+  usedTerms: string[];
 }
 
 function SearchContent() {
@@ -39,6 +63,16 @@ function SearchContent() {
   const [selectedBudget, setSelectedBudget] = useState<string>('')
   const [selectedCuisine, setSelectedCuisine] = useState<string>('')
   const [restaurants, setRestaurants] = useState<Restaurant[]>([])
+  
+  // Search functionality states
+  const [searchQuery, setSearchQuery] = useState<string>('')
+  const [searchResults, setSearchResults] = useState<SearchResults | null>(null)
+  const [isSearching, setIsSearching] = useState<boolean>(false)
+  const [showSearchResults, setShowSearchResults] = useState<boolean>(false)
+
+  // Category results states
+  const [categoryResults, setCategoryResults] = useState<{activities: Activity[], total: number} | null>(null)
+  const [showCategoryResults, setShowCategoryResults] = useState<boolean>(false)
 
   const cities: City[] = [
     { id: 'miami-beaches', name: 'Miami & Beaches' },
@@ -47,26 +81,12 @@ function SearchContent() {
     { id: 'keys', name: 'Florida Keys' }
   ]
 
-  // Updated neighborhoods to match your actual database data
   const neighborhoods: Record<string, string[]> = {
     'miami-beaches': [
-      'South Beach', 
-      'Mid-Beach', 
-      'North Beach', 
-      'Downtown Miami', 
-      'Brickell', 
-      'Wynwood', 
-      'Little Havana', 
-      'Coral Gables', 
-      'Coconut Grove',
-      'Key Biscayne',
-      'Virginia Key',
-      'Miami Design District',
-      'Edgewater',
-      'Bal Harbour',
-      'Bay Harbor Islands',
-      'Surfside',
-      'North Bay Village'
+      'South Beach', 'Mid-Beach', 'North Beach', 'Downtown Miami', 'Brickell', 
+      'Wynwood', 'Little Havana', 'Coral Gables', 'Coconut Grove', 'Key Biscayne',
+      'Virginia Key', 'Miami Design District', 'Edgewater', 'Bal Harbour',
+      'Bay Harbor Islands', 'Surfside', 'North Bay Village'
     ],
     'fort-lauderdale': ['Las Olas', 'Beach Area', 'Downtown', 'Port Everglades', 'Victoria Park'],
     'palm-beach': ['Worth Avenue', 'Clematis Street', 'CityPlace', 'Palm Beach Island'],
@@ -75,73 +95,118 @@ function SearchContent() {
 
   const categories: string[] = ['dining', 'entertainment', 'adventure', 'culture']
 
-  const budgetLevels: BudgetLevel[] = [
-    { symbol: '$', label: 'Quick Bite (Under $25/person)', value: 'budget' },
-    { symbol: '$$', label: 'Casual Dining ($25-60/person)', value: 'mid-range' },
-    { symbol: '$$$', label: 'Fine Dining ($60-120/person)', value: 'upscale' },
-    { symbol: '$$$$', label: 'Luxury Experience ($120-300/person)', value: 'luxury' },
-    { symbol: '$$$$$', label: 'Ultra-Luxury Experience ($300+/person)', value: 'ultra-luxury' }
-  ]
+  // Category tag mappings
+  const categoryTagMappings: Record<string, string[]> = {
+    'adventure': ['adventure', 'outdoor', 'active', 'sports', 'nature', 'thrill', 'water', 'hiking', 'boating'],
+    'entertainment': ['entertainment', 'nightlife', 'music', 'shows', 'gaming', 'bars', 'clubs', 'comedy', 'live-music'],
+    'culture': ['culture', 'museums', 'art', 'history', 'tours', 'galleries', 'historic', 'educational', 'cultural'],
+    'dining': []
+  }
 
-  // FIXED: Alphabetized cuisine types with all missing categories added
+  // Dynamic budget levels based on category
+  const getBudgetLevels = (): BudgetLevel[] => {
+    if (selectedCategory === 'dining') {
+      return [
+        { symbol: '$', label: 'Quick Bite (Under $25/person)', value: 'budget' },
+        { symbol: '$$', label: 'Casual Dining ($25-60/person)', value: 'mid-range' },
+        { symbol: '$$$', label: 'Fine Dining ($60-120/person)', value: 'upscale' },
+        { symbol: '$$$$', label: 'Luxury Experience ($120-300/person)', value: 'luxury' },
+        { symbol: '$$$$$', label: 'Ultra-Luxury Experience ($300+/person)', value: 'ultra-luxury' }
+      ]
+    } else {
+      return [
+        { symbol: '$', label: 'Budget Activities (Under $25/person)', value: 'budget' },
+        { symbol: '$$', label: 'Standard Activities ($25-75/person)', value: 'mid-range' },
+        { symbol: '$$$', label: 'Premium Activities ($75-200/person)', value: 'upscale' },
+        { symbol: '$$$$', label: 'Luxury Experiences ($200-1000/person)', value: 'luxury' },
+        { symbol: '$$$$$', label: 'Ultra-Luxury Experiences ($1000+/person)', value: 'ultra-luxury' }
+      ]
+    }
+  }
+
   const cuisineTypes: string[] = [
-    'American',
-    'Argentinian',
-    'Asian',
-    'Bagels',
-    'Bakery',
-    'Bar',
-    'BBQ',
-    'Brazilian',
-    'British',
-    'Burgers',
-    'Cafe',
-    'Caribbean',
-    'Chinese',
-    'Colombian',
-    'Creole',
-    'Cuban',
-    'Deli',
-    'Desserts',
-    'Dominican',
-    'Fast Food',
-    'French',
-    'German',
-    'Greek',
-    'Haitian',
-    'Healthy/Organic',
-    'Ice Cream/Gelato',
-    'Indian',
-    'Irish Pub',
-    'Italian',
-    'Japanese',
-    'Juice Bar',
-    'Korean',
-    'Lebanese',
-    'Maine Lobster',
-    'Mediterranean',
-    'Mexican',
-    'Middle Eastern',
-    'Nightclub',
-    'Peruvian',
-    'Pizza',
-    'Portuguese',
-    'Seafood',
-    'Soul Food',
-    'Southern',
-    'Spanish',
-    'Sports Bar',
-    'Steakhouse',
-    'Takeout',
-    'Thai',
-    'Turkish',
-    'Vegan',
-    'Vegetarian',
-    'Venezuelan',
-    'Vietnamese',
-    'Wine Bar'
+    'American', 'Argentinian', 'Asian', 'Bagels', 'Bakery', 'Bar', 'BBQ', 'Brazilian',
+    'British', 'Burgers', 'Cafe', 'Caribbean', 'Chinese', 'Colombian', 'Creole', 'Cuban',
+    'Deli', 'Desserts', 'Dominican', 'Fast Food', 'French', 'German', 'Greek', 'Haitian',
+    'Healthy/Organic', 'Ice Cream/Gelato', 'Indian', 'Irish Pub', 'Italian', 'Japanese',
+    'Juice Bar', 'Korean', 'Lebanese', 'Maine Lobster', 'Mediterranean', 'Mexican',
+    'Middle Eastern', 'Nightclub', 'Peruvian', 'Pizza', 'Portuguese', 'Seafood',
+    'Soul Food', 'Southern', 'Spanish', 'Sports Bar', 'Steakhouse', 'Takeout', 'Thai',
+    'Turkish', 'Vegan', 'Vegetarian', 'Venezuelan', 'Vietnamese', 'Wine Bar'
   ]
 
+  // Dynamic search placeholder
+  const getSearchPlaceholder = (): string => {
+    switch (selectedCategory) {
+      case 'adventure':
+        return "Search adventure activities, outdoor experiences... (try 'kayaking', 'hiking', 'boat tours')"
+      case 'entertainment':
+        return "Search entertainment venues, nightlife... (try 'live music', 'comedy shows', 'rooftop bars')"
+      case 'culture':
+        return "Search museums, cultural sites... (try 'art galleries', 'historic tours', 'exhibitions')"
+      case 'dining':
+        return "Search restaurants, dining experiences... (try 'steak', 'seafood', 'rooftop dining')"
+      default:
+        return "Search restaurants, venues, or experiences... (try 'steak', 'mini golf', 'family activities')"
+    }
+  }
+
+  // Search functions
+  const handleSearch = async () => {
+    if (!searchQuery.trim()) return
+
+    setIsSearching(true)
+    setShowSearchResults(true)
+    setShowCategoryResults(false)
+
+    try {
+      const response = await fetch(`/api/search?query=${encodeURIComponent(searchQuery)}`)
+      const data = await response.json()
+      
+      if (response.ok) {
+        setSearchResults(data)
+      } else {
+        console.error('Search error:', data.error)
+        setSearchResults({
+          restaurants: [],
+          activities: [],
+          total: 0,
+          expandedFrom: searchQuery,
+          usedTerms: [searchQuery]
+        })
+      }
+    } catch (error) {
+      console.error('Search fetch error:', error)
+      setSearchResults({
+        restaurants: [],
+        activities: [],
+        total: 0,
+        expandedFrom: searchQuery,
+        usedTerms: [searchQuery]
+      })
+    } finally {
+      setIsSearching(false)
+    }
+  }
+
+  const handleSearchKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch()
+    }
+  }
+
+  const clearSearch = () => {
+    setSearchQuery('')
+    setSearchResults(null)
+    setShowSearchResults(false)
+  }
+
+  const clearCategoryResults = () => {
+    setShowCategoryResults(false)
+    setCategoryResults(null)
+  }
+
+  // Dropdown handlers
   const handleCitySelection = (city: string) => {
     setSelectedCity(city)
     setSelectedAreaType('')
@@ -149,6 +214,8 @@ function SearchContent() {
     setSelectedBudget('')
     setSelectedCuisine('')
     setRestaurants([])
+    clearSearch()
+    clearCategoryResults()
   }
 
   const handleAreaTypeSelection = (areaType: string) => {
@@ -161,6 +228,8 @@ function SearchContent() {
     setSelectedBudget('')
     setSelectedCuisine('')
     setRestaurants([])
+    clearSearch()
+    clearCategoryResults()
   }
 
   const handleNeighborhoodSelection = (neighborhood: string) => {
@@ -168,26 +237,65 @@ function SearchContent() {
     setSelectedBudget('')
     setSelectedCuisine('')
     setRestaurants([])
+    clearSearch()
+    clearCategoryResults()
   }
 
-  const handleCategorySelection = (category: string) => {
+  // Updated category selection handler
+  const handleCategorySelection = async (category: string) => {
     setSelectedCategory(category)
     setSelectedBudget('')
     setSelectedCuisine('')
     setRestaurants([])
+    clearSearch()
+
+    // If dining is selected, keep the original restaurant flow
+    if (category === 'dining') {
+      setShowCategoryResults(false)
+      setCategoryResults(null)
+      return
+    }
+
+    // For adventure, entertainment, culture - query Activities database
+    if (categoryTagMappings[category]) {
+      try {
+        setShowCategoryResults(true)
+        
+        const tags = categoryTagMappings[category].join(',')
+        
+        const params = new URLSearchParams({
+          tags: tags,
+          category: category,
+          ...(selectedCity && { city: selectedCity }),
+          ...(selectedNeighborhood && selectedNeighborhood !== 'all' && { neighborhood: selectedNeighborhood })
+        })
+
+        const response = await fetch(`/api/search?${params.toString()}`)
+        const data = await response.json()
+        
+        setCategoryResults({
+          activities: data.activities || [],
+          total: data.activities?.length || 0
+        })
+        
+      } catch (error) {
+        console.error('Category search error:', error)
+        setCategoryResults({ activities: [], total: 0 })
+      }
+    }
   }
 
   const handleBudgetSelection = (budget: string) => {
     setSelectedBudget(budget)
     setSelectedCuisine('')
     setRestaurants([])
+    clearSearch()
+    clearCategoryResults()
   }
 
-  // FIXED: Navigate to restaurant results page instead of showing inline results
   const handleCuisineSelection = async (cuisine: string) => {
     setSelectedCuisine(cuisine)
     
-    // Build parameters for navigation to restaurant results page
     const params = new URLSearchParams({
       city: selectedCity,
       neighborhood: selectedNeighborhood,
@@ -197,14 +305,10 @@ function SearchContent() {
     })
     
     console.log('Navigating to restaurant results with params:', Object.fromEntries(params))
-    
-    // Navigate to the restaurant results page with all search context preserved
     router.push(`/restaurants?${params.toString()}`)
   }
 
-  // FIXED: Navigate to restaurant detail with search context preserved
   const viewRestaurant = (restaurant: Restaurant) => {
-    // Build parameters to preserve search context
     const params = new URLSearchParams({
       city: selectedCity,
       neighborhood: selectedNeighborhood,
@@ -213,8 +317,17 @@ function SearchContent() {
       category: selectedCategory
     })
     
-    // Navigate to restaurant detail with search context
     router.push(`/restaurant/${restaurant.id}?${params.toString()}`)
+  }
+
+  const viewActivity = (activity: Activity) => {
+    const params = new URLSearchParams({
+      city: selectedCity,
+      neighborhood: selectedNeighborhood,
+      category: selectedCategory
+    })
+    
+    router.push(`/activity/${activity.id}?${params.toString()}`)
   }
 
   return (
@@ -324,7 +437,7 @@ function SearchContent() {
             className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-[#FFA500] focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <option value="">💰 Budget Level</option>
-            {budgetLevels.map((budget) => (
+            {getBudgetLevels().map((budget) => (
               <option key={budget.value} value={budget.value}>
                 {budget.symbol} - {budget.label}
               </option>
@@ -332,38 +445,225 @@ function SearchContent() {
           </select>
         </div>
 
-        <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${
-          !selectedBudget ? 'opacity-50' : 'opacity-100'
-        }`}>
-          <select
-            value={selectedCuisine}
-            onChange={(e) => handleCuisineSelection(e.target.value)}
-            disabled={!selectedBudget}
-            className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-[#FFA500] focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <option value="">🍽️ Choose your cuisine type...</option>
-            {cuisineTypes.map((cuisine) => (
-              <option key={cuisine} value={cuisine}>
-                {cuisine}
-              </option>
-            ))}
-          </select>
-        </div>
+        {selectedCategory === 'dining' && (
+          <div className={`bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700 transition-opacity duration-300 ${
+            !selectedBudget ? 'opacity-50' : 'opacity-100'
+          }`}>
+            <select
+              value={selectedCuisine}
+              onChange={(e) => handleCuisineSelection(e.target.value)}
+              disabled={!selectedBudget}
+              className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-[#FFA500] focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <option value="">🍽️ Choose your cuisine type...</option>
+              {cuisineTypes.map((cuisine) => (
+                <option key={cuisine} value={cuisine}>
+                  {cuisine}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
         <div className="bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-lg p-3 border border-gray-700">
           <div className="relative">
             <input
               type="text"
-              placeholder="Search restaurants, venues, or experiences..."
-              className="w-full p-3 pr-16 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-[#FFA500] focus:outline-none"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyPress={handleSearchKeyPress}
+              placeholder={getSearchPlaceholder()}
+              className="w-full p-3 pr-32 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-[#FFA500] focus:outline-none"
             />
-            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#FFA500] hover:bg-[#FFB520] text-black p-2 rounded-lg transition-colors">
-              🔍
-            </button>
+            <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex gap-2">
+              {searchQuery && (
+                <button
+                  onClick={clearSearch}
+                  className="bg-gray-600 hover:bg-gray-500 text-white p-2 rounded-lg transition-colors text-sm"
+                  title="Clear search"
+                >
+                  ✕
+                </button>
+              )}
+              <button
+                onClick={handleSearch}
+                disabled={!searchQuery.trim() || isSearching}
+                className="bg-[#FFA500] hover:bg-[#FFB520] text-black p-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                title="Search"
+              >
+                {isSearching ? '⏳' : '🔍'}
+              </button>
+            </div>
           </div>
         </div>
 
-        {restaurants.length > 0 && (
+        {showCategoryResults && categoryResults && (
+          <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 border border-gray-600">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-white text-xl font-semibold">
+                {selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)} Activities ({categoryResults.total} found)
+              </h3>
+              <button
+                onClick={() => {
+                  setShowCategoryResults(false)
+                  setCategoryResults(null)
+                  setSelectedCategory('')
+                }}
+                className="bg-gray-600 hover:bg-gray-500 text-white px-3 py-1 rounded text-sm"
+              >
+                Clear
+              </button>
+            </div>
+
+            {categoryResults.total === 0 ? (
+              <div className="text-gray-300 text-center py-8">
+                <p>No {selectedCategory} activities found</p>
+                <p className="text-sm mt-2">Try selecting a different area or category</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {categoryResults.activities.map((activity) => (
+                  <div
+                    key={activity.id}
+                    className="bg-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition-colors"
+                    onClick={() => viewActivity(activity)}
+                  >
+                    {activity.image_url && (
+                      <div className="relative h-32 mb-3 rounded-lg overflow-hidden">
+                        <Image
+                          src={activity.image_url}
+                          alt={activity.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
+                    <h5 className="text-white font-semibold mb-2">{activity.name}</h5>
+                    <p className="text-gray-300 text-sm mb-1">
+                      {activity.activity_type} • {activity.price_tier || activity.price_range}
+                    </p>
+                    <p className="text-gray-400 text-sm">{activity.neighborhood}</p>
+                    {activity.description && (
+                      <p className="text-gray-300 text-sm mt-2 line-clamp-2">
+                        {activity.description}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {showSearchResults && searchResults && (
+          <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 border border-gray-600">
+            <div className="flex justify-between items-center mb-4">
+              <div>
+                <h3 className="text-white text-xl font-semibold">
+                  Search Results for "{searchResults.expandedFrom}" ({searchResults.total} found)
+                </h3>
+                {searchResults.usedTerms.length > 1 && (
+                  <p className="text-gray-300 text-sm mt-1">
+                    Expanded to include: {searchResults.usedTerms.join(', ')}
+                  </p>
+                )}
+              </div>
+              <button
+                onClick={clearSearch}
+                className="bg-gray-600 hover:bg-gray-500 text-white px-3 py-1 rounded text-sm"
+              >
+                Clear
+              </button>
+            </div>
+
+            {searchResults.total === 0 ? (
+              <div className="text-gray-300 text-center py-8">
+                <p>No results found for "{searchResults.expandedFrom}"</p>
+                <p className="text-sm mt-2">Try searching for restaurants like "pizza" or activities like "golf"</p>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {searchResults.restaurants.length > 0 && (
+                  <div>
+                    <h4 className="text-[#FFA500] text-lg font-semibold mb-3">
+                      🍽️ Restaurants ({searchResults.restaurants.length})
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {searchResults.restaurants.map((restaurant) => (
+                        <div
+                          key={restaurant.id}
+                          className="bg-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition-colors"
+                          onClick={() => viewRestaurant(restaurant)}
+                        >
+                          {restaurant.image_url && (
+                            <div className="relative h-32 mb-3 rounded-lg overflow-hidden">
+                              <Image
+                                src={restaurant.image_url}
+                                alt={restaurant.name}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+                          )}
+                          <h5 className="text-white font-semibold mb-2">{restaurant.name}</h5>
+                          <p className="text-gray-300 text-sm mb-1">
+                            {restaurant.primary_cuisine} • {restaurant.budget_category || restaurant.price_range}
+                          </p>
+                          <p className="text-gray-400 text-sm">{restaurant.neighborhood}</p>
+                          {restaurant.yelp_rating && (
+                            <p className="text-yellow-400 text-sm mt-1">
+                              ⭐ {restaurant.yelp_rating} ({restaurant.yelp_review_count} reviews)
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {searchResults.activities.length > 0 && (
+                  <div>
+                    <h4 className="text-[#FFA500] text-lg font-semibold mb-3">
+                      🎯 Activities ({searchResults.activities.length})
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {searchResults.activities.map((activity) => (
+                        <div
+                          key={activity.id}
+                          className="bg-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition-colors"
+                          onClick={() => viewActivity(activity)}
+                        >
+                          {activity.image_url && (
+                            <div className="relative h-32 mb-3 rounded-lg overflow-hidden">
+                              <Image
+                                src={activity.image_url}
+                                alt={activity.name}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+                          )}
+                          <h5 className="text-white font-semibold mb-2">{activity.name}</h5>
+                          <p className="text-gray-300 text-sm mb-1">
+                            {activity.activity_type} • {activity.price_tier || activity.price_range}
+                          </p>
+                          <p className="text-gray-400 text-sm">{activity.neighborhood}</p>
+                          {activity.description && (
+                            <p className="text-gray-300 text-sm mt-2 line-clamp-2">
+                              {activity.description}
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+
+        {restaurants.length > 0 && !showSearchResults && !showCategoryResults && (
           <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-6">
             <h3 className="text-white text-xl font-semibold mb-4">
               Found {restaurants.length} restaurants
@@ -389,14 +689,14 @@ function SearchContent() {
                     {restaurant.name}
                   </h4>
                   <p className="text-gray-300 mb-1">
-                    {restaurant.cuisine_type} • {restaurant.budget_level}
+                    {restaurant.primary_cuisine} • {restaurant.budget_category}
                   </p>
                   <p className="text-gray-400 text-sm">
                     {restaurant.neighborhood}
                   </p>
-                  {restaurant.rating && (
+                  {restaurant.yelp_rating && (
                     <p className="text-yellow-400 text-sm mt-1">
-                      ⭐ {restaurant.rating} ({restaurant.review_count} reviews)
+                      ⭐ {restaurant.yelp_rating} ({restaurant.yelp_review_count} reviews)
                     </p>
                   )}
                 </div>

@@ -71,7 +71,7 @@ function SearchContent() {
   const [showSearchResults, setShowSearchResults] = useState<boolean>(false)
 
   // Category results states
-  const [categoryResults, setCategoryResults] = useState<{activities: Activity[], total: number} | null>(null)
+  const [categoryResults, setCategoryResults] = useState<{activities: Activity[], restaurants: Restaurant[], total: number} | null>(null)
   const [showCategoryResults, setShowCategoryResults] = useState<boolean>(false)
 
   const cities: City[] = [
@@ -275,12 +275,13 @@ function SearchContent() {
         
         setCategoryResults({
           activities: data.activities || [],
-          total: data.activities?.length || 0
+          restaurants: data.restaurants || [],
+          total: data.total || 0
         })
         
       } catch (error) {
         console.error('Category search error:', error)
-        setCategoryResults({ activities: [], total: 0 })
+        setCategoryResults({ activities: [], restaurants: [], total: 0 })
       }
     }
   }
@@ -560,7 +561,7 @@ function SearchContent() {
             <div className="flex justify-between items-center mb-4">
               <div>
                 <h3 className="text-white text-xl font-semibold">
-                  Search Results for "{searchResults.expandedFrom}" ({searchResults.total} found)
+                  Search Results for &quot;{searchResults.expandedFrom}&quot; ({searchResults.total} found)
                 </h3>
                 {searchResults.usedTerms.length > 1 && (
                   <p className="text-gray-300 text-sm mt-1">
@@ -578,8 +579,8 @@ function SearchContent() {
 
             {searchResults.total === 0 ? (
               <div className="text-gray-300 text-center py-8">
-                <p>No results found for "{searchResults.expandedFrom}"</p>
-                <p className="text-sm mt-2">Try searching for restaurants like "pizza" or activities like "golf"</p>
+                <p>No results found for &quot;{searchResults.expandedFrom}&quot;</p>
+                <p className="text-sm mt-2">Try searching for restaurants like &quot;pizza&quot; or activities like &quot;golf&quot;</p>
               </div>
             ) : (
               <div className="space-y-6">

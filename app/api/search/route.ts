@@ -10,8 +10,8 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const query = searchParams.get('query');
   const tags = searchParams.get('tags');
-  const category = searchParams.get('category');
-  const neighborhood = searchParams.get('neighborhood');
+  // const category = searchParams.get('category');
+  // const neighborhood = searchParams.get('neighborhood');
   
   // Allow either text query OR tag-based search
   if (!query && !tags) {
@@ -33,29 +33,43 @@ export async function GET(request: NextRequest) {
     expandedTerms = tags.split(',').map(tag => tag.trim());
   }
   
-  // Search restaurants with expanded terms
-  const restaurantConditions = expandedTerms.map(term => 
+  // Search restaurants with expanded terms - FIXED SYNTAX
+  let restaurantQuery = supabase
+    .from('restaurants')
+    .select('id, name, primary_cuisine, secondary_cuisine, neighborhood, budget_category, price_range, yelp_rating, address, phone, website, yelp_review_count, image_url')
+    .eq('is_active', true)
+    .limit(50); // Increased limit
+
+  // Build OR conditions properly
+  const restaurantOrConditions = expandedTerms.map(term => 
     `name.ilike.%${term}%,primary_cuisine.ilike.%${term}%,secondary_cuisine.ilike.%${term}%`
   ).join(',');
   
-  const restaurantQuery = supabase
-    .from('restaurants')
-    .select('id, name, primary_cuisine, secondary_cuisine, neighborhood, budget_category, price_range, yelp_rating, address, phone, website, yelp_review_count')
-    .or(restaurantConditions)
-    .eq('is_active', true)
-    .limit(10);
+  if (restaurantOrConditions) {
+    restaurantQuery = restaurantQuery.or(restaurantOrConditions);
+  }
   
-  // Search activities with expanded terms
-  const activityConditions = expandedTerms.map(term =>
-    `name.ilike.%${term}%,description.ilike.%${term}%,activity_type.ilike.%${term}%`
-  ).join(',');
-  
-  const activityQuery = supabase
+  // Search activities with expanded terms - FIXED SYNTAX  
+  let activityQuery = supabase
     .from('activities')
     .select('id, name, primary_category, activity_type, neighborhood, price_tier, price_range, description, address, phone, website, image_url, tags')
-    .or(activityConditions)
     .eq('status', 'active')
-    .limit(10);
+    .limit(50); // Increased limit
+
+  // Build OR conditions properly for activities
+  const activityOrConditions = expandedTerms.map(term =>
+    `name.ilike.%${term}%,description.ilike.%${term}%,activity_type.ilike.%${term}%,tags.cs.{${term}}`
+  ).join(',');
+  
+  if (activityOrConditions) {
+    activityQuery = activityQuery.or(activityOrConditions);
+  }
+  
+  // Add neighborhood filter if provided
+  if (neighborhood && neighborhood !== 'all') {
+    restaurantQuery = restaurantQuery.eq('neighborhood', neighborhood);
+    activityQuery = activityQuery.eq('neighborhood', neighborhood);
+  }
   
   // Execute both searches
   const [restaurantResults, activityResults] = await Promise.all([
@@ -66,7 +80,7 @@ export async function GET(request: NextRequest) {
   return NextResponse.json({
     restaurants: restaurantResults.data || [],
     activities: activityResults.data || [],
-    expandedFrom: query,
+    expandedFrom: query || tags,
     usedTerms: expandedTerms,
     total: (restaurantResults.data?.length || 0) + (activityResults.data?.length || 0)
   });

@@ -1,6 +1,11 @@
 import { createClient } from '@supabase/supabase-js'
 import { NextRequest } from 'next/server'
 
+// Helper function for consistent timestamp formatting
+function getTimestamp(): string {
+  return new Date().toISOString();
+}
+
 // Define neighborhood proximity for "Show Nearby" functionality
 const NEARBY_NEIGHBORHOODS: Record<string, string[]> = {
   'South Beach': ['Mid-Beach', 'North Beach', 'Downtown Miami', 'Brickell'],
@@ -99,11 +104,13 @@ function detectActualNeighborhood(lat: number, lng: number): string {
 }
 
 export async function GET(request: NextRequest) {
+  console.log(`[${getTimestamp()}] Restaurant API: Request started`);
+  
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
-    console.error('Missing Supabase environment variables:', { 
+    console.error(`[${getTimestamp()}] Restaurant API: Missing Supabase environment variables:`, { 
       hasUrl: !!supabaseUrl, 
       hasKey: !!supabaseKey 
     });
@@ -113,21 +120,33 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  console.log(`[${getTimestamp()}] Restaurant API: Supabase client created successfully`);
   const supabase = createClient(supabaseUrl, supabaseKey);
 
   const { searchParams } = new URL(request.url)
   const cuisine = searchParams.get('cuisine')
   const neighborhood = searchParams.get('neighborhood') 
   const budget = searchParams.get('budget')
-  const city = searchParams.get('city')
+  const city = searchParams.get('city') // Get city parameter
   const limit = searchParams.get('limit') || '50'
   const offset = searchParams.get('offset') || '0'
   const searchType = searchParams.get('searchType') // 'primary' or 'nearby'
   const restaurantId = searchParams.get('restaurant_id') // For single restaurant lookup
 
-  console.log('API called with:', { cuisine, neighborhood, budget, city, searchType, limit, offset, restaurantId })
+  console.log(`[${getTimestamp()}] Restaurant API: Parameters parsed:`, { 
+    cuisine, neighborhood, budget, city, searchType, limit, offset, restaurantId 
+  });
+
+  // Handle city parameter - ignore for Miami since all data is Miami area
+  // For future expansion to other cities, add filtering logic here
+  if (city && city !== 'miami-beaches') {
+    console.log(`[${getTimestamp()}] Restaurant API: Non-Miami city requested: ${city} - no data available`);
+    return Response.json([]) // Return empty array for non-Miami cities
+  }
 
   try {
+    console.log(`[${getTimestamp()}] Restaurant API: Starting database query`);
+    
     // Select ALL available fields from database
     let query = supabase
       .from('restaurants')
@@ -150,6 +169,7 @@ export async function GET(request: NextRequest) {
 
     // Handle single restaurant lookup by ID
     if (restaurantId) {
+      console.log(`[${getTimestamp()}] Restaurant API: Single restaurant lookup for ID: ${restaurantId}`);
       query = query.eq('id', restaurantId)
       
       const { data, error } = await query.single()
@@ -185,11 +205,14 @@ export async function GET(request: NextRequest) {
           website: `https://www.google.com/search?q=${encodeURIComponent(data.name + ' ' + actualNeighborhood)}`
         }
 
+        console.log(`[${getTimestamp()}] Restaurant API: Returning single restaurant`);
         return Response.json([transformedRestaurant])
       }
 
       return Response.json([])
     }
+
+    console.log(`[${getTimestamp()}] Restaurant API: Multi-restaurant search with filters`);
 
     // Apply cuisine filter
     if (cuisine && cuisine !== 'all' && cuisine !== '') {
@@ -247,6 +270,7 @@ export async function GET(request: NextRequest) {
       throw error
     }
 
+    console.log(`[${getTimestamp()}] Restaurant API: Database query completed successfully`);
     console.log(`Found ${data?.length || 0} restaurants`)
 
     // Client-side duplicate filtering and data transformation
@@ -316,12 +340,12 @@ export async function GET(request: NextRequest) {
       })
     }
 
-    console.log(`Returning ${transformedData.length} restaurants after duplicate filtering`)
+    console.log(`[${getTimestamp()}] Restaurant API: Returning ${transformedData.length} restaurants after duplicate filtering`)
 
     return Response.json(transformedData)
 
   } catch (error) {
-    console.error('API Error:', error)
+    console.error(`[${getTimestamp()}] Restaurant API: Error occurred:`, error)
     return Response.json(
       { error: 'Failed to fetch restaurants', details: error }, 
       { status: 500 }

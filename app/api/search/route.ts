@@ -1,12 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js'
 
+// Helper function for consistent timestamp formatting
+function getTimestamp(): string {
+  return new Date().toISOString();
+}
+
 export async function GET(request: NextRequest) {
+  console.log(`[${getTimestamp()}] Search API: Request started`);
+  
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
-    console.error('Missing Supabase environment variables:', { 
+    console.error(`[${getTimestamp()}] Search API: Missing Supabase environment variables:`, { 
       hasUrl: !!supabaseUrl, 
       hasKey: !!supabaseKey 
     });
@@ -16,22 +23,40 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  console.log(`[${getTimestamp()}] Search API: Supabase client created successfully`);
   const supabase = createClient(supabaseUrl, supabaseKey);
 
   const { searchParams } = new URL(request.url);
   const query = searchParams.get('query');
   const tags = searchParams.get('tags');
-  // const category = searchParams.get('category');
   const neighborhood = searchParams.get('neighborhood');
+  const city = searchParams.get('city'); // Get city parameter
   
+  console.log(`[${getTimestamp()}] Search API: Parameters parsed:`, { query, tags, neighborhood, city });
+
   // Allow either text query OR tag-based search
   if (!query && !tags) {
+    console.log(`[${getTimestamp()}] Search API: Missing required parameters`);
     return NextResponse.json({ error: 'Query or tags parameter required' }, { status: 400 });
+  }
+
+  // Handle city parameter - ignore for Miami since all data is Miami area
+  // For future expansion to other cities, add filtering logic here
+  if (city && city !== 'miami-beaches') {
+    console.log(`[${getTimestamp()}] Search API: Non-Miami city requested: ${city} - no data available`);
+    return NextResponse.json({
+      restaurants: [],
+      activities: [],
+      expandedFrom: query || tags,
+      usedTerms: [],
+      total: 0
+    });
   }
 
   let expandedTerms: string[] = [];
   
   if (query) {
+    console.log(`[${getTimestamp()}] Search API: Processing text query: ${query}`);
     // Get semantic mappings for text search
     const { data: mappings } = await supabase
       .from('search_mappings')
@@ -40,6 +65,7 @@ export async function GET(request: NextRequest) {
     
     expandedTerms = mappings?.[0]?.mapped_terms || [query];
   } else if (tags) {
+    console.log(`[${getTimestamp()}] Search API: Processing tag search: ${tags}`);
     // Use provided tags directly for category-based search
     expandedTerms = tags.split(',').map(tag => tag.trim());
   }
@@ -84,6 +110,7 @@ export async function GET(request: NextRequest) {
   
   // Execute both searches
   try {
+    console.log(`[${getTimestamp()}] Search API: Executing parallel restaurant and activity queries`);
     const [restaurantResults, activityResults] = await Promise.all([
       restaurantQuery,
       activityQuery
@@ -98,6 +125,8 @@ export async function GET(request: NextRequest) {
       console.error('Activity query error:', activityResults.error);
     }
     
+    console.log(`[${getTimestamp()}] Search API: Query results - Restaurants: ${restaurantResults.data?.length || 0}, Activities: ${activityResults.data?.length || 0}`);
+    
     return NextResponse.json({
       restaurants: restaurantResults.data || [],
       activities: activityResults.data || [],
@@ -106,7 +135,7 @@ export async function GET(request: NextRequest) {
       total: (restaurantResults.data?.length || 0) + (activityResults.data?.length || 0)
     });
   } catch (error) {
-    console.error('Search API error:', error);
+    console.error(`[${getTimestamp()}] Search API: Error occurred:`, error);
     return NextResponse.json({
       error: 'Search failed',
       restaurants: [],

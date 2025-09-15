@@ -1,3 +1,6 @@
+// ===== FILE 3: app/page.tsx =====
+// Updated cities list and neighborhoods for investor presentation
+
 'use client'
 
 import { useState, Suspense } from 'react'
@@ -74,13 +77,14 @@ function SearchContent() {
   const [categoryResults, setCategoryResults] = useState<{activities: Activity[], restaurants: Restaurant[], total: number} | null>(null)
   const [showCategoryResults, setShowCategoryResults] = useState<boolean>(false)
 
+  // Updated cities list for investor presentation - Nashville and NYC instead of FL markets
   const cities: City[] = [
     { id: 'miami-beaches', name: 'Miami & Beaches' },
-    { id: 'fort-lauderdale', name: 'Fort Lauderdale' },
-    { id: 'palm-beach', name: 'Palm Beach' },
-    { id: 'keys', name: 'Florida Keys' }
+    { id: 'nashville', name: 'Nashville, TN' },
+    { id: 'new-york', name: 'New York City, NY' }
   ]
 
+  // Updated neighborhoods with major markets for investor appeal
   const neighborhoods: Record<string, string[]> = {
     'miami-beaches': [
       'South Beach', 'Mid-Beach', 'North Beach', 'Downtown Miami', 'Brickell', 
@@ -88,9 +92,16 @@ function SearchContent() {
       'Virginia Key', 'Miami Design District', 'Edgewater', 'Bal Harbour',
       'Bay Harbor Islands', 'Surfside', 'North Bay Village'
     ],
-    'fort-lauderdale': ['Las Olas', 'Beach Area', 'Downtown', 'Port Everglades', 'Victoria Park'],
-    'palm-beach': ['Worth Avenue', 'Clematis Street', 'CityPlace', 'Palm Beach Island'],
-    'keys': ['Key Largo', 'Islamorada', 'Marathon', 'Key West']
+    'nashville': [
+      'Downtown Nashville', 'Music Row', 'The Gulch', 'Music City Center',
+      'Sobro', 'Germantown', 'East Nashville', 'Green Hills', 'Belle Meade',
+      'Franklin', 'Brentwood', 'Hillsboro Village'
+    ],
+    'new-york': [
+      'Manhattan', 'Brooklyn', 'Queens', 'Bronx', 'Staten Island',
+      'SoHo', 'Greenwich Village', 'Upper East Side', 'Upper West Side',
+      'Chelsea', 'Tribeca', 'Lower East Side', 'Williamsburg', 'DUMBO'
+    ]
   }
 
   const categories: string[] = ['dining', 'entertainment', 'adventure', 'culture']
